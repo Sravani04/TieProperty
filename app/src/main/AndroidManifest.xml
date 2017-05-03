@@ -28,8 +28,7 @@
         <activity android:name=".CityPage"></activity>
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".PropertyDetailPage"></activity>
-        <activity android:name=".AreasActivity"></activity>
-        <activity android:name=".CategoryPage"></activity>
+        <activity android:name=".FilterPage"></activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
