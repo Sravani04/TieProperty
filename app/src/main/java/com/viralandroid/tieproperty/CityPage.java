@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -36,6 +37,7 @@ public class CityPage extends Activity {
     ArrayList<Cities> citiesfrom_api;
     ArrayList<Settings> settingsfrom_api;
     String logo,title,emails,phone,itunes_link,playstore_link,about;
+    String city_id;
 
 
     @Override
@@ -76,12 +78,13 @@ public class CityPage extends Activity {
         citiesfrom_api = new ArrayList<>();
         settingsfrom_api = new ArrayList<>();
 
+
         cityPageAdapter = new CityPageAdapter(CityPage.this,citiesfrom_api);
         gridView.setAdapter(cityPageAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(CityPage.this,CategoryPage.class);
+                Intent intent = new Intent(CityPage.this,MainActivity.class);
                 intent.putExtra("city",citiesfrom_api.get(i).title);
                 intent.putExtra("id",citiesfrom_api.get(i).id);
                 intent.putExtra("phone",phone);
@@ -109,6 +112,7 @@ public class CityPage extends Activity {
                             progressDialog.dismiss();
                         try {
                             for (int i=0;i<result.size();i++){
+                                Log.e("response",result.get(i).toString());
                                 Cities cities = new Cities(result.get(i).getAsJsonObject(),CityPage.this);
                                 citiesfrom_api.add(cities);
                             }
@@ -144,6 +148,12 @@ public class CityPage extends Activity {
                     }
                 });
     }
+
+
+
+
+
+
 
 
 }

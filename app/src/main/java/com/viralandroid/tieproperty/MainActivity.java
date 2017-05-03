@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.google.gson.JsonArray;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
+import com.koushikdutta.ion.Response;
 
 import java.util.ArrayList;
 
@@ -21,9 +22,12 @@ public class MainActivity extends Activity {
     ListView listView;
     PropertyListAdapter propertyListAdapter;
     TextView select_city;
-    String cities,mobile,city_id,cat_id,areas_id;
+    String cities,mobile,city_id,cat_id,areas_id,cat_filter;
     ImageView back_btn,location,select_category;
     ArrayList<Properties> propertiesfrom_api;
+    Cities citiesfrom_api;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -38,12 +42,22 @@ public class MainActivity extends Activity {
 
 
 
+
         if (getIntent()!=null && getIntent().hasExtra("city")){
             cities = getIntent().getStringExtra("city");
             city_id = getIntent().getStringExtra("id");
             mobile = getIntent().getStringExtra("phone");
-            cat_id = getIntent().getStringExtra("category_id");
+
+        }
+
+        if (getIntent()!=null && getIntent().hasExtra("area_id")){
             areas_id = getIntent().getStringExtra("area_id");
+            Log.e("areaResponse",areas_id);
+            cat_id = getIntent().getStringExtra("cat_id");
+            Log.e("catResponse",cat_id);
+            city_id = getIntent().getStringExtra("id");
+            Log.e("cityidresponse",city_id);
+
         }
 
 
@@ -59,7 +73,8 @@ public class MainActivity extends Activity {
         select_category.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,CategoryPage.class);
+                Intent intent = new Intent(MainActivity.this,FilterPage.class);
+                intent.putExtra("id",city_id);
                 startActivity(intent);
             }
         });
@@ -86,11 +101,13 @@ public class MainActivity extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(MainActivity.this,PropertyDetailPage.class);
                 intent.putExtra("property",propertiesfrom_api.get(i));
+                intent.putExtra("mobile",mobile);
                 startActivity(intent);
             }
         });
 
         get_properties();
+
     }
 
     public void get_properties(){
@@ -104,15 +121,24 @@ public class MainActivity extends Activity {
                 .setBodyParameter("area",areas_id)
                 .setBodyParameter("category",cat_id)
                 .asJsonArray()
-                .setCallback(new FutureCallback<JsonArray>() {
+                .withResponse()
+                .setCallback(new FutureCallback<Response<JsonArray>>() {
                     @Override
-                    public void onCompleted(Exception e, JsonArray result) {
+                    public void onCompleted(Exception e, Response<JsonArray> result) {
                         if (progressDialog!=null)
                             progressDialog.dismiss();
+                        Log.e("response",result.getServedFrom().toString());
+
+                        if (e!=null) {
+                            e.printStackTrace();
+                            Log.e("error",e.getLocalizedMessage());
+
+                        }
+                        else
                         try {
-                            Log.e("propertieslist",result.toString());
-                            for (int i=0;i<result.size();i++){
-                                Properties properties = new Properties(result.get(i).getAsJsonObject(),MainActivity.this);
+
+                            for (int i=0;i<result.getResult().size();i++){
+                                Properties properties = new Properties(result.getResult().get(i).getAsJsonObject(),MainActivity.this);
                                 propertiesfrom_api.add(properties);
                             }
                             propertyListAdapter.notifyDataSetChanged();
@@ -125,6 +151,7 @@ public class MainActivity extends Activity {
                     }
                 });
     }
+
 
 
 }

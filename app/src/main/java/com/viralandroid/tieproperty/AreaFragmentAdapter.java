@@ -10,76 +10,67 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 /**
- * Created by T on 28-04-2017.
+ * Created by T on 02-05-2017.
  */
 
-public class CategoryPageAdapter extends BaseAdapter implements Filterable{
+public class AreaFragmentAdapter extends BaseAdapter implements Filterable {
+    Context mContext;
     LayoutInflater inflater;
-    Context context;
-    ArrayList<Category> categories;
-    ArrayList<Category> mStringFilterList;
+    private ArrayList<Areas> arraylist;
+    ArrayList<Areas> mStringFilterList;
     ValueFilter valueFilter;
 
+    public AreaFragmentAdapter(Context context, ArrayList<Areas> arraylist) {
+        mContext = context;
+        inflater = LayoutInflater.from(mContext);
+        this.arraylist = arraylist;
+        mStringFilterList = arraylist;
 
-    public CategoryPageAdapter(Context context,ArrayList<Category> categories){
-        this.context = context;
-        this.categories = categories;
-        inflater = LayoutInflater.from(context);
-        mStringFilterList = categories;
     }
-
-
 
     public class ViewHolder {
         TextView name;
         CheckBox checkBox;
     }
 
+
     @Override
     public int getCount() {
-        return categories.size();
+        return arraylist.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return categories.get(i);
+        return arraylist.get(i);
     }
 
     @Override
     public long getItemId(int i) {
-        return categories.indexOf(getItem(i));
+        return i;
     }
 
-
-
-
-
-
     @Override
-    public View getView(final int i, View view, ViewGroup viewGroup) {
-        final CategoryPageAdapter.ViewHolder holder;
+    public View getView(final int position, View view, ViewGroup viewGroup) {
+        final AreaFragmentAdapter.ViewHolder holder;
         if (view == null) {
             holder = new ViewHolder();
-            view = inflater.inflate(R.layout.category_items, null);
+            view = inflater.inflate(R.layout.localities_list_items, null);
             // Locate the TextViews in listview_item.xml
-            holder.name = (TextView) view.findViewById(R.id.category_name);
-            holder.checkBox = (CheckBox) view.findViewById(R.id.check_items);
-
-            final Category category = categories.get(i);
-            final ListView listView;
+            holder.name = (TextView) view.findViewById(R.id.area_name);
+            holder.checkBox = (CheckBox) view.findViewById(R.id.check);
+            final Areas areas = arraylist.get(position);
 
             holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    category.setChecked(isChecked);
+                    areas.setChecked(isChecked);
                     Log.e("checkd","checked true");
-                    Log.e("print",category.getId());
+                    Log.e("print",areas.getId());
                 }
             });
 
@@ -87,13 +78,14 @@ public class CategoryPageAdapter extends BaseAdapter implements Filterable{
         } else {
             holder = (ViewHolder) view.getTag();
         }
+        // Set the results into TextViews
+        holder.name.setText(arraylist.get(position).title);
+        holder.checkBox.setChecked(arraylist.get(position).getChecked());
+        Log.e("message",arraylist.get(position).getChecked().toString());
+        Log.e("message1",arraylist.get(position).getName());
+        Log.e("id",arraylist.get(position).getId());
 
 
-        holder.name.setText(categories.get(i).title);
-        holder.checkBox.setChecked(categories.get(i).getChecked());
-        Log.e("message",categories.get(i).getChecked().toString());
-        Log.e("message1",categories.get(i).getName());
-        Log.e("id",categories.get(i).getId());
         return view;
     }
 
@@ -113,16 +105,16 @@ public class CategoryPageAdapter extends BaseAdapter implements Filterable{
             Log.e("results",results.toString());
 
             if (constraint != null && constraint.length() > 0) {
-                ArrayList<Category> filterList = new ArrayList<Category>();
+                ArrayList<Areas> filterList = new ArrayList<Areas>();
                 for (int i = 0; i < mStringFilterList.size(); i++) {
                     if ((mStringFilterList.get(i).getName().toUpperCase())
                             .contains(constraint.toString().toUpperCase())) {
 
-                        Category category = new Category(mStringFilterList.get(i)
+                        Areas areas = new Areas(mStringFilterList.get(i)
                                 .getName(), mStringFilterList.get(i)
                                 .getId(), mStringFilterList.get(i));
 
-                        filterList.add(category);
+                        filterList.add(areas);
                         Log.e("results",results.toString());
                     }
                 }
@@ -138,10 +130,8 @@ public class CategoryPageAdapter extends BaseAdapter implements Filterable{
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            categories = (ArrayList<Category>) results.values;
+            arraylist = (ArrayList<Areas>) results.values;
             notifyDataSetChanged();
         }
     }
-
-
-    }
+}
