@@ -539,6 +539,7 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
                     .defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
             CameraUpdate location = CameraUpdateFactory.newLatLngZoom(point, 6);
             map.animateCamera(location);
+            map.moveCamera(location);
 
         }
 
