@@ -60,17 +60,17 @@
                     android:textStyle="normal|bold" />
 
                 <ImageView
-                    android:layout_width="15dp"
                     android:layout_height="20dp"
                     android:id="@+id/select_category"
                     android:cropToPadding="true"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="5dp"
-                    android:src="@drawable/icon_filter" />
+                    android:src="@drawable/icon_filter"
+                    android:layout_width="25dp" />
 
                 <ImageView
                     android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_height="30dp"
                     android:id="@+id/location"
                     android:adjustViewBounds="true"
                     android:layout_gravity="center_vertical"

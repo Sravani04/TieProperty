@@ -4,81 +4,47 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#64424242">
+        android:layout_height="match_parent">
 
-        <ImageView
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/imageView2"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/places_ic_search" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/search_type"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:hint="Search" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/imageView20"
-            android:scaleType="centerCrop"
-            android:src="@drawable/select_city" />
+            android:layout_marginTop="5dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/header"
-                android:layout_marginTop="10dp">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/imageView18"
-                        android:adjustViewBounds="true"
-                        android:scaleType="centerCrop"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_width="170dp"
-                        android:src="@drawable/logo_white"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:text="Select Category"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:id="@+id/textView28"
-                        android:textColor="#d4ced0"
-                        android:textSize="18sp"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:textStyle="normal|bold"
-                        android:layout_below="@+id/header"
-                        android:layout_above="@+id/city"
-                        android:layout_marginTop="10dp" />
-
-                </LinearLayout>
-            </RelativeLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
+            <ListView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/header"
-                android:layout_above="@+id/footer"
-                android:id="@+id/city"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
-
-                <GridView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/category_list"
-                    android:numColumns="2"
-                    android:layout_marginTop="10dp" />
-            </LinearLayout>
-
-        </RelativeLayout>
-
-
-    </RelativeLayout>
-
-
+                android:id="@+id/category_list" />
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>
