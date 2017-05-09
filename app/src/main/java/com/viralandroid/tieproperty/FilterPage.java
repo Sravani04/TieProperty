@@ -243,7 +243,9 @@ public class FilterPage extends FragmentActivity {
                 Log.d("CRS=>", String.valueOf(minValue) + " : " + String.valueOf(maxValue));
 //                value = String.valueOf(minValue) + " : " + String.valueOf(maxValue);
                 from = String.valueOf(minValue);
-                to =String.valueOf(maxValue);
+                Log.e("range",from);
+                to   = String.valueOf(maxValue);
+                Log.e("rangeto",to);
             }
         });
 
@@ -252,9 +254,12 @@ public class FilterPage extends FragmentActivity {
         apply_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String areas_filter,category_filter;
+                String areas_filter,category_filter,from,to;
                 areas_filter = "";
                 category_filter = "";
+                from = "";
+                to ="";
+
                 for (int i=0;i<areaFragmentAdapter.areas.size();i++){
                     if (areaFragmentAdapter.areas.get(i).checked){
                         Log.e("checked",areaFragmentAdapter.areas.get(i).id);
@@ -277,6 +282,9 @@ public class FilterPage extends FragmentActivity {
 
                     }
                 }
+
+
+
                 //Toast.makeText(FilterPage.this,"Filters added",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(FilterPage.this,MainActivity.class);
                 intent.putExtra("area_id",areas_filter);

@@ -40,6 +40,9 @@ public class MainActivity extends Activity {
         select_category = (ImageView) findViewById(R.id.select_category);
         propertiesfrom_api = new ArrayList<>();
 
+        price_from="";
+        price_to="";
+
 
 
 
@@ -61,7 +64,6 @@ public class MainActivity extends Activity {
             Log.e("rang",price_from);
             price_to = getIntent().getStringExtra("range_to");
             Log.e("rangeto",price_to);
-
 
         }
 
@@ -132,23 +134,27 @@ public class MainActivity extends Activity {
                 .setCallback(new FutureCallback<Response<JsonArray>>() {
                     @Override
                     public void onCompleted(Exception e, Response<JsonArray> result) {
-                        if (progressDialog!=null)
-                            progressDialog.dismiss();
-                        Log.e("response",result.getServedFrom().toString());
-
-                        if (e!=null) {
-                            e.printStackTrace();
-                            Log.e("error",e.getLocalizedMessage());
-
-                        }
-                        else
                         try {
-                            for (int i=0;i<result.getResult().size();i++){
-                                Properties properties = new Properties(result.getResult().get(i).getAsJsonObject(),MainActivity.this);
-                                propertiesfrom_api.add(properties);
-                            }
-                            propertyListAdapter.notifyDataSetChanged();
+                            if (progressDialog != null)
+                                progressDialog.dismiss();
+                            Log.e("response", result.getServedFrom().toString());
 
+
+                            if (e != null) {
+                                e.printStackTrace();
+                                Log.e("error", e.getLocalizedMessage());
+
+                            } else
+                                try {
+                                    for (int i = 0; i < result.getResult().size(); i++) {
+                                        Properties properties = new Properties(result.getResult().get(i).getAsJsonObject(), MainActivity.this);
+                                        propertiesfrom_api.add(properties);
+                                    }
+                                    propertyListAdapter.notifyDataSetChanged();
+
+                                } catch (Exception e1) {
+                                    e1.printStackTrace();
+                                }
                         }catch (Exception e1){
                             e1.printStackTrace();
                         }
