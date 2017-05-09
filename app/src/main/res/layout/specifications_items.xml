@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="90dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:background="@drawable/border_corner">
+
+                <TextView
+                    android:text="Title "
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/title"
+                    android:gravity="center_vertical"
+                    android:textColor="#000"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="5dp" />
+
+                <TextView
+                    android:text=":"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView4"
+                    android:textColor="#000"
+                    android:layout_marginTop="5dp" />
+
+                <TextView
+                    android:text="Lorem ipsum dolar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/description"
+                    android:layout_weight="1"
+                    android:maxLines="5"
+                    android:layout_marginLeft="3dp"
+                    android:textColor="#000"
+                    android:layout_marginTop="5dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
