@@ -18,11 +18,6 @@ public class Category {
         this.checked = checked;
     }
 
-    public Category(String name, String id, Category category) {
-        this.id = id;
-        this.title = name;
-    }
-
     public String getId() {
         return id;
     }

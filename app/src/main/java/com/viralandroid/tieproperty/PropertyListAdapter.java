@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.koushikdutta.ion.Ion;
@@ -24,11 +25,16 @@ import java.util.ArrayList;
 public class PropertyListAdapter extends BaseAdapter {
     LayoutInflater inflater;
     Context context;
-    String mobile,lat,lng,loc;
+    String mobile, lat, lng, loc;
     ArrayList<Properties> properties;
+    String[] items ;
+    String title;
 
 
-    public PropertyListAdapter(Context context, String mobile, ArrayList<Properties> properties){
+
+
+
+    public PropertyListAdapter(Context context, String mobile, ArrayList<Properties> properties) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         this.mobile = mobile;
@@ -37,7 +43,7 @@ public class PropertyListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return properties.size() ;
+        return properties.size();
     }
 
     @Override
@@ -52,14 +58,28 @@ public class PropertyListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-       final View item_view =  inflater.inflate(R.layout.activity_main,null);
+        final View item_view = inflater.inflate(R.layout.activity_main, null);
 
-       ImageView call_btn = (ImageView) item_view.findViewById(R.id.call_btn);
-       final TextView address = (TextView) item_view.findViewById(R.id.address);
-       TextView property_title = (TextView) item_view.findViewById(R.id.property_title);
-       ImageView map = (ImageView) item_view.findViewById(R.id.map);
+
+        ImageView call_btn = (ImageView) item_view.findViewById(R.id.call_btn);
+        final TextView address = (TextView) item_view.findViewById(R.id.address);
+        TextView property_title = (TextView) item_view.findViewById(R.id.property_title);
+        ImageView map = (ImageView) item_view.findViewById(R.id.map);
         TextView stats = (TextView) item_view.findViewById(R.id.stats);
         ImageView item_image = (ImageView) item_view.findViewById(R.id.item_image);
+        TextView flat_price = (TextView) item_view.findViewById(R.id.flat_price);
+        TextView flat_area = (TextView) item_view.findViewById(R.id.flat_area);
+        TextView flat_type = (TextView) item_view.findViewById(R.id.flat_type);
+        TextView flat_title = (TextView) item_view.findViewById(R.id.flat_title);
+        TextView flat_price2 = (TextView) item_view.findViewById(R.id.flat_price2);
+        TextView flat_area1 = (TextView) item_view.findViewById(R.id.flat_area1);
+        ImageView offer = (ImageView) item_view.findViewById(R.id.offer);
+        TextView hiphen  = (TextView) item_view.findViewById(R.id.hiphen);
+        TextView hiphen2 = (TextView) item_view.findViewById(R.id.hiphen2);
+        LinearLayout stats_box = (LinearLayout) item_view.findViewById(R.id.stats_box);
+
+
+
         lat = properties.get(i).latitude;
         lng = properties.get(i).longitude;
         loc = properties.get(i).location;
@@ -70,23 +90,93 @@ public class PropertyListAdapter extends BaseAdapter {
                 .load(properties.get(i).images.get(0).image)
                 .withBitmap()
                 .intoImageView(item_image);
-        stats.setText(properties.get(i).stats);
+
+
+
+        if (properties.get(i).stats.isEmpty()){
+            stats_box.setVisibility(View.GONE);
+        }else {
+            String data = properties.get(i).stats;
+            String[] items = data.split("\n");
+            for (String item : items)
+            {
+                System.out.println("item = " + item);
+                stats.setText(item.replace("_", "\n"));
+            }
+        }
+
+        try {
+            if (properties.get(i).flats.get(0) != null) {
+                if (properties.get(i).flats.get(0).price.equals("") || properties.get(i).flats.get(0).area.equals("")) {
+                    flat_price.setVisibility(View.GONE);
+                    flat_area.setVisibility(View.GONE);
+                } else {
+                    flat_price.setText(properties.get(i).flats.get(0).price);
+                    flat_area.setText(properties.get(i).flats.get(0).area);
+                    flat_price.setVisibility(View.VISIBLE);
+                    flat_area.setVisibility(View.VISIBLE);
+                }
+            }
+
+            if (properties.get(i).flats.get(1) != null) {
+                if (properties.get(i).flats.get(1).price.equals("") || properties.get(i).flats.get(1).area.equals("")) {
+                    hiphen.setVisibility(View.GONE);
+                    flat_price2.setVisibility(View.GONE);
+                    hiphen2.setVisibility(View.GONE);
+                    flat_area1.setVisibility(View.GONE);
+                } else {
+                    flat_price2.setText(properties.get(i).flats.get(1).price);
+                    hiphen.setVisibility(View.VISIBLE);
+                    flat_price2.setVisibility(View.VISIBLE);
+                    flat_area1.setText(properties.get(i).flats.get(1).area);
+                    hiphen2.setVisibility(View.VISIBLE);
+                    flat_area1.setVisibility(View.VISIBLE);
+
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+         try{
+             flat_title.setText(properties.get(i).flats.get(0).title);
+         }catch (Exception e){
+             e.printStackTrace();
+         }
+
+
+
+
+        try {
+            if (properties.get(i).flats.get(0)!=null) {
+                flat_area.setText(properties.get(i).flats.get(0).area);
+                flat_type.setText(properties.get(i).flats.get(0).type);
+//                flat_price.setText(properties.get(i).flats.get(0).price);
+               // flat_price2.setText(properties.get(i).flats.get(1).price);
+
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+//        try {
+//            flat_area1.setText(properties.get(i).flats.get(1).area);
+//            flat_price2.setText(properties.get(i).flats.get(1).price);
+//
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+
 
 
         call_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:1800212147"));
+                callIntent.setData(Uri.parse("tel:"+mobile));
                 callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
                     return;
                 }
                 context.startActivity(callIntent);
@@ -99,7 +189,7 @@ public class PropertyListAdapter extends BaseAdapter {
 //                Uri uri = Uri.parse("geo:13.070984,80.253639?q=13.070984,80.253639(location)");
 //                Intent in = new Intent(Intent.ACTION_VIEW, uri);
 //                context.startActivity(in);
-                Uri mapUri = Uri.parse("geo:0,0?q=" +  lat + "," + lng +"(" + loc + ")");
+                Uri mapUri = Uri.parse("geo:0,0?q=" + lat + "," + lng + "(" + loc + ")");
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, mapUri);
                 mapIntent.setPackage("com.google.android.apps.maps");
                 context.startActivity(mapIntent);
@@ -107,9 +197,10 @@ public class PropertyListAdapter extends BaseAdapter {
         });
 
 
-
         return item_view;
     }
+
+
 
 
 

@@ -41,11 +41,15 @@ public class PropertyImageSliderAdapter  extends PagerAdapter{
         View itemView = layoutInflater.inflate(R.layout.property_image_slider, container, false);
         final ImageView imageView = (ImageView) itemView.findViewById(R.id.myImage);
 //        imageView.setImageResource(images[position]);
-        Ion.with(context)
-                .load(properties.images.get(position).image)
-                .withBitmap()
-                .intoImageView(imageView);
-        container.addView(itemView);
+        try {
+            Ion.with(context)
+                    .load(properties.images.get(position).image)
+                    .withBitmap()
+                    .intoImageView(imageView);
+            container.addView(itemView);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return itemView;
     }
 

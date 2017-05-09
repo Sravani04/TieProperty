@@ -17,6 +17,10 @@ public class Properties implements Serializable{
     public ArrayList<Images> images;
     public ArrayList<Floorplans> floorplans;
     public ArrayList<Flats> flats;
+    public  ArrayList<Banks> banks;
+    public ArrayList<Amenities> amenities;
+    public ArrayList<Specifications> specifications;
+
     public Properties(JsonObject jsonObject, Context context){
         id = jsonObject.get("id").getAsString();
         title = jsonObject.get("title").getAsString();
@@ -55,6 +59,24 @@ public class Properties implements Serializable{
             flats.add(flat);
         }
 
+        banks = new ArrayList<>();
+        for (int i=0; i<jsonObject.get("banks").getAsJsonArray().size();i++){
+            Banks bank = new Banks(jsonObject.get("banks").getAsJsonArray().get(i).getAsJsonObject(),context);
+            banks.add(bank);
+        }
+
+        amenities = new ArrayList<>();
+        for (int i=0; i<jsonObject.get("amenities").getAsJsonArray().size();i++){
+            Amenities amenitie = new Amenities(jsonObject.get("amenities").getAsJsonArray().get(i).getAsJsonObject(),context);
+            amenities.add(amenitie);
+        }
+
+        specifications = new ArrayList<>();
+        for (int i=0; i<jsonObject.get("specifications").getAsJsonArray().size();i++){
+            Specifications specification = new Specifications(jsonObject.get("specifications").getAsJsonArray().get(i).getAsJsonObject(),context);
+            specifications.add(specification);
+        }
+
 
     }
 
@@ -79,6 +101,40 @@ public class Properties implements Serializable{
         public Floorplans(JsonObject jsonObject,Context context){
             image = jsonObject.get("image").getAsString();
             thumb = jsonObject.get("thumb").getAsString();
+        }
+    }
+
+    public class Banks implements Serializable{
+        public String bank_id,title,image;
+        public Banks(JsonObject jsonObject,Context context){
+            bank_id = jsonObject.get("bank_id").getAsString();
+            title = jsonObject.get("title").getAsString();
+            image = jsonObject.get("image").getAsString();
+        }
+    }
+
+    public class Amenities implements Serializable{
+        public String amenity_id,title,image;
+        public Amenities(JsonObject jsonObject,Context context){
+            amenity_id = jsonObject.get("amenity_id").getAsString();
+            title = jsonObject.get("title").getAsString();
+            image = jsonObject.get("image").getAsString();
+        }
+    }
+
+    public class Specifications implements Serializable{
+        public String title,description;
+        public Specifications(JsonObject jsonObject,Context context){
+            if (jsonObject.has("title")) {
+                title = jsonObject.get("title").getAsString();
+            }else {
+                title = "no-title";
+            }
+            if (jsonObject.has("description")) {
+                description = jsonObject.get("description").getAsString();
+            }else {
+                description = "no-description";
+            }
         }
     }
 

@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
     ListView listView;
     PropertyListAdapter propertyListAdapter;
     TextView select_city;
-    String cities,mobile,city_id,cat_id,areas_id,cat_filter;
+    String cities,mobile,city_id,cat_id,areas_id,price_from,price_to;
     ImageView back_btn,location,select_category;
     ArrayList<Properties> propertiesfrom_api;
     Cities citiesfrom_api;
@@ -57,6 +57,11 @@ public class MainActivity extends Activity {
             Log.e("catResponse",cat_id);
             city_id = getIntent().getStringExtra("id");
             Log.e("cityidresponse",city_id);
+            price_from = getIntent().getStringExtra("range_from");
+            Log.e("rang",price_from);
+            price_to = getIntent().getStringExtra("range_to");
+            Log.e("rangeto",price_to);
+
 
         }
 
@@ -120,6 +125,8 @@ public class MainActivity extends Activity {
                 .setBodyParameter("city",city_id)
                 .setBodyParameter("area",areas_id)
                 .setBodyParameter("category",cat_id)
+                .setBodyParameter("from",price_from)
+                .setBodyParameter("to",price_to)
                 .asJsonArray()
                 .withResponse()
                 .setCallback(new FutureCallback<Response<JsonArray>>() {
@@ -136,7 +143,6 @@ public class MainActivity extends Activity {
                         }
                         else
                         try {
-
                             for (int i=0;i<result.getResult().size();i++){
                                 Properties properties = new Properties(result.getResult().get(i).getAsJsonObject(),MainActivity.this);
                                 propertiesfrom_api.add(properties);

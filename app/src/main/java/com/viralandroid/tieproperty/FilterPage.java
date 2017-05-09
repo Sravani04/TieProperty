@@ -18,6 +18,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
+import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
+import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarFinalValueListener;
+import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.google.gson.JsonArray;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
@@ -32,7 +35,7 @@ public class FilterPage extends FragmentActivity {
     TextView areas,category_type;
     ViewFlipper filter_frame;
     TextView range_seekbar,reset_btn,apply_btn;
-    String cityid,cities,phone;
+    String cityid,cities,phone,from,to;
     ImageView close_btn;
     LinearLayout localities,types,ranges;
     ArrayList<Areas> areasfrom_api;
@@ -221,6 +224,30 @@ public class FilterPage extends FragmentActivity {
             }
         });
 
+        final CrystalRangeSeekbar rangeSeekbar = (CrystalRangeSeekbar) findViewById(R.id.rangeSeekbar1);
+        final TextView tvMin = (TextView) findViewById(R.id.textMin1);
+        final TextView tvMax = (TextView) findViewById(R.id.textMax1);
+
+        rangeSeekbar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
+            @Override
+            public void valueChanged(Number minValue, Number maxValue) {
+                tvMin.setText(String.valueOf(minValue));
+                tvMax.setText(String.valueOf(maxValue));
+
+            }
+        });
+
+        rangeSeekbar.setOnRangeSeekbarFinalValueListener(new OnRangeSeekbarFinalValueListener() {
+            @Override
+            public void finalValue(Number minValue, Number maxValue) {
+                Log.d("CRS=>", String.valueOf(minValue) + " : " + String.valueOf(maxValue));
+//                value = String.valueOf(minValue) + " : " + String.valueOf(maxValue);
+                from = String.valueOf(minValue);
+                to =String.valueOf(maxValue);
+            }
+        });
+
+
 
         apply_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -228,13 +255,13 @@ public class FilterPage extends FragmentActivity {
                 String areas_filter,category_filter;
                 areas_filter = "";
                 category_filter = "";
-                for (int i=0;i<areasfrom_api.size();i++){
-                    if (areasfrom_api.get(i).checked){
-                        Log.e("checked",areasfrom_api.get(i).id);
+                for (int i=0;i<areaFragmentAdapter.areas.size();i++){
+                    if (areaFragmentAdapter.areas.get(i).checked){
+                        Log.e("checked",areaFragmentAdapter.areas.get(i).id);
                         if (areas_filter.equals("")) {
-                            areas_filter = areasfrom_api.get(i).id;
+                            areas_filter = areaFragmentAdapter.areas.get(i).id;
                         }else {
-                            areas_filter = areas_filter +"@"+ areasfrom_api.get(i).id;
+                            areas_filter = areas_filter +"@"+ areaFragmentAdapter.areas.get(i).id;
                         }
                     }
                 }
@@ -254,12 +281,16 @@ public class FilterPage extends FragmentActivity {
                 Intent intent = new Intent(FilterPage.this,MainActivity.class);
                 intent.putExtra("area_id",areas_filter);
                 intent.putExtra("cat_id",category_filter);
+                intent.putExtra("range_from",from);
+                intent.putExtra("range_to",to);
                 Log.e("areaId",areas_filter);
                 intent.putExtra("id",cityid);
 
                 startActivity(intent);
             }
         });
+
+
 
         get_areas();
         get_categories();
