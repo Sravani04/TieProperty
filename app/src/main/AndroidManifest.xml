@@ -29,6 +29,7 @@
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".PropertyDetailPage"></activity>
         <activity android:name=".FilterPage"></activity>
+        <activity android:name=".ExampleDetailPage"></activity>
 
 
         <meta-data

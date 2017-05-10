@@ -61,7 +61,7 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
             flat_description,amenities,flat_title,flat_title2,flat_title3,form_btn;
     String phone;
     int position;
-    LinearLayout ame_box,description,bank_box;
+    LinearLayout ame_box,description,bank_box,specification_box;
     ViewFlipper flipper;
     ListView listView;
     SpecificationsAdapter specificationsAdapter;
@@ -97,6 +97,7 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
         listView = (ListView) findViewById(R.id.specifications_list);
         form_btn = (TextView) findViewById(R.id.form_btn);
         bank_box = (LinearLayout) findViewById(R.id.bank_box);
+        specification_box = (LinearLayout) findViewById(R.id.specifications_box);
 
 
 
@@ -188,6 +189,13 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
             }
 
 
+            if (properties.specifications.isEmpty()){
+                specification_box.setVisibility(View.GONE);
+            }else {
+                specification_box.setVisibility(View.VISIBLE);
+            }
+
+
 
             if (properties.amenities!=null) {
                 if (properties.amenities.isEmpty()){
@@ -233,32 +241,6 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
 
 
 
-                    if (properties.amenities!=null) {
-                        if (properties.amenities.isEmpty()){
-                            ame_box.setVisibility(View.GONE);
-                        }else {
-                            amenities.setText(properties.amenities.get(0).title + "," + properties.amenities.get(1).title);
-                            ame_box.setVisibility(View.VISIBLE);
-                        }
-                    }
-
-
-
-
-                    try {
-                        if (properties.banks!=null ) {
-                            if (properties.banks.isEmpty()){
-                                bank_box.setVisibility(View.GONE);
-                            }else {
-                                banks.setText(properties.banks.get(0).title + "," + properties.banks.get(1).title);
-                                bank_box.setVisibility(View.VISIBLE);
-                            }
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -295,32 +277,6 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
                     }
 
 
-
-                    if (properties.amenities!=null) {
-                        if (properties.amenities.isEmpty()){
-                            ame_box.setVisibility(View.GONE);
-                        }else {
-                            amenities.setText(properties.amenities.get(0).title + "," + properties.amenities.get(1).title);
-                            ame_box.setVisibility(View.VISIBLE);
-                        }
-                    }
-
-
-
-                    try {
-                        if (properties.banks!=null ) {
-                            if (properties.banks.isEmpty()){
-                                bank_box.setVisibility(View.GONE);
-                            }else {
-                                banks.setText(properties.banks.get(0).title + "," + properties.banks.get(1).title);
-                                bank_box.setVisibility(View.VISIBLE);
-                            }
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -347,31 +303,6 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
                             flat_description.setText(Html.fromHtml(properties.flats.get(2).description));
                             description.setVisibility(View.VISIBLE);
                         }
-                    }
-
-
-
-                    if (properties.amenities!=null) {
-                        if (properties.amenities.isEmpty()){
-                            ame_box.setVisibility(View.GONE);
-                        }else {
-                            amenities.setText(properties.amenities.get(0).title + "," + properties.amenities.get(1).title);
-                            ame_box.setVisibility(View.VISIBLE);
-                        }
-                    }
-
-
-                    try {
-                        if (properties.banks!=null ) {
-                            if (properties.banks.isEmpty()){
-                                bank_box.setVisibility(View.GONE);
-                            }else {
-                                banks.setText(properties.banks.get(0).title + "," + properties.banks.get(1).title);
-                                bank_box.setVisibility(View.VISIBLE);
-                            }
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
                     }
 
 

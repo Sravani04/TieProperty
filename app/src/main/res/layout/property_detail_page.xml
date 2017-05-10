@@ -341,14 +341,17 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/flat_description"
                     android:minLines="4"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    android:paddingLeft="5dp" />
             </LinearLayout>
         </LinearLayout>
 

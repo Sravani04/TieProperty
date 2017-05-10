@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
@@ -44,17 +43,12 @@ public class SpecificationsAdapter extends BaseAdapter {
         View item_view = inflater.inflate(R.layout.specifications_items, null);
         TextView title = (TextView) item_view.findViewById(R.id.title);
         TextView description = (TextView) item_view.findViewById(R.id.description);
-        LinearLayout specification_box = (LinearLayout) item_view.findViewById(R.id.specifications_box);
 
-        if (properties.specifications != null) {
-            if (properties.specifications.isEmpty()) {
-                specification_box.setVisibility(View.GONE);
-            } else {
-                title.setText(properties.specifications.get(i).title);
-                description.setText(properties.specifications.get(i).description);
-            }
+        if (properties.specifications!=null){
+            title.setText(properties.specifications.get(i).title);
+            description.setText(properties.specifications.get(i).description);
+
         }
-
 
         return item_view;
     }
