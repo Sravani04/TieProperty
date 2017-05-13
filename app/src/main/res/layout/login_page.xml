@@ -31,12 +31,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:id="@+id/menu_btn"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:id="@+id/close_btn"
                         android:adjustViewBounds="true"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp" />
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/popup_close" />
                     <ImageView
                         android:id="@+id/imageView18"
                         android:adjustViewBounds="true"

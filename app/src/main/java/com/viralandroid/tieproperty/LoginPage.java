@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import com.koushikdutta.ion.Ion;
 public class LoginPage extends Activity {
     EditText email,password;
     TextView submit_btn;
+    ImageView close_btn;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -26,6 +28,14 @@ public class LoginPage extends Activity {
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         submit_btn = (TextView) findViewById(R.id.submit_btn);
+        close_btn = (ImageView) findViewById(R.id.close_btn);
+
+        close_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
