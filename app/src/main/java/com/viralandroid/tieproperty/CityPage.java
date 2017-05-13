@@ -5,9 +5,11 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.widget.SlidingPaneLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,23 +34,31 @@ public class CityPage extends Activity {
     CityPageAdapter cityPageAdapter;
     GridView gridView;
     ArrayList<String> cities;
-    ImageView call_btn,email;
-    TextView txtPhn,txtEmail;
+    ImageView call_btn,email,menu_btn;
+    TextView txtPhn,txtEmail,about_page,contact_page,terms_page,policy_page,agents_login;
     ArrayList<Cities> citiesfrom_api;
     ArrayList<Settings> settingsfrom_api;
-    String logo,title,emails,phone,itunes_link,playstore_link,about;
+    String logo,title,emails,phone,itunes_link,playstore_link,about,privacy,contact,terms;
     String city_id;
+    SlidingPaneLayout slidingPaneLayout;
 
 
     @Override
     public void onCreate(Bundle savedinstanceState) {
         super.onCreate(savedinstanceState);
-        setContentView(R.layout.city_list);
+        setContentView(R.layout.city_page);
         gridView = (GridView) findViewById(R.id.city_list);
         call_btn = (ImageView) findViewById(R.id.call_btn);
         txtPhn = (TextView) findViewById(R.id.txtPhn);
         email = (ImageView) findViewById(R.id.email);
         txtEmail = (TextView) findViewById(R.id.txtEmail);
+        menu_btn = (ImageView) findViewById(R.id.menu_btn);
+        slidingPaneLayout = (SlidingPaneLayout) findViewById(R.id.sliding_pane_layout);
+        about_page = (TextView) findViewById(R.id.about_page);
+        contact_page = (TextView) findViewById(R.id.contact_page);
+        terms_page = (TextView) findViewById(R.id.terms_page);
+        policy_page = (TextView) findViewById(R.id.policy_page);
+        agents_login = (TextView) findViewById(R.id.agents_login);
 
         call_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,9 +84,105 @@ public class CityPage extends Activity {
                 startActivity(Intent.createChooser(Email, "Send Feedback:"));
             }
         });
+
+        menu_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               slidingPaneLayout.openPane();
+            }
+        });
         cities = new ArrayList<>();
         citiesfrom_api = new ArrayList<>();
         settingsfrom_api = new ArrayList<>();
+
+        about_page.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                about_page.setBackgroundColor(Color.parseColor("#CCCCCC"));
+                about_page.setTextColor(Color.parseColor("#09366C"));
+                policy_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                policy_page.setTextColor(Color.parseColor("#000000"));
+                terms_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                terms_page.setTextColor(Color.parseColor("#000000"));
+                agents_login.setBackgroundColor(Color.parseColor("#ffffff"));
+                agents_login.setTextColor(Color.parseColor("#000000"));
+                Intent intent = new Intent(CityPage.this, AboutUsPage.class);
+                intent.putExtra("aboutus",about);
+                intent.putExtra("tielogo",logo);
+                startActivity(intent);
+            }
+        });
+
+       policy_page.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               policy_page.setBackgroundColor(Color.parseColor("#CCCCCC"));
+               policy_page.setTextColor(Color.parseColor("#09366C"));
+               about_page.setBackgroundColor(Color.parseColor("#ffffff"));
+               about_page.setTextColor(Color.parseColor("#000000"));
+               terms_page.setBackgroundColor(Color.parseColor("#ffffff"));
+               terms_page.setTextColor(Color.parseColor("#000000"));
+               agents_login.setBackgroundColor(Color.parseColor("#ffffff"));
+               agents_login.setTextColor(Color.parseColor("#000000"));
+               Intent intent = new Intent(CityPage.this,PrivacyPolicyPage.class);
+               intent.putExtra("privacy",privacy);
+               startActivity(intent);
+           }
+       });
+
+        terms_page.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                terms_page.setBackgroundColor(Color.parseColor("#CCCCCC"));
+                terms_page.setTextColor(Color.parseColor("#09366C"));
+                about_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                about_page.setTextColor(Color.parseColor("#000000"));
+                policy_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                policy_page.setTextColor(Color.parseColor("#000000"));
+                agents_login.setBackgroundColor(Color.parseColor("#ffffff"));
+                agents_login.setTextColor(Color.parseColor("#000000"));
+                Intent intent = new Intent(CityPage.this,TermsPage.class);
+                intent.putExtra("terms",terms);
+                startActivity(intent);
+            }
+        });
+
+        agents_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                agents_login.setBackgroundColor(Color.parseColor("#CCCCCC"));
+                agents_login.setTextColor(Color.parseColor("#09366C"));
+                about_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                about_page.setTextColor(Color.parseColor("#000000"));
+                policy_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                policy_page.setTextColor(Color.parseColor("#000000"));
+                terms_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                terms_page.setTextColor(Color.parseColor("#000000"));
+                Intent intent = new Intent(CityPage.this,LoginPage.class);
+                startActivity(intent);
+            }
+        });
+
+        contact_page.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                contact_page.setBackgroundColor(Color.parseColor("#CCCCCC"));
+                contact_page.setTextColor(Color.parseColor("#09366C"));
+                about_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                about_page.setTextColor(Color.parseColor("#000000"));
+                policy_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                policy_page.setTextColor(Color.parseColor("#000000"));
+                terms_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                terms_page.setTextColor(Color.parseColor("#000000"));
+                agents_login.setBackgroundColor(Color.parseColor("#ffffff"));
+                agents_login.setTextColor(Color.parseColor("#000000"));
+                Intent intent = new Intent(CityPage.this,ContactUsPage.class);
+                intent.putExtra("contact",contact);
+                intent.putExtra("email",emails);
+                intent.putExtra("phone",phone);
+                startActivity(intent);
+            }
+        });
 
 
         cityPageAdapter = new CityPageAdapter(CityPage.this,citiesfrom_api);
@@ -141,6 +247,10 @@ public class CityPage extends Activity {
                             itunes_link = result.get("itunes_link").getAsString();
                             playstore_link = result.get("playstore_link").getAsString();
                             about = result.get("about").getAsString();
+                            privacy = result.get("privacy_policy").getAsString();
+                            contact = result.get("contact").getAsString();
+                            terms = result.get("terms").getAsString();
+
                         }catch (Exception e1){
                             e1.printStackTrace();
                         }

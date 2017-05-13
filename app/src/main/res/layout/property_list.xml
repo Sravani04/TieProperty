@@ -43,21 +43,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:id="@+id/textView"
-                    android:text="PROPERTIES LIST"
                     android:layout_weight="1"
                     android:gravity="center_vertical|center_horizontal"
-                    android:paddingLeft="10dp"
                     android:textColor="#0D5097"
-                    android:textStyle="normal|bold" />
+                    android:textStyle="normal|bold"
+                    android:paddingLeft="10dp" />
 
                 <TextView
                     android:text="Vijayawada"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/select_city"
-                    android:layout_marginRight="9dp"
                     android:textColor="#0D5097"
-                    android:textStyle="normal|bold" />
+                    android:textStyle="normal|bold"
+                    android:layout_marginRight="15dp" />
 
                 <ImageView
                     android:layout_height="20dp"
