@@ -106,6 +106,8 @@ public class CityPage extends Activity {
                 terms_page.setTextColor(Color.parseColor("#000000"));
                 agents_login.setBackgroundColor(Color.parseColor("#ffffff"));
                 agents_login.setTextColor(Color.parseColor("#000000"));
+                contact_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                contact_page.setTextColor(Color.parseColor("#000000"));
                 Intent intent = new Intent(CityPage.this, AboutUsPage.class);
                 intent.putExtra("aboutus",about);
                 intent.putExtra("tielogo",logo);
@@ -124,6 +126,8 @@ public class CityPage extends Activity {
                terms_page.setTextColor(Color.parseColor("#000000"));
                agents_login.setBackgroundColor(Color.parseColor("#ffffff"));
                agents_login.setTextColor(Color.parseColor("#000000"));
+               contact_page.setBackgroundColor(Color.parseColor("#ffffff"));
+               contact_page.setTextColor(Color.parseColor("#000000"));
                Intent intent = new Intent(CityPage.this,PrivacyPolicyPage.class);
                intent.putExtra("privacy",privacy);
                startActivity(intent);
@@ -141,6 +145,8 @@ public class CityPage extends Activity {
                 policy_page.setTextColor(Color.parseColor("#000000"));
                 agents_login.setBackgroundColor(Color.parseColor("#ffffff"));
                 agents_login.setTextColor(Color.parseColor("#000000"));
+                contact_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                contact_page.setTextColor(Color.parseColor("#000000"));
                 Intent intent = new Intent(CityPage.this,TermsPage.class);
                 intent.putExtra("terms",terms);
                 startActivity(intent);
@@ -158,6 +164,8 @@ public class CityPage extends Activity {
                 policy_page.setTextColor(Color.parseColor("#000000"));
                 terms_page.setBackgroundColor(Color.parseColor("#ffffff"));
                 terms_page.setTextColor(Color.parseColor("#000000"));
+                contact_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                contact_page.setTextColor(Color.parseColor("#000000"));
                 Intent intent = new Intent(CityPage.this,LoginPage.class);
                 startActivity(intent);
             }
