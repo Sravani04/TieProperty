@@ -58,7 +58,7 @@ public class LoginPage extends Activity {
                                     if (result.get("status").getAsString().equals("Success")){
                                         Session.SetUserId(LoginPage.this,result.get("member_id").getAsString());
                                         //Toast.makeText(LoginPage.this,result.get("member_id").getAsString(),Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(LoginPage.this,AgentsAccountPage.class);
+                                        Intent intent = new Intent(LoginPage.this,AgentsProperties.class);
                                         intent.putExtra("agentId",result.get("member_id").getAsString());
                                         startActivity(intent);
                                     }else {

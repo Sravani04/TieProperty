@@ -166,8 +166,14 @@ public class CityPage extends Activity {
                 terms_page.setTextColor(Color.parseColor("#000000"));
                 contact_page.setBackgroundColor(Color.parseColor("#ffffff"));
                 contact_page.setTextColor(Color.parseColor("#000000"));
-                Intent intent = new Intent(CityPage.this,LoginPage.class);
-                startActivity(intent);
+                if (Session.GetUserId(CityPage.this).equals("-1")){
+                    Intent intent = new Intent(CityPage.this,LoginPage.class);
+                    startActivity(intent);
+                }else {
+                    Intent intent = new Intent(CityPage.this,AgentsProperties.class);
+                    startActivity(intent);
+                }
+
             }
         });
 

@@ -33,7 +33,7 @@
         <activity android:name=".PrivacyPolicyPage"></activity>
         <activity android:name=".TermsPage"></activity>
         <activity android:name=".LoginPage"></activity>
-        <activity android:name=".AgentsAccountPage"></activity>
+        <activity android:name=".AgentsProperties"></activity>
         <activity android:name=".ContactUsPage"></activity>
         <activity android:name=".AgentsEditProfile"></activity>
 
