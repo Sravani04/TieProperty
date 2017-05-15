@@ -232,6 +232,10 @@ public class AgentsEditProfile extends Activity {
     }
 
     public void get_agent_details(){
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("please wait..");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         Ion.with(AgentsEditProfile.this)
                 .load(Session.SERVER_URL+"agents.php")
                 .setBodyParameter("agent_id",agent_id)
@@ -239,17 +243,23 @@ public class AgentsEditProfile extends Activity {
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
                     public void onCompleted(Exception e, JsonArray result) {
-                        JsonObject jsonObject = result.get(0).getAsJsonObject();
-                        fname.setText(jsonObject.get("fname").getAsString());
-                        lname.setText(jsonObject.get("lname").getAsString());
-                        address.setText(jsonObject.get("address").getAsString());
-                        state.setText(jsonObject.get("state").getAsString());
-                        phone.setText(jsonObject.get("phone").getAsString());
-                        Ion.with(AgentsEditProfile.this)
-                                .load(jsonObject.get("image").getAsString())
-                                .withBitmap()
-                                .placeholder(R.drawable.edit_user)
-                                .intoImageView(user_image);
+                        if (progressDialog!=null)
+                            progressDialog.dismiss();
+                        try {
+                            JsonObject jsonObject = result.get(0).getAsJsonObject();
+                            fname.setText(jsonObject.get("fname").getAsString());
+                            lname.setText(jsonObject.get("lname").getAsString());
+                            address.setText(jsonObject.get("address").getAsString());
+                            state.setText(jsonObject.get("state").getAsString());
+                            phone.setText(jsonObject.get("phone").getAsString());
+                            Ion.with(AgentsEditProfile.this)
+                                    .load(jsonObject.get("image").getAsString())
+                                    .withBitmap()
+                                    .placeholder(R.drawable.edit_user)
+                                    .intoImageView(user_image);
+                        }catch (Exception e1){
+                            e1.printStackTrace();
+                        }
                     }
                 });
     }
