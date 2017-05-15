@@ -122,12 +122,16 @@ public class ContactUsPage extends FragmentActivity implements OnMapReadyCallbac
 
                 if (name_string.equals("")){
                     Toast.makeText(ContactUsPage.this,"Please Enter Name",Toast.LENGTH_SHORT).show();
+                    name.requestFocus();
                 }else if (email_string.equals("")){
                     Toast.makeText(ContactUsPage.this,"Please Enter Email",Toast.LENGTH_SHORT).show();
+                    email.requestFocus();
                 }else if (phone_string.equals("")){
                     Toast.makeText(ContactUsPage.this,"Please Enter Phone",Toast.LENGTH_SHORT).show();
+                    phone.requestFocus();
                 }else if (message_string.equals("")){
                     Toast.makeText(ContactUsPage.this,"Please Enter Message",Toast.LENGTH_SHORT).show();
+                    message.requestFocus();
                 }else {
                     Ion.with(ContactUsPage.this)
                             .load(Session.SERVER_URL+"contact-us.php")

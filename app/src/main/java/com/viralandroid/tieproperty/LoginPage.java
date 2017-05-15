@@ -44,8 +44,10 @@ public class LoginPage extends Activity {
                 String password_string = password.getText().toString();
                 if (email_string.equals("")){
                     Toast.makeText(LoginPage.this,"Please Enter Your Email",Toast.LENGTH_SHORT).show();
+                    email.requestFocus();
                 }else if (password_string.equals("")){
                     Toast.makeText(LoginPage.this,"Please Enter Your Password",Toast.LENGTH_SHORT).show();
+                    password.requestFocus();
                 }else {
                     Ion.with(LoginPage.this)
                             .load(Session.SERVER_URL + "login.php")

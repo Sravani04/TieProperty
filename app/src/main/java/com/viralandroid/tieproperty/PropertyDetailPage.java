@@ -382,12 +382,16 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
                         String form_message = message.getText().toString();
                           if (form_name.equals("")){
                               Toast.makeText(PropertyDetailPage.this,"please enter name",Toast.LENGTH_SHORT).show();
+                              name.requestFocus();
                           }else if (form_email.equals("")){
                               Toast.makeText(PropertyDetailPage.this,"please enter email",Toast.LENGTH_SHORT).show();
+                              email.requestFocus();
                           }else if (form_phone.equals("")){
                               Toast.makeText(PropertyDetailPage.this,"please enter phone",Toast.LENGTH_SHORT).show();
+                              phone.requestFocus();
                           }else if (form_message.equals("")){
                               Toast.makeText(PropertyDetailPage.this,"please enter message",Toast.LENGTH_SHORT).show();
+                              message.requestFocus();
                           } else {
                               Ion.with(PropertyDetailPage.this)
                                       .load(Session.SERVER_URL+"intrested.php")
