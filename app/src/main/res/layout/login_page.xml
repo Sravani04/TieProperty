@@ -37,7 +37,8 @@
                         android:adjustViewBounds="true"
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="5dp"
-                        android:src="@drawable/popup_close" />
+                        android:src="@android:drawable/ic_menu_close_clear_cancel"
+                        android:tint="#ffffff" />
                     <ImageView
                         android:id="@+id/imageView18"
                         android:adjustViewBounds="true"
