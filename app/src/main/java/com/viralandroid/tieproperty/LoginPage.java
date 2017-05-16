@@ -3,6 +3,7 @@ package com.viralandroid.tieproperty;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -59,9 +60,10 @@ public class LoginPage extends Activity {
                                 public void onCompleted(Exception e, JsonObject result) {
                                     if (result.get("status").getAsString().equals("Success")){
                                         Session.SetUserId(LoginPage.this,result.get("member_id").getAsString());
-                                        //Toast.makeText(LoginPage.this,result.get("member_id").getAsString(),Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(LoginPage.this,AgentsProperties.class);
+                                        Toast.makeText(LoginPage.this,result.get("member_id").getAsString(),Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(LoginPage.this,AgentHomePage.class);
                                         intent.putExtra("agentId",result.get("member_id").getAsString());
+                                        Log.e("agentId",result.get("member_id").toString());
                                         startActivity(intent);
                                     }else {
                                         Toast.makeText(LoginPage.this,result.get("message").getAsString(), Toast.LENGTH_SHORT).show();

@@ -112,6 +112,7 @@ public class CityPage extends Activity {
                 intent.putExtra("aboutus",about);
                 intent.putExtra("tielogo",logo);
                 startActivity(intent);
+                slidingPaneLayout.closePane();
             }
         });
 
@@ -131,6 +132,7 @@ public class CityPage extends Activity {
                Intent intent = new Intent(CityPage.this,PrivacyPolicyPage.class);
                intent.putExtra("privacy",privacy);
                startActivity(intent);
+               slidingPaneLayout.closePane();
            }
        });
 
@@ -150,6 +152,7 @@ public class CityPage extends Activity {
                 Intent intent = new Intent(CityPage.this,TermsPage.class);
                 intent.putExtra("terms",terms);
                 startActivity(intent);
+                slidingPaneLayout.closePane();
             }
         });
 
@@ -169,9 +172,11 @@ public class CityPage extends Activity {
                 if (Session.GetUserId(CityPage.this).equals("-1")){
                     Intent intent = new Intent(CityPage.this,LoginPage.class);
                     startActivity(intent);
+                    slidingPaneLayout.closePane();
                 }else {
-                    Intent intent = new Intent(CityPage.this,AgentsProperties.class);
+                    Intent intent = new Intent(CityPage.this,AgentHomePage.class);
                     startActivity(intent);
+                    slidingPaneLayout.closePane();
                 }
 
             }
@@ -195,6 +200,7 @@ public class CityPage extends Activity {
                 intent.putExtra("email",emails);
                 intent.putExtra("phone",phone);
                 startActivity(intent);
+                slidingPaneLayout.closePane();
             }
         });
 

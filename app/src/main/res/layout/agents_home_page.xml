@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:id="@+id/menu_btn"
+                android:adjustViewBounds="true"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/menu"
+                android:tint="#0D5097" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/textView9"
+                android:gravity="center_vertical"
+                android:textColor="#0D5097"
+                android:paddingLeft="5dp"
+                android:textStyle="normal|bold"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                tools:text="Agents List"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/edit_profile"
+                android:adjustViewBounds="true"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/edit_user" />
+
+            <TextView
+                android:text="LogOut"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/logout_btn"
+                android:gravity="center_vertical|center_horizontal"
+                android:textColor="#0D5097"
+                android:textStyle="normal|bold"
+                android:layout_marginRight="10dp"
+                android:textSize="18sp"
+                android:layout_marginLeft="5dp" />
+        </LinearLayout>
+
+
+
+        <android.support.v4.widget.SlidingPaneLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/sliding_pane_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:background="#CCCCCC">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ffffff">
+
+                    <TextView
+                        android:text="Callback Customers"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/callback_customers"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:textColor="#000"
+                        android:textStyle="normal|bold"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:text="Commissions"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/commissions"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:textColor="#000"
+                        android:textStyle="normal|bold"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:text="New Properties"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/new_property"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:textColor="#000"
+                        android:textStyle="normal|bold"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:text="Properties"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/properties"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:textColor="#000"
+                        android:textStyle="normal|bold"
+                        android:textSize="15sp" />
+
+                    <TextView android:text="Site Visits"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/site_visits"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:textColor="#000"
+                        android:textStyle="normal|bold"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:text="My Account"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/my_account"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:textColor="#000"
+                        android:textStyle="normal|bold"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp">
+
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/agents_list" />
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v4.widget.SlidingPaneLayout>
+
+    </LinearLayout>
+</LinearLayout>
