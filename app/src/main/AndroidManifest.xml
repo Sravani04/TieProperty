@@ -39,6 +39,10 @@
         <activity android:name=".CallbackCustomersPage"></activity>
         <activity android:name=".NewPropertyScreen"></activity>
         <activity android:name=".SiteVisitScreen"></activity>
+        <activity android:name=".AgentsPage"></activity>
+        <activity android:name=".AgentsAccountPage"></activity>
+        <activity android:name=".CommissionsPage"></activity>
+        <activity android:name=".CommissionList"></activity>
 
         <meta-data
             android:name="com.google.android.gms.version"

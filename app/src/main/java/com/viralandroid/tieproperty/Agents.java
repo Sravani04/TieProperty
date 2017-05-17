@@ -4,11 +4,13 @@ import android.content.Context;
 
 import com.google.gson.JsonObject;
 
+import java.io.Serializable;
+
 /**
  * Created by T on 15-05-2017.
  */
 
-public class Agents {
+public class Agents implements Serializable {
     public String id,fname,lname,code,email,address,city_id,city_title,state,phone,aadhar,pancard,level_id,level_title,image;
     public Agents(JsonObject jsonObject, Context context){
         id = jsonObject.get("id").getAsString();

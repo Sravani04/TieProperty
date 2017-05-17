@@ -38,6 +38,12 @@ public class SiteVisitScreen extends Activity{
       super.onCreate(savedInstanceState);
         setContentView(R.layout.site_visit_list);
         back_btn = (ImageView) findViewById(R.id.back_btn);
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SiteVisitScreen.this.onBackPressed();
+            }
+        });
         add_visit = (ImageView) findViewById(R.id.add_visit);
         add_visit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +123,7 @@ public class SiteVisitScreen extends Activity{
                                         public void onCompleted(Exception e, JsonObject result) {
                                             if (result.get("status").getAsString().equals("Success")){
                                                 Toast.makeText(getApplicationContext(),result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
+                                                SiteVisitScreen.this.onBackPressed();
                                             }else {
                                                 Toast.makeText(getApplicationContext(),result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
 
@@ -178,6 +185,8 @@ public class SiteVisitScreen extends Activity{
 
         return builder.create();
     }
+
+
 
 
 }

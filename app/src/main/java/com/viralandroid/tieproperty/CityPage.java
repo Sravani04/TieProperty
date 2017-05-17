@@ -39,7 +39,7 @@ public class CityPage extends Activity {
     ArrayList<Cities> citiesfrom_api;
     ArrayList<Settings> settingsfrom_api;
     String logo,title,emails,phone,itunes_link,playstore_link,about,privacy,contact,terms;
-    String city_id;
+    String city_id,cityId;
     SlidingPaneLayout slidingPaneLayout;
 
 
@@ -174,7 +174,13 @@ public class CityPage extends Activity {
                     startActivity(intent);
                     slidingPaneLayout.closePane();
                 }else {
+
                     Intent intent = new Intent(CityPage.this,AgentHomePage.class);
+                    for (int i=0;i<citiesfrom_api.size();i++){
+                        cityId = citiesfrom_api.get(i).id;
+                    }
+                    intent.putExtra("city_id",cityId);
+                    Log.e("cityresponsedash",cityId);
                     startActivity(intent);
                     slidingPaneLayout.closePane();
                 }

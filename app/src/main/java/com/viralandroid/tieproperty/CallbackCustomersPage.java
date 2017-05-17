@@ -68,7 +68,7 @@ public class CallbackCustomersPage extends Activity {
             @Override
             public void onClick(View view) {
                 LayoutInflater li = LayoutInflater.from(getApplicationContext());
-                View form = li.inflate(R.layout.add_callback_items, null);
+                final View form = li.inflate(R.layout.add_callback_items, null);
                 final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CallbackCustomersPage.this);
                 alertDialogBuilder.setView(form);
                 final EditText name = (EditText) form.findViewById(R.id.name);
@@ -140,6 +140,7 @@ public class CallbackCustomersPage extends Activity {
                                         public void onCompleted(Exception e, JsonObject result) {
                                             if (result.get("status").getAsString().equals("Success")){
                                                 Toast.makeText(CallbackCustomersPage.this,result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
+                                                finish();
                                             }else {
                                                 Toast.makeText(CallbackCustomersPage.this,result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
                                             }

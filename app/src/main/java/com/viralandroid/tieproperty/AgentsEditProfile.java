@@ -89,7 +89,7 @@ public class AgentsEditProfile extends Activity {
                 }else {
                     Ion.with(AgentsEditProfile.this)
                             .load(Session.SERVER_URL+"edit-agent.php")
-                            .setBodyParameter("agent_id",agent_id)
+                            .setBodyParameter("agent_id",Session.GetUserId(getApplicationContext()))
                             .setBodyParameter("fname",fname_string)
                             .setBodyParameter("lname",lname_string)
                             .setBodyParameter("address",address_string)
@@ -187,7 +187,7 @@ public class AgentsEditProfile extends Activity {
                         progressDialog.setProgress((int) downloaded);
                     }
                 })
-                .setMultipartParameter("agent_id", agent_id)
+                .setMultipartParameter("agent_id", Session.GetUserId(AgentsEditProfile.this))
                 .setMultipartFile("file", "image/png", new File(selected_image_path))
                 .asJsonArray()
                 .setCallback(new FutureCallback<JsonArray>() {
@@ -238,7 +238,7 @@ public class AgentsEditProfile extends Activity {
         progressDialog.show();
         Ion.with(AgentsEditProfile.this)
                 .load(Session.SERVER_URL+"agents.php")
-                .setBodyParameter("agent_id",agent_id)
+                .setBodyParameter("agent_id",Session.GetUserId(AgentsEditProfile.this))
                 .asJsonArray()
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override

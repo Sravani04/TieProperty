@@ -35,7 +35,7 @@ public class NewPropertyScreen extends Activity {
     ArrayList<Cities>citiesfrom_api;
     ArrayList<Areas> areasfrom_api;
     ArrayList<Category> categoriesfrom_api;
-    String city_id,city_title;
+    String city_id,area_id,type_id,cityId;
     TextView city;
     TextView area,type;
     int position;
@@ -64,6 +64,8 @@ public class NewPropertyScreen extends Activity {
 
             }
         });
+
+
 
         add_new_property.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,12 +109,12 @@ public class NewPropertyScreen extends Activity {
                     @Override
                     public void onClick(View view) {
                         String title_string = title.getText().toString();
-                        String type_string = type.getText().toString();
+                        String type_string = type_id;
                         String name_string = name.getText().toString();
                         String phone_string = phone.getText().toString();
                         String address_string = address.getText().toString();
-                        String city_string = city.getText().toString();
-                        String area_string = area.getText().toString();
+                        String city_string = city_id;
+                        String area_string = area_id;
                         if (title_string.equals("")){
                             Toast.makeText(NewPropertyScreen.this,"Please Enter Title",Toast.LENGTH_SHORT).show();
                         }else if (type_string.equals("")){
@@ -143,7 +145,9 @@ public class NewPropertyScreen extends Activity {
                                         @Override
                                         public void onCompleted(Exception e, JsonObject result) {
                                             if (result.get("status").getAsString().equals("Success")){
+                                                Log.e("resulr",result.toString());
                                                 Toast.makeText(getApplicationContext(),result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
+                                                finish();
                                             }else {
                                                 Toast.makeText(getApplicationContext(),result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
                                             }
@@ -166,7 +170,7 @@ public class NewPropertyScreen extends Activity {
         });
         get_new_properties_list();
         get_cities();
-        get_areas();
+
         get_categories();
 
 
@@ -207,7 +211,6 @@ public class NewPropertyScreen extends Activity {
                             for (int i=0;i<result.size();i++){
                                 Log.e("response",result.get(i).toString());
                                 Cities cities = new Cities(result.get(i).getAsJsonObject(),NewPropertyScreen.this);
-                                city_id =cities.id;
                                 citiesfrom_api.add(cities);
                             }
 
@@ -226,7 +229,7 @@ public class NewPropertyScreen extends Activity {
         progressDialog.show();
         Ion.with(this)
                 .load(Session.SERVER_URL+"areas.php")
-                .setBodyParameter("city","1")
+                .setBodyParameter("city",city_id)
                 .asJsonArray()
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
@@ -246,6 +249,7 @@ public class NewPropertyScreen extends Activity {
     }
 
     public void get_categories(){
+
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("please wait..");
         progressDialog.setCancelable(false);
@@ -288,6 +292,9 @@ public class NewPropertyScreen extends Activity {
                         String selectedItem = array[i].toString();
                         Log.e("select",selectedItem);
                         city.setText(selectedItem);
+                        city_id = citiesfrom_api.get(i).id;
+                        areasfrom_api.clear();
+                        get_areas();
 
                     }
                 })
@@ -324,6 +331,7 @@ public class NewPropertyScreen extends Activity {
                 String selectedItem = array[i].toString();
                 Log.e("select",selectedItem);
                 area.setText(selectedItem);
+                area_id = areasfrom_api.get(i).id;
 
             }
         }).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -359,6 +367,8 @@ public class NewPropertyScreen extends Activity {
                 String selectedItem = array[i].toString();
                 Log.e("select",selectedItem);
                 type.setText(selectedItem);
+                type_id = categoriesfrom_api.get(i).id;
+
 
             }
         }).setPositiveButton("Ok", new DialogInterface.OnClickListener() {

@@ -63,7 +63,8 @@ public class LoginPage extends Activity {
                                         Toast.makeText(LoginPage.this,result.get("member_id").getAsString(),Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(LoginPage.this,AgentHomePage.class);
                                         intent.putExtra("agentId",result.get("member_id").getAsString());
-                                        Log.e("agentId",result.get("member_id").toString());
+                                        intent.putExtra("agent_name",result.get("name").getAsString());
+                                        Log.e("agent_name",result.get("name").toString());
                                         startActivity(intent);
                                     }else {
                                         Toast.makeText(LoginPage.this,result.get("message").getAsString(), Toast.LENGTH_SHORT).show();
