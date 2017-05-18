@@ -35,7 +35,7 @@ public class CityPage extends Activity {
     GridView gridView;
     ArrayList<String> cities;
     ImageView call_btn,email,menu_btn;
-    TextView txtPhn,txtEmail,about_page,contact_page,terms_page,policy_page,agents_login;
+    TextView txtPhn,txtEmail,about_page,contact_page,terms_page,policy_page,agents_login,agents_register,calculator_page;
     ArrayList<Cities> citiesfrom_api;
     ArrayList<Settings> settingsfrom_api;
     String logo,title,emails,phone,itunes_link,playstore_link,about,privacy,contact,terms;
@@ -59,6 +59,9 @@ public class CityPage extends Activity {
         terms_page = (TextView) findViewById(R.id.terms_page);
         policy_page = (TextView) findViewById(R.id.policy_page);
         agents_login = (TextView) findViewById(R.id.agents_login);
+        agents_register = (TextView) findViewById(R.id.agents_register);
+        calculator_page = (TextView) findViewById(R.id.calculator_page);
+
 
         call_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +111,10 @@ public class CityPage extends Activity {
                 agents_login.setTextColor(Color.parseColor("#000000"));
                 contact_page.setBackgroundColor(Color.parseColor("#ffffff"));
                 contact_page.setTextColor(Color.parseColor("#000000"));
+                agents_register.setBackgroundColor(Color.parseColor("#ffffff"));
+                agents_register.setTextColor(Color.parseColor("#000000"));
+                calculator_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                calculator_page.setTextColor(Color.parseColor("#000000"));
                 Intent intent = new Intent(CityPage.this, AboutUsPage.class);
                 intent.putExtra("aboutus",about);
                 intent.putExtra("tielogo",logo);
@@ -129,6 +136,10 @@ public class CityPage extends Activity {
                agents_login.setTextColor(Color.parseColor("#000000"));
                contact_page.setBackgroundColor(Color.parseColor("#ffffff"));
                contact_page.setTextColor(Color.parseColor("#000000"));
+               agents_register.setBackgroundColor(Color.parseColor("#ffffff"));
+               agents_register.setTextColor(Color.parseColor("#000000"));
+               calculator_page.setBackgroundColor(Color.parseColor("#ffffff"));
+               calculator_page.setTextColor(Color.parseColor("#000000"));
                Intent intent = new Intent(CityPage.this,PrivacyPolicyPage.class);
                intent.putExtra("privacy",privacy);
                startActivity(intent);
@@ -149,6 +160,10 @@ public class CityPage extends Activity {
                 agents_login.setTextColor(Color.parseColor("#000000"));
                 contact_page.setBackgroundColor(Color.parseColor("#ffffff"));
                 contact_page.setTextColor(Color.parseColor("#000000"));
+                agents_register.setBackgroundColor(Color.parseColor("#ffffff"));
+                agents_register.setTextColor(Color.parseColor("#000000"));
+                calculator_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                calculator_page.setTextColor(Color.parseColor("#000000"));
                 Intent intent = new Intent(CityPage.this,TermsPage.class);
                 intent.putExtra("terms",terms);
                 startActivity(intent);
@@ -169,22 +184,42 @@ public class CityPage extends Activity {
                 terms_page.setTextColor(Color.parseColor("#000000"));
                 contact_page.setBackgroundColor(Color.parseColor("#ffffff"));
                 contact_page.setTextColor(Color.parseColor("#000000"));
+                agents_register.setBackgroundColor(Color.parseColor("#ffffff"));
+                agents_register.setTextColor(Color.parseColor("#000000"));
+                calculator_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                calculator_page.setTextColor(Color.parseColor("#000000"));
                 if (Session.GetUserId(CityPage.this).equals("-1")){
                     Intent intent = new Intent(CityPage.this,LoginPage.class);
                     startActivity(intent);
                     slidingPaneLayout.closePane();
                 }else {
-
                     Intent intent = new Intent(CityPage.this,AgentHomePage.class);
-                    for (int i=0;i<citiesfrom_api.size();i++){
-                        cityId = citiesfrom_api.get(i).id;
-                    }
-                    intent.putExtra("city_id",cityId);
-                    Log.e("cityresponsedash",cityId);
                     startActivity(intent);
                     slidingPaneLayout.closePane();
                 }
 
+            }
+        });
+
+        agents_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                agents_register.setBackgroundColor(Color.parseColor("#CCCCCC"));
+                agents_register.setTextColor(Color.parseColor("#09366C"));
+                about_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                about_page.setTextColor(Color.parseColor("#000000"));
+                policy_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                policy_page.setTextColor(Color.parseColor("#000000"));
+                terms_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                terms_page.setTextColor(Color.parseColor("#000000"));
+                contact_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                contact_page.setTextColor(Color.parseColor("#000000"));
+                agents_login.setBackgroundColor(Color.parseColor("#ffffff"));
+                agents_login.setTextColor(Color.parseColor("#000000"));
+                calculator_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                calculator_page.setTextColor(Color.parseColor("#000000"));
+                Intent intent = new Intent(CityPage.this,AgentsRegisterPage.class);
+                startActivity(intent);
             }
         });
 
@@ -201,12 +236,38 @@ public class CityPage extends Activity {
                 terms_page.setTextColor(Color.parseColor("#000000"));
                 agents_login.setBackgroundColor(Color.parseColor("#ffffff"));
                 agents_login.setTextColor(Color.parseColor("#000000"));
+                agents_register.setBackgroundColor(Color.parseColor("#ffffff"));
+                agents_register.setTextColor(Color.parseColor("#000000"));
+                calculator_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                calculator_page.setTextColor(Color.parseColor("#000000"));
                 Intent intent = new Intent(CityPage.this,ContactUsPage.class);
                 intent.putExtra("contact",contact);
                 intent.putExtra("email",emails);
                 intent.putExtra("phone",phone);
                 startActivity(intent);
                 slidingPaneLayout.closePane();
+            }
+        });
+
+        calculator_page.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculator_page.setBackgroundColor(Color.parseColor("#CCCCCC"));
+                calculator_page.setTextColor(Color.parseColor("#09366C"));
+                about_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                about_page.setTextColor(Color.parseColor("#000000"));
+                policy_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                policy_page.setTextColor(Color.parseColor("#000000"));
+                terms_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                terms_page.setTextColor(Color.parseColor("#000000"));
+                agents_login.setBackgroundColor(Color.parseColor("#ffffff"));
+                agents_login.setTextColor(Color.parseColor("#000000"));
+                agents_register.setBackgroundColor(Color.parseColor("#ffffff"));
+                agents_register.setTextColor(Color.parseColor("#000000"));
+                contact_page.setBackgroundColor(Color.parseColor("#ffffff"));
+                contact_page.setTextColor(Color.parseColor("#000000"));
+                Intent intent = new Intent(CityPage.this,EmiCalculatorPage.class);
+                startActivity(intent);
             }
         });
 

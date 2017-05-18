@@ -1,6 +1,7 @@
 package com.viralandroid.tieproperty;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -50,6 +51,10 @@ public class LoginPage extends Activity {
                     Toast.makeText(LoginPage.this,"Please Enter Your Password",Toast.LENGTH_SHORT).show();
                     password.requestFocus();
                 }else {
+                    final ProgressDialog progressDialog = new ProgressDialog(LoginPage.this);
+                    progressDialog.setMessage("please wait");
+                    progressDialog.setCancelable(false);
+                    progressDialog.show();
                     Ion.with(LoginPage.this)
                             .load(Session.SERVER_URL + "login.php")
                             .setBodyParameter("email",email_string)
@@ -58,6 +63,8 @@ public class LoginPage extends Activity {
                             .setCallback(new FutureCallback<JsonObject>() {
                                 @Override
                                 public void onCompleted(Exception e, JsonObject result) {
+                                    if (progressDialog!=null)
+                                        progressDialog.dismiss();
                                     if (result.get("status").getAsString().equals("Success")){
                                         Session.SetUserId(LoginPage.this,result.get("member_id").getAsString());
                                         Toast.makeText(LoginPage.this,result.get("member_id").getAsString(),Toast.LENGTH_SHORT).show();

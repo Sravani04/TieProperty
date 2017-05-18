@@ -6,20 +6,20 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="5dp"
+        android:layout_height="260dp">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="35dp">
 
             <TextView
                 android:text="Name"
-                android:layout_width="150dp"
+                android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:id="@+id/textView24"
                 android:layout_weight="1"
@@ -34,19 +34,22 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
                 android:paddingLeft="5dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="TextView"
+                android:textStyle="normal|bold" />
 
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_marginTop="5dp">
 
             <TextView
                 android:text="Email"
-                android:layout_width="150dp"
+                android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:id="@+id/textView30"
                 android:layout_weight="1"
@@ -59,18 +62,21 @@
                 android:id="@+id/email"
                 android:layout_marginBottom="5dp"
                 android:paddingLeft="5dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textStyle="normal|bold"
+                android:text="TextView" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_marginTop="5dp">
 
             <TextView
                 android:text="Phone"
-                android:layout_width="150dp"
+                android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:id="@+id/textView31"
                 android:layout_weight="1"
@@ -83,18 +89,21 @@
                 android:id="@+id/phone"
                 android:layout_marginBottom="5dp"
                 android:paddingLeft="5dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textStyle="normal|bold"
+                android:text="TextView" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_marginTop="5dp">
 
             <TextView
                 android:text="Property"
-                android:layout_width="150dp"
+                android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:id="@+id/textView32"
                 android:layout_weight="1"
@@ -107,18 +116,21 @@
                 android:id="@+id/property"
                 android:layout_marginBottom="5dp"
                 android:paddingLeft="5dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textStyle="normal|bold"
+                android:text="TextView" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_marginTop="5dp">
 
             <TextView
                 android:text="Date"
-                android:layout_width="150dp"
+                android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:id="@+id/textView33"
                 android:layout_weight="1"
@@ -131,19 +143,22 @@
                 android:id="@+id/date"
                 android:layout_marginBottom="5dp"
                 android:paddingLeft="5dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textStyle="normal|bold"
+                android:text="TextView" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="35dp"
             android:layout_marginTop="5dp">
 
             <TextView
                 android:text="Message"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
                 android:id="@+id/textView34"
                 android:layout_weight="1"
                 android:paddingLeft="10dp"
@@ -151,10 +166,13 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/message"
                 android:paddingLeft="5dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textStyle="normal|bold"
+                android:text="TextView" />
         </LinearLayout>
 
     </LinearLayout>

@@ -32,7 +32,7 @@ public class AgentHomePage extends Activity {
     String name,image;
     ArrayList<Commissions>commissionsfrom_api;
     ArrayList<Agents> agentsfrom_api;
-    String cityId;
+    String cityid;
 
 
 
@@ -63,8 +63,8 @@ public class AgentHomePage extends Activity {
         commissionsfrom_api = new ArrayList<>();
         agentsfrom_api = new ArrayList<>();
 
-      if (getIntent()!=null && getIntent().hasExtra("city_id")){
-          cityId = getIntent().getStringExtra("city_id");
+      if (getIntent()!=null && getIntent().hasExtra("id")){
+          cityid = getIntent().getStringExtra("id");
 
       }
 
@@ -150,7 +150,6 @@ public class AgentHomePage extends Activity {
                 properties.setBackgroundColor(Color.parseColor("#ffffff"));
                 properties.setTextColor(Color.parseColor("#000000"));
                 Intent intent = new Intent(AgentHomePage.this,NewPropertyScreen.class);
-                intent.putExtra("city_id",cityId);
                 startActivity(intent);
                 slidingPaneLayout.closePane();
             }

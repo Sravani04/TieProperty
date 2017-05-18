@@ -25,7 +25,6 @@
                 android:paddingLeft="10dp" />
 
             <TextView
-                android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/customer"
@@ -52,7 +51,6 @@
                 android:paddingLeft="10dp" />
 
             <TextView
-                android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/property"
@@ -79,7 +77,6 @@
                 android:paddingLeft="10dp" />
 
             <TextView
-                android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/units"
@@ -106,7 +103,6 @@
                 android:paddingLeft="10dp" />
 
             <TextView
-                android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/total_amt"
@@ -133,7 +129,6 @@
                 android:paddingLeft="10dp" />
 
             <TextView
-                android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/paid_amt"
@@ -160,7 +155,6 @@
                 android:paddingLeft="10dp" />
 
             <TextView
-                android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/amt"
@@ -187,7 +181,6 @@
                 android:paddingLeft="10dp" />
 
             <TextView
-                android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/tds"
@@ -214,7 +207,6 @@
                 android:paddingLeft="10dp" />
 
             <TextView
-                android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/pay_amt"

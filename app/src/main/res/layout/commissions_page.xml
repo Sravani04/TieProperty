@@ -80,7 +80,6 @@
                         android:paddingLeft="10dp" />
 
                     <TextView
-                        android:text="TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:id="@+id/tot_comm_amt"
@@ -107,7 +106,6 @@
                         android:paddingLeft="10dp" />
 
                     <TextView
-                        android:text="TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:id="@+id/tds_amt"
@@ -134,7 +132,6 @@
                         android:paddingLeft="10dp" />
 
                     <TextView
-                        android:text="TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:id="@+id/pay_amt"
@@ -161,7 +158,6 @@
                         android:paddingLeft="10dp" />
 
                     <TextView
-                        android:text="TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:id="@+id/site_visits"
@@ -188,7 +184,6 @@
                         android:paddingLeft="10dp" />
 
                     <TextView
-                        android:text="TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:id="@+id/ded_visit"
@@ -215,7 +210,6 @@
                         android:paddingLeft="10dp" />
 
                     <TextView
-                        android:text="TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:id="@+id/tot_amt"
@@ -242,7 +236,6 @@
                         android:paddingLeft="10dp" />
 
                     <TextView
-                        android:text="TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:id="@+id/paid_amt"
@@ -269,7 +262,6 @@
                         android:paddingLeft="10dp" />
 
                     <TextView
-                        android:text="TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:id="@+id/bal_amt"
@@ -327,7 +319,8 @@
         android:layout_marginTop="10dp"
         android:background="#d3d3d3"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp">
+        android:layout_marginRight="5dp"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="match_parent"
@@ -337,6 +330,7 @@
             android:gravity="center_vertical|center_horizontal"
             android:textColor="#000"
             android:textStyle="normal|bold"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:visibility="visible" />
     </LinearLayout>
 </LinearLayout>

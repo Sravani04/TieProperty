@@ -3,6 +3,7 @@ package com.viralandroid.tieproperty;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
@@ -147,6 +148,7 @@ public class CallbackCustomersPage extends Activity {
                                         }
                                     });
                         }
+
                     }
                 });
 
@@ -164,6 +166,10 @@ public class CallbackCustomersPage extends Activity {
     }
 
     public void get_callback_customers(){
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("please wait..");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         Ion.with(this)
                 .load(Session.SERVER_URL+"callback_customers.php")
                 .setBodyParameter("agent_id",Session.GetUserId(CallbackCustomersPage.this))
@@ -171,6 +177,8 @@ public class CallbackCustomersPage extends Activity {
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
                     public void onCompleted(Exception e, JsonArray result) {
+                        if (progressDialog!=null)
+                            progressDialog.dismiss();
                         for (int i=0;i<result.size();i++) {
                                 CallbackCustomers callback = new CallbackCustomers(result.get(i).getAsJsonObject(), getApplicationContext());
                                 callbackCustomersfrom_api.add(callback);

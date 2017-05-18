@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.icu.util.Calendar;
 import android.os.Build;
@@ -12,6 +13,7 @@ import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,9 +21,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
+
+import java.util.ArrayList;
 
 /**
  * Created by T on 16-05-2017.
@@ -33,6 +38,8 @@ public class SiteVisitScreen extends Activity{
     TextView time;
     int starthMonth = 5;
     int startDay = 1;
+    SiteVisitAdapter adapter;
+    ArrayList<SiteVisits> siteVisitsfrom_api;
     @Override
     public void onCreate(Bundle savedInstanceState){
       super.onCreate(savedInstanceState);
@@ -42,6 +49,16 @@ public class SiteVisitScreen extends Activity{
             @Override
             public void onClick(View view) {
                 SiteVisitScreen.this.onBackPressed();
+            }
+        });
+        siteVisitsfrom_api = new ArrayList<>();
+        listView = (ListView) findViewById(R.id.visit_list);
+        adapter = new SiteVisitAdapter(this,siteVisitsfrom_api);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
             }
         });
         add_visit = (ImageView) findViewById(R.id.add_visit);
@@ -147,6 +164,8 @@ public class SiteVisitScreen extends Activity{
             }
         });
 
+        get_site_visits();
+
     }
 
     public Dialog onCreateDialogSingleChoice() {
@@ -184,6 +203,30 @@ public class SiteVisitScreen extends Activity{
                 });
 
         return builder.create();
+    }
+
+
+    public void get_site_visits(){
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("please wait..");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        Ion.with(this)
+                .load(Session.SERVER_URL+"site-visits.php")
+                .setBodyParameter("agent_id",Session.GetUserId(this))
+                .asJsonArray()
+                .setCallback(new FutureCallback<JsonArray>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonArray result) {
+                        if (progressDialog!=null)
+                            progressDialog.dismiss();
+                        for (int i=0;i<result.size();i++){
+                            SiteVisits siteVisits = new SiteVisits(result.get(i).getAsJsonObject(),SiteVisitScreen.this);
+                            siteVisitsfrom_api.add(siteVisits);
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+                });
     }
 
 

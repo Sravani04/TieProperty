@@ -6,7 +6,9 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="250dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -17,7 +19,7 @@
 
             <TextView
                 android:text="Name"
-                android:layout_width="80dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/textView49"
                 android:layout_weight="1"
@@ -25,13 +27,14 @@
                 android:paddingLeft="10dp" />
 
             <TextView
-                android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/name"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:textColor="#000" />
+                android:textColor="#000"
+                android:text="TextView"
+                android:paddingLeft="5dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -44,7 +47,7 @@
 
             <TextView
                 android:text="Phone"
-                android:layout_width="80dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/textView50"
                 android:layout_weight="1"
@@ -52,13 +55,13 @@
                 android:paddingLeft="10dp" />
 
             <TextView
-                android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/phone"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:textColor="#000" />
+                android:textColor="#000"
+                android:text="TextView" />
         </LinearLayout>
 
         <LinearLayout
@@ -71,7 +74,7 @@
 
             <TextView
                 android:text="Address"
-                android:layout_width="80dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/textView51"
                 android:layout_weight="1"
@@ -79,13 +82,13 @@
                 android:paddingLeft="10dp" />
 
             <TextView
-                android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/address"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:textColor="#000" />
+                android:textColor="#000"
+                android:text="TextView" />
         </LinearLayout>
 
         <LinearLayout
@@ -98,101 +101,50 @@
 
             <TextView
                 android:text="Date and Time"
-                android:layout_width="80dp"
+                android:layout_width="65dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:paddingLeft="10dp" />
+                android:paddingLeft="10dp"
+                android:id="@+id/date" />
 
             <TextView
-                android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/date_time"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:textColor="#000" />
+                android:textColor="#000"
+                android:text="TextView"
+                android:maxLines="3" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="10dp">
 
             <TextView
                 android:text="Property"
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:id="@+id/textView53"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dp" />
-
-            <TextView
-                android:text="TextView"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/property"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:textColor="#000" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:text="Amount"
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:id="@+id/textView54"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
                 android:paddingLeft="10dp" />
 
             <TextView
-                android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/amt"
+                android:id="@+id/prop"
                 android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:textColor="#000" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:text="Status"
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:id="@+id/textView55"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dp" />
-
-            <TextView
+                android:textColor="#000"
                 android:text="TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/status"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:textColor="#000" />
+                android:maxLines="4"
+                android:gravity="center_vertical" />
         </LinearLayout>
 
     </LinearLayout>

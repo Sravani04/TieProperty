@@ -87,6 +87,10 @@ public class AgentsEditProfile extends Activity {
                 }else if (phone_string.equals("")){
                     Toast.makeText(AgentsEditProfile.this,"Please Enter Phone",Toast.LENGTH_SHORT).show();
                 }else {
+                    final ProgressDialog progressDialog = new ProgressDialog(AgentsEditProfile.this);
+                    progressDialog.setMessage("please wait..");
+                    progressDialog.setCancelable(false);
+                    progressDialog.show();
                     Ion.with(AgentsEditProfile.this)
                             .load(Session.SERVER_URL+"edit-agent.php")
                             .setBodyParameter("agent_id",Session.GetUserId(getApplicationContext()))
@@ -99,6 +103,8 @@ public class AgentsEditProfile extends Activity {
                             .setCallback(new FutureCallback<JsonObject>() {
                                 @Override
                                 public void onCompleted(Exception e, JsonObject result) {
+                                    if (progressDialog!=null)
+                                        progressDialog.dismiss();
                                     if (result.get("status").getAsString().equals("Success")){
                                         if(selected_image_path.equals("")){
                                             edit_success();

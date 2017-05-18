@@ -34,7 +34,7 @@ public class Commissions implements Serializable {
 
     }
     public class  Sites implements Serializable{
-        public String id,name,phone,address,date,time,property,amount;
+        public String id,name,phone,address,date,time,property,amount,status;
         public Sites(JsonObject jsonObject,Context context){
             id = jsonObject.get("id").getAsString();
             name = jsonObject.get("name").getAsString();
@@ -44,11 +44,11 @@ public class Commissions implements Serializable {
             time = jsonObject.get("time").getAsString();
             property = jsonObject.get("property").getAsString();
             amount = jsonObject.get("amount").getAsString();
-//            if (jsonObject.has("status")){
-//                status = jsonObject.get("status").getAsString();
-//            }else {
-//                status = "null";
-//            }
+            if (jsonObject.has("status")){
+                status = jsonObject.get("status").getAsString();
+            }else {
+                status = "null";
+            }
 
         }
     }

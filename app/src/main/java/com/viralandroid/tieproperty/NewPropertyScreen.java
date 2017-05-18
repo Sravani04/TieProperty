@@ -177,6 +177,10 @@ public class NewPropertyScreen extends Activity {
     }
 
     public void get_new_properties_list(){
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("please wait..");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         Ion.with(getApplicationContext())
                 .load(Session.SERVER_URL+"new-properties.php")
                 .setBodyParameter("agent_id",Session.GetUserId(getApplicationContext()))
@@ -184,6 +188,8 @@ public class NewPropertyScreen extends Activity {
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
                     public void onCompleted(Exception e, JsonArray result) {
+                        if (progressDialog!=null)
+                            progressDialog.dismiss();
                         for (int i=0;i<result.size();i++){
                             NewProperties newProperties = new NewProperties(result.get(i).getAsJsonObject(),getApplicationContext());
                             newPropertiesfrom_api.add(newProperties);

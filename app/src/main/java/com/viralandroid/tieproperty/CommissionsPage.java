@@ -1,18 +1,11 @@
 package com.viralandroid.tieproperty;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.gson.JsonArray;
-import com.koushikdutta.async.future.FutureCallback;
-import com.koushikdutta.ion.Ion;
-
-import java.util.ArrayList;
 
 /**
  * Created by T on 17-05-2017.
@@ -21,7 +14,6 @@ import java.util.ArrayList;
 public class CommissionsPage  extends Activity{
     ImageView back_btn;
     TextView comm_list,site_visits_list,payouts_list;
-    ArrayList<Commissions> commissionsfrom_api;
     TextView tot_comm_amt,tds_amt,pay_amt,site_visits,ded_visit,tot_amt,paid_amt,bal_amt;
     String comm_amt,tds,pay,site,ded,tot,paid,bal;
 
@@ -62,13 +54,11 @@ public class CommissionsPage  extends Activity{
         paid_amt.setText(paid);
         bal_amt.setText(bal);
 
-        commissionsfrom_api = new ArrayList<>();
 
         comm_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CommissionsPage.this,CommissionList.class);
-                intent.putExtra("commissions",commissionsfrom_api);
                 startActivity(intent);
 
             }
@@ -89,43 +79,6 @@ public class CommissionsPage  extends Activity{
             }
         });
 
-       get_commissions();
-
-
 
     }
-
-
-    public void get_commissions(){
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("please wait");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-        Ion.with(getApplicationContext())
-                .load(Session.SERVER_URL+"commissions.php")
-                .setBodyParameter("agent_id",Session.GetUserId(CommissionsPage.this))
-                .asJsonArray()
-                .setCallback(new FutureCallback<JsonArray>() {
-                    @Override
-                    public void onCompleted(Exception e, JsonArray result) {
-                        try {
-
-                            if (progressDialog != null) {
-                                progressDialog.dismiss();
-                            }
-                            for (int i = 0; i < result.size(); i++) {
-                                Commissions commissions = new Commissions(result.get(i).getAsJsonObject(), CommissionsPage.this);
-                                commissionsfrom_api.add(commissions);
-                            }
-                        }catch (Exception e1){
-                            e1.printStackTrace();
-                        }
-
-                    }
-                });
-    }
-
-
-
-
 }

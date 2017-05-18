@@ -43,6 +43,8 @@
         <activity android:name=".AgentsAccountPage"></activity>
         <activity android:name=".CommissionsPage"></activity>
         <activity android:name=".CommissionList"></activity>
+        <activity android:name=".AgentsRegisterPage"></activity>
+        <activity android:name=".EmiCalculatorPage"></activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
