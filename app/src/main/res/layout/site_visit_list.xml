@@ -17,17 +17,16 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:layout_width="25dp"
+                android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:id="@+id/close_btn"
-                android:layout_marginTop="10dp"
+                android:id="@+id/back_btn"
+                android:layout_marginTop="7dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginLeft="5dp"
-                android:src="@android:drawable/ic_menu_close_clear_cancel"
-                android:tint="#0D5097" />
+                android:src="@drawable/back_arrow" />
 
             <TextView
-                android:text="Site Visits List"
+                android:text="Visits List"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/textView26"
@@ -39,9 +38,10 @@
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:id="@+id/add_call"
+                android:id="@+id/add_visit"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:src="@drawable/plus_icon" />
 
         </LinearLayout>
 
@@ -58,12 +58,11 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="5dp">
+        android:layout_height="match_parent">
 
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/visits_list" />
+            android:id="@+id/visit_list" />
     </LinearLayout>
 </LinearLayout>
