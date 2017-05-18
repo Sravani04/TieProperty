@@ -19,7 +19,7 @@ import com.koushikdutta.ion.Ion;
  */
 
 public class AgentsRegisterPage extends Activity {
-    EditText name,email,phone,city_name;
+    EditText name,email,phone,city_name,about;
     TextView register_btn;
     ImageView close_btn;
     @Override
@@ -32,6 +32,7 @@ public class AgentsRegisterPage extends Activity {
         city_name = (EditText) findViewById(R.id.city_name);
         register_btn = (TextView) findViewById(R.id.register_btn);
         close_btn = (ImageView) findViewById(R.id.close_btn);
+        about = (EditText) findViewById(R.id.about);
         close_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,6 +46,7 @@ public class AgentsRegisterPage extends Activity {
                 String email_string = email.getText().toString();
                 String phone_string = phone.getText().toString();
                 String city_string = city_name.getText().toString();
+                String about_string = about.getText().toString();
                 if (name_string.equals("")){
                     Toast.makeText(AgentsRegisterPage.this,"Please Enter Name",Toast.LENGTH_SHORT).show();
                 }else if (email_string.equals("")){
@@ -53,6 +55,8 @@ public class AgentsRegisterPage extends Activity {
                     Toast.makeText(AgentsRegisterPage.this,"Please Enter Phone",Toast.LENGTH_SHORT).show();
                 }else if(city_string.equals("")) {
                     Toast.makeText(AgentsRegisterPage.this,"Please Enter City",Toast.LENGTH_SHORT).show();
+                }else if(about_string.equals("")) {
+                    Toast.makeText(AgentsRegisterPage.this,"Please Enter About",Toast.LENGTH_SHORT).show();
                 }else {
                     final ProgressDialog progressDialog = new ProgressDialog(AgentsRegisterPage.this);
                     progressDialog.setMessage("please wait..");
@@ -64,6 +68,7 @@ public class AgentsRegisterPage extends Activity {
                             .setBodyParameter("email",email_string)
                             .setBodyParameter("phone",phone_string)
                             .setBodyParameter("city",city_string)
+                            .setBodyParameter("about",about_string)
                             .asJsonObject()
                             .setCallback(new FutureCallback<JsonObject>() {
                                 @Override
