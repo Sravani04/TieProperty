@@ -3,11 +3,14 @@ package com.viralandroid.tieproperty;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,6 +25,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
+import com.koushikdutta.ion.Response;
 
 import java.util.ArrayList;
 
@@ -33,9 +37,11 @@ import java.util.ArrayList;
 public class CallbackCustomersPage extends Activity {
     ImageView add_call,back_btn;
     ListView listView;
-    String agent_id;
+    String agent_id,property_id;
     TextView date;
+    TextView property;
     ArrayList<CallbackCustomers> callbackCustomersfrom_api;
+    ArrayList<Properties> propertiesfrom_api;
     CallbackCustomersAdapter adapter;
     public void onCreate(Bundle savedinstanceState) {
         super.onCreate(savedinstanceState);
@@ -50,6 +56,7 @@ public class CallbackCustomersPage extends Activity {
             }
         });
         callbackCustomersfrom_api = new ArrayList<>();
+        propertiesfrom_api = new ArrayList<>();
 
         if (getIntent()!=null && getIntent().hasExtra("agentId")){
             agent_id = getIntent().getStringExtra("agentId");
@@ -75,7 +82,14 @@ public class CallbackCustomersPage extends Activity {
                 final EditText name = (EditText) form.findViewById(R.id.name);
                 final EditText email = (EditText) form.findViewById(R.id.email);
                 final EditText phone = (EditText) form.findViewById(R.id.phone);
-                final EditText property = (EditText) form.findViewById(R.id.property);
+                property = (TextView) form.findViewById(R.id.property);
+                property.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Dialog dialog = onCreateDialogSingleChoice();
+                        dialog.show();
+                    }
+                });
                  date = (TextView) form.findViewById(R.id.date);
                 date.setOnClickListener(new View.OnClickListener() {
 
@@ -104,7 +118,7 @@ public class CallbackCustomersPage extends Activity {
                         String name_string = name.getText().toString();
                         String email_string = email.getText().toString();
                         String phone_string = phone.getText().toString();
-                        String property_string = property.getText().toString();
+                        String property_string = property_id;
                         String date_string =date.getText().toString();
                         String message_string = message.getText().toString();
                         if (name_string.equals("")){
@@ -133,7 +147,7 @@ public class CallbackCustomersPage extends Activity {
                                     .setBodyParameter("phone",phone_string)
                                     .setBodyParameter("date",date_string)
                                     .setBodyParameter("message",message_string)
-                                    .setBodyParameter("property_id","3")
+                                    .setBodyParameter("property_id",property_string)
                                     .setBodyParameter("agent_id",Session.GetUserId(CallbackCustomersPage.this))
                                     .asJsonObject()
                                     .setCallback(new FutureCallback<JsonObject>() {
@@ -163,6 +177,7 @@ public class CallbackCustomersPage extends Activity {
             }
         });
         get_callback_customers();
+        get_properties();
     }
 
     public void get_callback_customers(){
@@ -189,6 +204,87 @@ public class CallbackCustomersPage extends Activity {
 
                     }
                 });
+    }
+
+
+    public void get_properties(){
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("please wait");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        Ion.with(this)
+                .load(Session.SERVER_URL+"properties.php")
+                .setBodyParameter("city","1")
+                .asJsonArray()
+                .withResponse()
+                .setCallback(new FutureCallback<Response<JsonArray>>() {
+                    @Override
+                    public void onCompleted(Exception e, Response<JsonArray> result) {
+                        try {
+                            if (progressDialog != null)
+                                progressDialog.dismiss();
+                            Log.e("response", result.getServedFrom().toString());
+
+
+                            if (e != null) {
+                                e.printStackTrace();
+                                Log.e("error", e.getLocalizedMessage());
+
+                            } else
+                                try {
+                                    for (int i = 0; i < result.getResult().size(); i++) {
+                                        Properties properties = new Properties(result.getResult().get(i).getAsJsonObject(), CallbackCustomersPage.this);
+                                        propertiesfrom_api.add(properties);
+                                    }
+                                    adapter.notifyDataSetChanged();
+
+                                } catch (Exception e1) {
+                                    e1.printStackTrace();
+                                }
+                        }catch (Exception e1){
+                            e1.printStackTrace();
+                        }
+
+
+                    }
+                });
+    }
+
+    public Dialog onCreateDialogSingleChoice() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        final CharSequence[] array = new CharSequence[propertiesfrom_api.size()];
+        for(int i=0;i<propertiesfrom_api.size();i++){
+
+            array[i] = propertiesfrom_api.get(i).title;
+        }
+        builder.setTitle("Select City").setSingleChoiceItems(array, 0, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                String selectedItem = array[i].toString();
+                Log.e("select",selectedItem);
+                property.setText(selectedItem);
+                property_id = propertiesfrom_api.get(i).id;
+
+            }
+        })
+
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+
+        return builder.create();
     }
 
 

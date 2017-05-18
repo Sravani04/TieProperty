@@ -25,6 +25,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
+import com.koushikdutta.ion.Response;
 
 import java.util.ArrayList;
 
@@ -40,6 +41,9 @@ public class SiteVisitScreen extends Activity{
     int startDay = 1;
     SiteVisitAdapter adapter;
     ArrayList<SiteVisits> siteVisitsfrom_api;
+    ArrayList<Properties> propertiesfrom_api;
+    TextView property;
+    String prop_id;
     @Override
     public void onCreate(Bundle savedInstanceState){
       super.onCreate(savedInstanceState);
@@ -52,6 +56,7 @@ public class SiteVisitScreen extends Activity{
             }
         });
         siteVisitsfrom_api = new ArrayList<>();
+        propertiesfrom_api = new ArrayList<>();
         listView = (ListView) findViewById(R.id.visit_list);
         adapter = new SiteVisitAdapter(this,siteVisitsfrom_api);
         listView.setAdapter(adapter);
@@ -100,7 +105,14 @@ public class SiteVisitScreen extends Activity{
                         mDatePicker.setTitle("Select date");
                         mDatePicker.show();  }
                 });
-                final EditText property = (EditText) form.findViewById(R.id.property);
+                property = (TextView) form.findViewById(R.id.property);
+                property.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Dialog dialog = onCreateDialogSingleChoiceProperties();
+                        dialog.show();
+                    }
+                });
                 TextView submit_btn = (TextView) form.findViewById(R.id.submit_btn);
                 ImageView close_btn = (ImageView) form.findViewById(R.id.close_btn);
                 submit_btn.setOnClickListener(new View.OnClickListener() {
@@ -165,6 +177,7 @@ public class SiteVisitScreen extends Activity{
         });
 
         get_site_visits();
+        get_properties();
 
     }
 
@@ -227,6 +240,88 @@ public class SiteVisitScreen extends Activity{
                         adapter.notifyDataSetChanged();
                     }
                 });
+    }
+
+
+
+    public void get_properties(){
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("please wait");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        Ion.with(this)
+                .load(Session.SERVER_URL+"properties.php")
+                .setBodyParameter("city","1")
+                .asJsonArray()
+                .withResponse()
+                .setCallback(new FutureCallback<Response<JsonArray>>() {
+                    @Override
+                    public void onCompleted(Exception e, Response<JsonArray> result) {
+                        try {
+                            if (progressDialog != null)
+                                progressDialog.dismiss();
+                            Log.e("response", result.getServedFrom().toString());
+
+
+                            if (e != null) {
+                                e.printStackTrace();
+                                Log.e("error", e.getLocalizedMessage());
+
+                            } else
+                                try {
+                                    for (int i = 0; i < result.getResult().size(); i++) {
+                                        Properties properties = new Properties(result.getResult().get(i).getAsJsonObject(), SiteVisitScreen.this);
+                                        propertiesfrom_api.add(properties);
+                                    }
+                                    adapter.notifyDataSetChanged();
+
+                                } catch (Exception e1) {
+                                    e1.printStackTrace();
+                                }
+                        }catch (Exception e1){
+                            e1.printStackTrace();
+                        }
+
+
+                    }
+                });
+    }
+
+    public Dialog onCreateDialogSingleChoiceProperties() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        final CharSequence[] array = new CharSequence[propertiesfrom_api.size()];
+        for(int i=0;i<propertiesfrom_api.size();i++){
+
+            array[i] = propertiesfrom_api.get(i).title;
+        }
+        builder.setTitle("Select City").setSingleChoiceItems(array, 0, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                String selectedItem = array[i].toString();
+                Log.e("select",selectedItem);
+                property.setText(selectedItem);
+                prop_id = propertiesfrom_api.get(i).id;
+
+            }
+        })
+
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+
+        return builder.create();
     }
 
 

@@ -148,7 +148,8 @@
                     android:background="@drawable/border"
                     android:layout_marginTop="5dp"
                     android:paddingLeft="10dp"
-                    android:textColorHint="#000" />
+                    android:textColorHint="#000"
+                    android:gravity="center_vertical" />
 
                 <TextView
                     android:text="Time"
@@ -170,7 +171,8 @@
                     android:background="@drawable/border"
                     android:textColor="#000"
                     android:textSize="15sp"
-                    android:textColorHint="#000" />
+                    android:textColorHint="#000"
+                    android:gravity="center_vertical" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -183,7 +185,7 @@
                     android:textColor="#000"
                     android:layout_marginTop="5dp" />
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:inputType="textPersonName"
