@@ -49,7 +49,7 @@ public class SiteVisitAdapter extends BaseAdapter {
         phone.setText(siteVisits.get(position).phone);
         address.setText(siteVisits.get(position).address);
         date_time.setText(siteVisits.get(position).date +"  "+ siteVisits.get(position).time);
-        prop.setText(siteVisits.get(position).title +"  "+ siteVisits.get(position).code.replace("\n",""));
+        prop.setText(siteVisits.get(position).title +"  "+ siteVisits.get(position).code);
         return item_view;
     }
 }
