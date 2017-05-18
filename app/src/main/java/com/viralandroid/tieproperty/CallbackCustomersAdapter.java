@@ -50,7 +50,7 @@ public class CallbackCustomersAdapter extends BaseAdapter {
         name.setText(callbackCustomers.get(i).name);
         email.setText(callbackCustomers.get(i).email);
         phone.setText(callbackCustomers.get(i).phone);
-        property.setText(callbackCustomers.get(i).phone);
+        property.setText(callbackCustomers.get(i).property_title);
         date.setText(callbackCustomers.get(i).date);
         message.setText(callbackCustomers.get(i).message);
         return item_view;

@@ -19,12 +19,16 @@ public class CallbackCustomers {
         phone = jsonObject.get("phone").getAsString();
         date = jsonObject.get("date").getAsString();
         message = jsonObject.get("message").getAsString();
-        property_id = jsonObject.get("property").getAsJsonObject().get("property_id").getAsString();
-        property_title = jsonObject.get("property").getAsJsonObject().get("title").getAsString();
-        if (jsonObject.has("code")){
-            property_code = jsonObject.get("property").getAsJsonObject().get("code").getAsString();
-        }else {
-            property_code = "null";
+        try {
+            property_id = jsonObject.get("property").getAsJsonObject().get("property_id").getAsString();
+            property_title = jsonObject.get("property").getAsJsonObject().get("title").getAsString();
+            if (jsonObject.has("code")) {
+                property_code = jsonObject.get("property").getAsJsonObject().get("code").getAsString();
+            } else {
+                property_code = "null";
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
 
     }
