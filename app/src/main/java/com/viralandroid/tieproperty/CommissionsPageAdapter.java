@@ -22,7 +22,7 @@ public class CommissionsPageAdapter extends BaseAdapter {
     }
     @Override
     public int getCount() {
-        return 4;
+        return 1;
     }
 
     @Override
