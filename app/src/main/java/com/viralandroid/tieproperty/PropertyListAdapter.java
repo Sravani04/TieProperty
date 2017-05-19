@@ -34,6 +34,7 @@ public class PropertyListAdapter extends BaseAdapter {
 
 
 
+
     public PropertyListAdapter(Context context, String mobile, ArrayList<Properties> properties) {
         this.context = context;
         inflater = LayoutInflater.from(context);
@@ -69,13 +70,13 @@ public class PropertyListAdapter extends BaseAdapter {
         ImageView item_image = (ImageView) item_view.findViewById(R.id.item_image);
         TextView flat_price = (TextView) item_view.findViewById(R.id.flat_price);
         TextView flat_area = (TextView) item_view.findViewById(R.id.flat_area);
-        TextView flat_type = (TextView) item_view.findViewById(R.id.flat_type);
+//        TextView flat_type = (TextView) item_view.findViewById(R.id.flat_type);
         TextView flat_title = (TextView) item_view.findViewById(R.id.flat_title);
-        TextView flat_price2 = (TextView) item_view.findViewById(R.id.flat_price2);
-        TextView flat_area1 = (TextView) item_view.findViewById(R.id.flat_area1);
+//        TextView flat_price2 = (TextView) item_view.findViewById(R.id.flat_price2);
+//        TextView flat_area1 = (TextView) item_view.findViewById(R.id.flat_area1);
         ImageView offer = (ImageView) item_view.findViewById(R.id.offer);
-        TextView hiphen  = (TextView) item_view.findViewById(R.id.hiphen);
-        TextView hiphen2 = (TextView) item_view.findViewById(R.id.hiphen2);
+//        TextView hiphen  = (TextView) item_view.findViewById(R.id.hiphen);
+//        TextView hiphen2 = (TextView) item_view.findViewById(R.id.hiphen2);
         LinearLayout stats_box = (LinearLayout) item_view.findViewById(R.id.stats_box);
 
 
@@ -105,33 +106,18 @@ public class PropertyListAdapter extends BaseAdapter {
             }
         }
 
+
+
         try {
-            if (properties.get(i).flats.get(0) != null) {
-                if (properties.get(i).flats.get(0).price.equals("") || properties.get(i).flats.get(0).area.equals("")) {
+            if (properties.get(i).price_disp != null) {
+                if (properties.get(i).price_disp.equals("") || properties.get(i).area_disp.equals("")) {
                     flat_price.setVisibility(View.GONE);
                     flat_area.setVisibility(View.GONE);
                 } else {
-                    flat_price.setText(properties.get(i).flats.get(0).price);
-                    flat_area.setText(properties.get(i).flats.get(0).area);
+                    flat_price.setText(String.valueOf(properties.get(i).price_disp));
+                    flat_area.setText(properties.get(i).area_disp);
                     flat_price.setVisibility(View.VISIBLE);
                     flat_area.setVisibility(View.VISIBLE);
-                }
-            }
-
-            if (properties.get(i).flats.get(1) != null) {
-                if (properties.get(i).flats.get(1).price.equals("") || properties.get(i).flats.get(1).area.equals("")) {
-                    hiphen.setVisibility(View.GONE);
-                    flat_price2.setVisibility(View.GONE);
-                    hiphen2.setVisibility(View.GONE);
-                    flat_area1.setVisibility(View.GONE);
-                } else {
-                    flat_price2.setText(properties.get(i).flats.get(1).price);
-                    hiphen.setVisibility(View.VISIBLE);
-                    flat_price2.setVisibility(View.VISIBLE);
-                    flat_area1.setText(properties.get(i).flats.get(1).area);
-                    hiphen2.setVisibility(View.VISIBLE);
-                    flat_area1.setVisibility(View.VISIBLE);
-
                 }
             }
         }catch (Exception e){
@@ -143,31 +129,6 @@ public class PropertyListAdapter extends BaseAdapter {
          }catch (Exception e){
              e.printStackTrace();
          }
-
-
-
-
-        try {
-            if (properties.get(i).flats.get(0)!=null) {
-                flat_area.setText(properties.get(i).flats.get(0).area);
-                flat_type.setText(properties.get(i).flats.get(0).type);
-//                flat_price.setText(properties.get(i).flats.get(0).price);
-               // flat_price2.setText(properties.get(i).flats.get(1).price);
-
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-
-//        try {
-//            flat_area1.setText(properties.get(i).flats.get(1).area);
-//            flat_price2.setText(properties.get(i).flats.get(1).price);
-//
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-
 
 
         call_btn.setOnClickListener(new View.OnClickListener() {

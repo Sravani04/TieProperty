@@ -13,13 +13,16 @@ import java.util.ArrayList;
 
 public class Properties implements Serializable{
     public String id,title,prop_code,area_id,area_title,address,location,latitude,longitude,category_id,
-            category_title,description,offer,offer_desc,possession,stats,stats_type;
+            category_title,description,offer,offer_desc,possession,stats,stats_type,price_disp,area_disp;
     public ArrayList<Images> images;
     public ArrayList<Floorplans> floorplans;
     public ArrayList<Flats> flats;
     public  ArrayList<Banks> banks;
     public ArrayList<Amenities> amenities;
     public ArrayList<Specifications> specifications;
+    public  float flat_max=0;
+    public float flat_min=0;
+
 
     public Properties(JsonObject jsonObject, Context context){
         id = jsonObject.get("id").getAsString();
@@ -39,6 +42,8 @@ public class Properties implements Serializable{
         possession = jsonObject.get("possession").getAsString();
         stats = jsonObject.get("stats").getAsString();
         stats_type = jsonObject.get("stats_type").getAsString();
+        price_disp = jsonObject.get("price_disp").getAsString();
+        area_disp = jsonObject.get("area_disp").getAsString();
 
         images = new ArrayList<>();
         for(int i=0;i<jsonObject.get("images").getAsJsonArray().size();i++){
@@ -58,6 +63,15 @@ public class Properties implements Serializable{
             Flats flat = new Flats(jsonObject.get("flats").getAsJsonArray().get(i).getAsJsonObject(),context);
             flats.add(flat);
         }
+//        ArrayList<Integer> list = new ArrayList<>();
+//        for (int i=0;i<flats.size();i++){
+//            if(flats.get(i).title.contains("BHK")){
+//                int temp=Integer.parseInt(flats.get(i).title.substring(0,1));
+//                list.add(temp);
+//            }
+//        }
+//        flat_max = Collections.max(list);
+//        flat_min =Collections.min(list);
 
         banks = new ArrayList<>();
         for (int i=0; i<jsonObject.get("banks").getAsJsonArray().size();i++){

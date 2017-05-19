@@ -146,7 +146,7 @@
             android:layout_alignParentStart="false"
             android:layout_centerInParent="false"
             android:layout_alignBottom="@+id/categories"
-            android:layout_height="30dp">
+            android:layout_height="40dp">
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -169,26 +169,7 @@
                         android:textStyle="normal|bold"
                         android:layout_marginLeft="2dp"
                         android:layout_marginRight="1dp"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:text="-"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/hiphen"
-                        android:textColor="#ffffff"
-                        android:layout_marginRight="2dp"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:text="40L"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/flat_price2"
-                        android:textColor="#ffffff"
-                        android:textStyle="normal|bold"
-                        android:layout_marginRight="1dp"
-                        android:visibility="gone" />
+                        android:visibility="visible" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -224,44 +205,14 @@
                     <TextView
                         android:text="1050"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:id="@+id/flat_area"
                         android:textColor="#ffffff"
                         android:textStyle="normal|bold"
-                        android:visibility="gone"
-                        android:layout_marginLeft="2dp" />
-
-                    <TextView
-                        android:text="-"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/hiphen2"
-                        android:textColor="#ffffff"
-                        android:visibility="gone"
-                        android:layout_marginRight="2dp" />
-
-                    <TextView
-                        android:text="1500"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/flat_area1"
-                        android:textColor="#ffffff"
-                        android:textStyle="normal|bold"
-                        android:visibility="gone"
-                        android:layout_marginRight="2dp" />
-
-                    <TextView
-                        android:text="SqYards"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/flat_type"
-                        android:textColor="#ffffff"
-                        android:textStyle="normal|bold"
-                        android:layout_marginRight="2dp"
-                        android:layout_marginLeft="1dp"
-                        android:gravity="center_vertical"
-                        android:textSize="14sp" />
-
+                        android:visibility="visible"
+                        android:layout_marginLeft="2dp"
+                        android:gravity="top"
+                        android:layout_marginTop="5dp" />
 
 
                 </LinearLayout>
