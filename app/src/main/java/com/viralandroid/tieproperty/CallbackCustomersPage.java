@@ -13,6 +13,7 @@ import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -79,6 +80,7 @@ public class CallbackCustomersPage extends Activity {
                 final View form = li.inflate(R.layout.add_callback_items, null);
                 final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CallbackCustomersPage.this);
                 alertDialogBuilder.setView(form);
+                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
                 final EditText name = (EditText) form.findViewById(R.id.name);
                 final EditText email = (EditText) form.findViewById(R.id.email);
                 final EditText phone = (EditText) form.findViewById(R.id.phone);

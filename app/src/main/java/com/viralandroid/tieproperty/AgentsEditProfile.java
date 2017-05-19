@@ -39,6 +39,7 @@ public class AgentsEditProfile extends Activity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.agent_edit_profile);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         close_btn = (ImageView) findViewById(R.id.close_btn);
         user_image = (ImageView) findViewById(R.id.user_image);
         fname = (EditText) findViewById(R.id.fname);
@@ -78,14 +79,19 @@ public class AgentsEditProfile extends Activity {
                 String phone_string = phone.getText().toString();
                 if (fname_string.equals("")){
                     Toast.makeText(AgentsEditProfile.this,"Please Enter First Name",Toast.LENGTH_SHORT).show();
+                    fname.requestFocus();
                 }else if (lname_string.equals("")){
                     Toast.makeText(AgentsEditProfile.this,"Please Enter Last Name",Toast.LENGTH_SHORT).show();
+                    lname.requestFocus();
                 }else if (address_string.equals("")){
                     Toast.makeText(AgentsEditProfile.this,"Please Enter Adddress",Toast.LENGTH_SHORT).show();
+                    address.requestFocus();
                 }else if (state_string.equals("")){
                     Toast.makeText(AgentsEditProfile.this,"Please Enter State",Toast.LENGTH_SHORT).show();
+                    state.requestFocus();
                 }else if (phone_string.equals("")){
                     Toast.makeText(AgentsEditProfile.this,"Please Enter Phone",Toast.LENGTH_SHORT).show();
+                    phone.requestFocus();
                 }else {
                     final ProgressDialog progressDialog = new ProgressDialog(AgentsEditProfile.this);
                     progressDialog.setMessage("please wait..");

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -74,6 +75,7 @@ public class NewPropertyScreen extends Activity {
                 View form = li.inflate(R.layout.add_property_items, null);
                 final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(NewPropertyScreen.this);
                 alertDialogBuilder.setView(form);
+                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
                 final EditText title = (EditText) form.findViewById(R.id.title);
                 type = (TextView) form.findViewById(R.id.type);
                 final EditText name = (EditText) form.findViewById(R.id.name);
@@ -117,18 +119,25 @@ public class NewPropertyScreen extends Activity {
                         String area_string = area_id;
                         if (title_string.equals("")){
                             Toast.makeText(NewPropertyScreen.this,"Please Enter Title",Toast.LENGTH_SHORT).show();
+                            title.requestFocus();
                         }else if (type_string.equals("")){
                             Toast.makeText(NewPropertyScreen.this,"Please Enter Type",Toast.LENGTH_SHORT).show();
+                            type.requestFocus();
                         }else if (name_string.equals("")){
                             Toast.makeText(NewPropertyScreen.this,"Please Enter Name",Toast.LENGTH_SHORT).show();
+                            name.requestFocus();
                         }else if (phone_string.equals("")){
                             Toast.makeText(NewPropertyScreen.this,"Please Enter Phone",Toast.LENGTH_SHORT).show();
+                            phone.requestFocus();
                         }else if (address_string.equals("")){
                             Toast.makeText(NewPropertyScreen.this,"Please Enter Address",Toast.LENGTH_SHORT).show();
+                            address.requestFocus();
                         }else if (city_string.equals("")){
                             Toast.makeText(NewPropertyScreen.this,"Please Enter City",Toast.LENGTH_SHORT).show();
+                            city.requestFocus();
                         }else if (area_string.equals("")){
                             Toast.makeText(NewPropertyScreen.this,"Please Enter Area",Toast.LENGTH_SHORT).show();
+                            area.requestFocus();
                         }else {
                             Ion.with(getApplicationContext())
                                     .load(Session.SERVER_URL+"new-property.php")

@@ -14,6 +14,7 @@ import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -74,6 +75,7 @@ public class SiteVisitScreen extends Activity{
                 View form = li.inflate(R.layout.add_site_visit_items, null);
                 final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SiteVisitScreen.this);
                 alertDialogBuilder.setView(form);
+                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
                 final EditText name = (EditText) form.findViewById(R.id.name);
                 final EditText phone = (EditText) form.findViewById(R.id.phone);
                 final EditText address = (EditText) form.findViewById(R.id.address);
@@ -141,16 +143,22 @@ public class SiteVisitScreen extends Activity{
                         String property_string = prop_id;
                         if (name_string.equals("")){
                             Toast.makeText(getApplicationContext(),"Please Enter Name",Toast.LENGTH_SHORT).show();
+                            name.requestFocus();
                         }else if (phone_string.equals("")){
                             Toast.makeText(getApplicationContext(),"Please Enter Phone",Toast.LENGTH_SHORT).show();
+                            phone.requestFocus();
                         }else if (address_string.equals("")){
                             Toast.makeText(getApplicationContext(),"Please Enter Address",Toast.LENGTH_SHORT).show();
+                            address.requestFocus();
                         }else if (date_string.equals("")){
                             Toast.makeText(getApplicationContext(),"Please Enter Date",Toast.LENGTH_SHORT).show();
+                            date.requestFocus();
                         }else if (time_string.equals("")){
                             Toast.makeText(getApplicationContext(),"Please Enter Time",Toast.LENGTH_SHORT).show();
+                            time.requestFocus();
                         }else if (property_string.equals("")){
                             Toast.makeText(getApplicationContext(),"Please Enter Property",Toast.LENGTH_SHORT).show();
+                            property.requestFocus();
                         }else {
                             Ion.with(getApplicationContext())
                                     .load(Session.SERVER_URL+"site-visit.php")
