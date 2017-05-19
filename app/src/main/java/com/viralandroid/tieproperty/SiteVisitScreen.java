@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.icu.util.Calendar;
 import android.os.Build;
@@ -19,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.gson.JsonArray;
@@ -37,8 +39,6 @@ public class SiteVisitScreen extends Activity{
     ImageView back_btn,add_visit;
     ListView listView;
     TextView time;
-    int starthMonth = 5;
-    int startDay = 1;
     SiteVisitAdapter adapter;
     ArrayList<SiteVisits> siteVisitsfrom_api;
     ArrayList<Properties> propertiesfrom_api;
@@ -80,10 +80,25 @@ public class SiteVisitScreen extends Activity{
                 final TextView date = (TextView) form.findViewById(R.id.date);
                 time = (TextView) form.findViewById(R.id.time);
                 time.setOnClickListener(new View.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
                     public void onClick(View view) {
-                        Dialog dialog = onCreateDialogSingleChoice();
-                        dialog.show();
+//                        Dialog dialog = onCreateDialogSingleChoice();
+//                        dialog.show();
+                        Calendar mcurrentTime = Calendar.getInstance();
+                        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                        int minute = mcurrentTime.get(Calendar.MINUTE);
+                        TimePickerDialog mTimePicker;
+                        mTimePicker = new TimePickerDialog(SiteVisitScreen.this, new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                                boolean isPM = (selectedHour >= 12);
+                                time.setText(String.format("%02d:%02d %s", (selectedHour == 12 || selectedHour == 0) ? 12 : selectedHour % 12, selectedMinute, isPM ? "PM" : "AM"));
+                            }
+
+                        }, hour, minute, true);//Yes 24 hour time
+                        mTimePicker.setTitle("Select Time");
+                        mTimePicker.show();
 
                     }
                 });
