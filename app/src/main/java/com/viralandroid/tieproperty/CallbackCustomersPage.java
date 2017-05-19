@@ -257,7 +257,7 @@ public class CallbackCustomersPage extends Activity {
         final CharSequence[] array = new CharSequence[propertiesfrom_api.size()];
         for(int i=0;i<propertiesfrom_api.size();i++){
 
-            array[i] = propertiesfrom_api.get(i).title;
+            array[i] = propertiesfrom_api.get(i).title +"  "+ propertiesfrom_api.get(i).prop_code;
         }
         builder.setTitle("Select City").setSingleChoiceItems(array, 0, new DialogInterface.OnClickListener() {
 
