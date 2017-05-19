@@ -138,7 +138,7 @@ public class SiteVisitScreen extends Activity{
                         String address_string = address.getText().toString();
                         String date_string = date.getText().toString();
                         String time_string = time.getText().toString();
-                        String property_string = property.getText().toString();
+                        String property_string = prop_id;
                         if (name_string.equals("")){
                             Toast.makeText(getApplicationContext(),"Please Enter Name",Toast.LENGTH_SHORT).show();
                         }else if (phone_string.equals("")){
@@ -309,7 +309,7 @@ public class SiteVisitScreen extends Activity{
         final CharSequence[] array = new CharSequence[propertiesfrom_api.size()];
         for(int i=0;i<propertiesfrom_api.size();i++){
 
-            array[i] = propertiesfrom_api.get(i).title;
+            array[i] = propertiesfrom_api.get(i).title+"  "+propertiesfrom_api.get(i).prop_code;
         }
         builder.setTitle("Select City").setSingleChoiceItems(array, 0, new DialogInterface.OnClickListener() {
 
