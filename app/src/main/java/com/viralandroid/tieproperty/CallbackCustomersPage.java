@@ -103,7 +103,7 @@ public class CallbackCustomersPage extends Activity {
 
                         DatePickerDialog mDatePicker=new DatePickerDialog(CallbackCustomersPage.this, new DatePickerDialog.OnDateSetListener() {
                             public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
-                                date.setText(selectedday +"-"+selectedmonth +"-"+selectedyear);
+                                date.setText(selectedday +"-"+(selectedmonth+1) +"-"+selectedyear);
                             }
                         },mYear, mMonth, mDay);
                         mDatePicker.setTitle("Select date");
