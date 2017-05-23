@@ -220,6 +220,7 @@ public class CityPage extends Activity {
                 calculator_page.setTextColor(Color.parseColor("#000000"));
                 Intent intent = new Intent(CityPage.this,AgentsRegisterPage.class);
                 startActivity(intent);
+                slidingPaneLayout.closePane();
             }
         });
 
@@ -268,6 +269,7 @@ public class CityPage extends Activity {
                 contact_page.setTextColor(Color.parseColor("#000000"));
                 Intent intent = new Intent(CityPage.this,EmiCalculatorPage.class);
                 startActivity(intent);
+                slidingPaneLayout.closePane();
             }
         });
 

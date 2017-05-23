@@ -205,6 +205,7 @@ public class AgentHomePage extends Activity {
                 intent.putExtra("paid_amt",paid_amt.getText().toString());
                 intent.putExtra("bal_amt",balance_amt.getText().toString());
                 startActivity(intent);
+                slidingPaneLayout.closePane();
 
             }
         });
@@ -230,6 +231,7 @@ public class AgentHomePage extends Activity {
                 intent.putExtra("agent_name",name);
                 intent.putExtra("agent_image",image);
                 startActivity(intent);
+                slidingPaneLayout.closePane();
             }
         });
 
@@ -253,6 +255,7 @@ public class AgentHomePage extends Activity {
                 my_account.setTextColor(Color.parseColor("#000000"));
                 Intent intent = new Intent(AgentHomePage.this,CityPage.class);
                 startActivity(intent);
+                slidingPaneLayout.closePane();
             }
         });
 
@@ -306,13 +309,17 @@ public class AgentHomePage extends Activity {
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
                     public void onCompleted(Exception e, JsonArray result) {
-                        if (progressDialog!=null)
-                            progressDialog.dismiss();
-                        JsonObject jsonObject = result.get(0).getAsJsonObject();
-                        agent_name.setText(jsonObject.get("fname").getAsString());
-                        agent_code.setText(jsonObject.get("code").getAsString());
-                        name = jsonObject.get("fname").getAsString();
-                        image = jsonObject.get("image").getAsString();
+                        try {
+                            if (progressDialog != null)
+                                progressDialog.dismiss();
+                            JsonObject jsonObject = result.get(0).getAsJsonObject();
+                            agent_name.setText(jsonObject.get("fname").getAsString());
+                            agent_code.setText(jsonObject.get("code").getAsString());
+                            name = jsonObject.get("fname").getAsString();
+                            image = jsonObject.get("image").getAsString();
+                        }catch (Exception e1){
+                            e1.printStackTrace();
+                        }
                     }
                 });
 
