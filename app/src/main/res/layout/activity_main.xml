@@ -146,7 +146,7 @@
             android:layout_alignParentStart="false"
             android:layout_centerInParent="false"
             android:layout_alignBottom="@+id/categories"
-            android:layout_height="40dp">
+            android:layout_height="30dp">
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -169,7 +169,8 @@
                         android:textStyle="normal|bold"
                         android:layout_marginLeft="2dp"
                         android:layout_marginRight="1dp"
-                        android:visibility="visible" />
+                        android:visibility="visible"
+                        android:textSize="12sp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -189,7 +190,7 @@
                         android:textStyle="normal|bold"
                         android:layout_marginLeft="1dp"
                         android:layout_marginRight="2dp"
-                        android:textSize="14sp"
+                        android:textSize="12sp"
                         android:maxLines="4"
                         android:lines="4" />
 
@@ -211,8 +212,8 @@
                         android:textStyle="normal|bold"
                         android:visibility="visible"
                         android:layout_marginLeft="2dp"
-                        android:gravity="top"
-                        android:layout_marginTop="5dp" />
+                        android:textSize="11sp"
+                        android:gravity="center_vertical" />
 
 
                 </LinearLayout>
@@ -221,7 +222,7 @@
 
                     <LinearLayout
                         android:orientation="horizontal"
-                        android:layout_width="wrap_content"
+                        android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:addStatesFromChildren="true"
                         android:layout_gravity="right|end"
@@ -244,7 +245,7 @@
                             android:gravity="center_vertical"
                             android:textColor="#ffffff"
                             android:textStyle="normal|bold"
-                            android:textSize="11sp"
+                            android:textSize="9sp"
                             android:paddingRight="2dp" />
                     </LinearLayout>
 
