@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -102,9 +103,9 @@ public class AgentsRegisterPage extends Activity {
                                         progressDialog.dismiss();
                                     if (result.get("status").getAsString().equals("Success")){
                                         Toast.makeText(AgentsRegisterPage.this,result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
-//                                        Intent intent = new Intent(AgentsRegisterPage.this,LoginPage.class);
-//                                        startActivity(intent);
-//                                        finish();
+                                        Intent intent = new Intent(AgentsRegisterPage.this,LoginPage.class);
+                                        startActivity(intent);
+                                        finish();
                                     }else {
                                         Toast.makeText(AgentsRegisterPage.this,result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
                                     }
