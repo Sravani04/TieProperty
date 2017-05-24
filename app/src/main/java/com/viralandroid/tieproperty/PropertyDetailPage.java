@@ -68,8 +68,7 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
     ListView listView;
     SpecificationsAdapter specificationsAdapter;
     int MY_PERMISSIONS_REQUEST_CALL_PHONE;
-    int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION;
-    int MY_PERMISSIONS_REQUEST_CAMERA;
+    int ASK_MULTIPLE_PERMISSION_REQUEST_CODE;
 
 
 
@@ -470,8 +469,8 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
         if (properties.location!=null) {
             map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.CAMERA},
+                        ASK_MULTIPLE_PERMISSION_REQUEST_CODE);
                 return;
             }
 //        map.setMyLocationEnabled(false);
@@ -483,11 +482,6 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
             LatLng point = new LatLng(parseDouble(properties.latitude), parseDouble(properties.longitude));
             Marker marker = map.addMarker(new MarkerOptions().position(point).title(properties.location).visible(true).icon(BitmapDescriptorFactory
                     .defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.CAMERA},
-                        MY_PERMISSIONS_REQUEST_CAMERA);
-                return;
-            }
             CameraUpdate location = CameraUpdateFactory.newLatLngZoom(point, 15);
             map.animateCamera(location);
             map.moveCamera(location);
