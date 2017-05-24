@@ -39,8 +39,7 @@ public class AgentsEditProfile extends Activity {
     EditText fname,lname,address,state,phone;
     TextView submit_btn;
     String agent_id;
-    int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE;
-    int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE;
+    int ASK_MULTIPLE_PERMISSION_REQUEST_CODE;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -140,14 +139,8 @@ public class AgentsEditProfile extends Activity {
     public void show_images(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ActivityCompat.checkSelfPermission(AgentsEditProfile.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                        MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-                return;
-            }
-
-            if (ActivityCompat.checkSelfPermission(AgentsEditProfile.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        ASK_MULTIPLE_PERMISSION_REQUEST_CODE);
                 return;
             }
         }
