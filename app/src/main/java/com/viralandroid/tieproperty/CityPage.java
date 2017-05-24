@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.util.Log;
@@ -41,6 +43,7 @@ public class CityPage extends Activity {
     String logo,title,emails,phone,itunes_link,playstore_link,about,privacy,contact,terms;
     String city_id,cityId;
     SlidingPaneLayout slidingPaneLayout;
+    int MY_PERMISSIONS_REQUEST_CALL_PHONE;
 
 
     @Override
@@ -64,14 +67,18 @@ public class CityPage extends Activity {
 
 
         call_btn.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 callIntent.setData(Uri.parse("tel:" + phone));
                 callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 if (ActivityCompat.checkSelfPermission(CityPage.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{Manifest.permission.CALL_PHONE},
+                            MY_PERMISSIONS_REQUEST_CALL_PHONE);
                     return;
                 }
+
                 startActivity(callIntent);
             }
         });
@@ -347,6 +354,8 @@ public class CityPage extends Activity {
                     }
                 });
     }
+
+
 
 
 

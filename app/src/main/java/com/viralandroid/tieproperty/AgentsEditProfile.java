@@ -1,14 +1,18 @@
 package com.viralandroid.tieproperty;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -35,6 +39,8 @@ public class AgentsEditProfile extends Activity {
     EditText fname,lname,address,state,phone;
     TextView submit_btn;
     String agent_id;
+    int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE;
+    int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -132,6 +138,19 @@ public class AgentsEditProfile extends Activity {
     }
 
     public void show_images(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ActivityCompat.checkSelfPermission(AgentsEditProfile.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                return;
+            }
+
+            if (ActivityCompat.checkSelfPermission(AgentsEditProfile.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+                return;
+            }
+        }
         final CharSequence[] items = {"camera","gallery"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("select_image");

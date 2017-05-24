@@ -4,7 +4,9 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.text.Html;
@@ -37,6 +39,8 @@ public class ContactUsPage extends FragmentActivity implements OnMapReadyCallbac
     TextView phone_no,email_id,submit_btn,address,contact_us,contact_form;
     EditText name,email,phone,subject,message;
     String contact_address,contact_no,contact_email;
+    int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION;
+    int MY_PERMISSIONS_REQUEST_CAMERA;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -157,11 +161,14 @@ public class ContactUsPage extends FragmentActivity implements OnMapReadyCallbac
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onMapReady(GoogleMap map) {
         if (contact_address!=null) {
             map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
                 return;
             }
 //        map.setMyLocationEnabled(false);
@@ -173,6 +180,11 @@ public class ContactUsPage extends FragmentActivity implements OnMapReadyCallbac
             LatLng point = new LatLng(16.5134,80.6653);
             Marker marker = map.addMarker(new MarkerOptions().position(point).title(String.valueOf(Html.fromHtml(contact_address))).visible(true).icon(BitmapDescriptorFactory
                     .defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.CAMERA},
+                        MY_PERMISSIONS_REQUEST_CAMERA);
+                return;
+            }
             CameraUpdate location = CameraUpdateFactory.newLatLngZoom(point, 15);
             map.animateCamera(location);
             map.moveCamera(location);

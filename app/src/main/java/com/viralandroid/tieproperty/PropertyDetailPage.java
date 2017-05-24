@@ -7,7 +7,9 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -65,6 +67,9 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
     ViewFlipper flipper;
     ListView listView;
     SpecificationsAdapter specificationsAdapter;
+    int MY_PERMISSIONS_REQUEST_CALL_PHONE;
+    int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION;
+    int MY_PERMISSIONS_REQUEST_CAMERA;
 
 
 
@@ -339,12 +344,15 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
         });
 
         call_btn.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 callIntent.setData(Uri.parse("tel:"+phone));
                 callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 if (ActivityCompat.checkSelfPermission(PropertyDetailPage.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{Manifest.permission.CALL_PHONE},
+                            MY_PERMISSIONS_REQUEST_CALL_PHONE);
                     return;
                 }
                 startActivity(callIntent);
@@ -455,12 +463,15 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onMapReady(GoogleMap map) {
 
         if (properties.location!=null) {
             map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
                 return;
             }
 //        map.setMyLocationEnabled(false);
@@ -472,6 +483,11 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
             LatLng point = new LatLng(parseDouble(properties.latitude), parseDouble(properties.longitude));
             Marker marker = map.addMarker(new MarkerOptions().position(point).title(properties.location).visible(true).icon(BitmapDescriptorFactory
                     .defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.CAMERA},
+                        MY_PERMISSIONS_REQUEST_CAMERA);
+                return;
+            }
             CameraUpdate location = CameraUpdateFactory.newLatLngZoom(point, 15);
             map.animateCamera(location);
             map.moveCamera(location);
