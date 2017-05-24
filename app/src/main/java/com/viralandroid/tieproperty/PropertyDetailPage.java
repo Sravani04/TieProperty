@@ -472,7 +472,7 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
             LatLng point = new LatLng(parseDouble(properties.latitude), parseDouble(properties.longitude));
             Marker marker = map.addMarker(new MarkerOptions().position(point).title(properties.location).visible(true).icon(BitmapDescriptorFactory
                     .defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
-            CameraUpdate location = CameraUpdateFactory.newLatLngZoom(point, 6);
+            CameraUpdate location = CameraUpdateFactory.newLatLngZoom(point, 15);
             map.animateCamera(location);
             map.moveCamera(location);
 

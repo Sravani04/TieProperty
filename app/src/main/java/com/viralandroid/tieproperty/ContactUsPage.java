@@ -173,7 +173,7 @@ public class ContactUsPage extends FragmentActivity implements OnMapReadyCallbac
             LatLng point = new LatLng(16.5134,80.6653);
             Marker marker = map.addMarker(new MarkerOptions().position(point).title(String.valueOf(Html.fromHtml(contact_address))).visible(true).icon(BitmapDescriptorFactory
                     .defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
-            CameraUpdate location = CameraUpdateFactory.newLatLngZoom(point, 6);
+            CameraUpdate location = CameraUpdateFactory.newLatLngZoom(point, 15);
             map.animateCamera(location);
             map.moveCamera(location);
 
