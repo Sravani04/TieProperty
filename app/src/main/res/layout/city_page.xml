@@ -86,29 +86,6 @@
                     android:textStyle="normal|bold"
                     android:textSize="15sp" />
 
-                <TextView
-                    android:text="Agents Login"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:id="@+id/agents_login"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="10dp"
-                    android:gravity="center_vertical"
-                    android:textColor="#000"
-                    android:textStyle="normal|bold"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:text="Agents Register"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:id="@+id/agents_register"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="10dp"
-                    android:textColor="#000"
-                    android:textSize="15sp"
-                    android:gravity="center_vertical"
-                    android:textStyle="normal|bold" />
             </LinearLayout>
 
         </LinearLayout>

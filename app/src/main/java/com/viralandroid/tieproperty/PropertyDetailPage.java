@@ -40,6 +40,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
@@ -109,6 +110,11 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
         if (getIntent()!=null && getIntent().hasExtra("property")){
             properties = (Properties) getIntent().getSerializableExtra("property");
             phone = getIntent().getStringExtra("mobile");
+
+        }else if(getIntent()!=null && getIntent().hasExtra("propertystr")){
+            JsonParser parser = new JsonParser();
+            JsonObject jsonObject = parser.parse(getIntent().getStringExtra("propertystr")).getAsJsonObject();
+            properties = new Properties(jsonObject,this);
 
         }
 
