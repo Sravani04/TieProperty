@@ -107,7 +107,7 @@ public class MainActivity extends Activity {
         }
 
 
-        trendingPropertiesAdapter = new TrendingPropertiesAdapter(MainActivity.this,trendingPropertiesfrom_api,propertiesfrom_api);
+        trendingPropertiesAdapter = new TrendingPropertiesAdapter(MainActivity.this,trendingPropertiesfrom_api,propertiesfrom_api,this);
         viewPager.setAdapter(trendingPropertiesAdapter);
 
         next_btn.setOnClickListener(new View.OnClickListener() {
@@ -199,7 +199,6 @@ public class MainActivity extends Activity {
 
         get_properties();
         get_trending_properties();
-
     }
 
     public void get_properties(){
@@ -268,6 +267,54 @@ public class MainActivity extends Activity {
                         }catch (Exception e1){
                             e1.printStackTrace();
                         }
+                    }
+                });
+    }
+
+
+    public void get_single_property(String id){
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("please wait");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        Ion.with(this)
+                .load(Session.SERVER_URL+"properties.php")
+                .setBodyParameter("property_id",id)
+                .asJsonArray()
+                .withResponse()
+                .setCallback(new FutureCallback<Response<JsonArray>>() {
+                    @Override
+                    public void onCompleted(Exception e, Response<JsonArray> result) {
+
+                        Log.e("response",String.valueOf(result.getResult().size()));
+                        try {
+                            if (progressDialog != null)
+                                progressDialog.dismiss();
+
+
+                            if (e != null) {
+                                e.printStackTrace();
+                                Log.e("error", e.getLocalizedMessage());
+
+                            } else
+                                try {
+                                    for (int i = 0; i < result.getResult().size(); i++) {
+                                        Properties properties = new Properties(result.getResult().get(i).getAsJsonObject(), MainActivity.this);
+                                        Intent intent = new Intent(MainActivity.this,PropertyDetailPage.class);
+                                        intent.putExtra("property",properties);
+                                        intent.putExtra("mobile",mobile);
+                                        startActivity(intent);
+                                    }
+                                 //   propertyListAdapter.notifyDataSetChanged();
+
+                                } catch (Exception e1) {
+                                    e1.printStackTrace();
+                                }
+                        }catch (Exception e1){
+                            e1.printStackTrace();
+                        }
+
+
                     }
                 });
     }

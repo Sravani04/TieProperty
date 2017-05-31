@@ -139,7 +139,6 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
 
         textView27.setText(R.string.Location);
 
-
         try {
             flat_title.setText(properties.flats.get(0).title);
 
@@ -505,6 +504,9 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
     }
 
 
+
+
+
     public static boolean setListViewHeightBasedOnItems(ListView listView) {
 
         SpecificationsAdapter specificationsAdapter = (SpecificationsAdapter) listView.getAdapter();
@@ -536,20 +538,6 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
             return false;
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 
