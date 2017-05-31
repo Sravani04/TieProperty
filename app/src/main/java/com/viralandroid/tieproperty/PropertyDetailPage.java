@@ -62,7 +62,7 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
 
     TextView property_price,property_area,property_address,property_title,banks,textView27,textView88,
             flat_description,amenities,flat_title,flat_title2,flat_title3,form_btn;
-    String phone;
+    String phone,id;
     int position;
     LinearLayout ame_box,description,bank_box,specification_box;
     ViewFlipper flipper;
@@ -70,6 +70,7 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
     SpecificationsAdapter specificationsAdapter;
     int MY_PERMISSIONS_REQUEST_CALL_PHONE;
     int ASK_MULTIPLE_PERMISSION_REQUEST_CODE;
+    TrendingProperties trendingProperties;
 
 
 
@@ -107,6 +108,7 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
 
 
 
+
         if (getIntent()!=null && getIntent().hasExtra("property")){
             properties = (Properties) getIntent().getSerializableExtra("property");
             phone = getIntent().getStringExtra("mobile");
@@ -116,6 +118,11 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
             JsonObject jsonObject = parser.parse(getIntent().getStringExtra("propertystr")).getAsJsonObject();
             properties = new Properties(jsonObject,this);
 
+        }
+
+        if (getIntent()!=null && getIntent().hasExtra("property_id")){
+            id = getIntent().getStringExtra("property_id");
+            trendingProperties = (TrendingProperties) getIntent().getSerializableExtra("trending_prop");
         }
 
         specificationsAdapter = new SpecificationsAdapter(this,properties);
@@ -336,6 +343,7 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
             @Override
             public void onClick(View v) {
                 //viewPager.setCurrentItem(getItem(+1),true);
+
                 viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
             }
         });

@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "com.viralandroid.tieproperty"
+        applicationId "in.tieproperty.app"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
@@ -35,4 +35,6 @@ dependencies {
     compile 'com.crystal:crystalrangeseekbar:1.1.1'
 
 
+
 }
+

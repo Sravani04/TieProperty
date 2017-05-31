@@ -51,11 +51,6 @@ public class CityPage extends Activity {
     public void onCreate(Bundle savedinstanceState) {
         super.onCreate(savedinstanceState);
         setContentView(R.layout.city_page);
-        if (ActivityCompat.checkSelfPermission(CityPage.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.CALL_PHONE},
-                    MY_PERMISSIONS_REQUEST_CALL_PHONE);
-            return;
-        }
         gridView = (GridView) findViewById(R.id.city_list);
         call_btn = (ImageView) findViewById(R.id.call_btn);
         txtPhn = (TextView) findViewById(R.id.txtPhn);

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,15 +19,22 @@ import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.Response;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends Activity {
     ListView listView;
     PropertyListAdapter propertyListAdapter;
     TextView select_city;
     String cities,mobile,city_id,cat_id,areas_id,price_from,price_to;
-    ImageView back_btn,location,select_category;
+    ImageView back_btn,location,select_category,previous_btn,next_btn;
     ArrayList<Properties> propertiesfrom_api;
     Cities citiesfrom_api;
+    ViewPager viewPager;
+    TrendingPropertiesAdapter  trendingPropertiesAdapter;
+    private static int currentPage = 0;
+    private static int NUM_PAGES = 0;
+    ArrayList<TrendingProperties> trendingPropertiesfrom_api;
 
 
 
@@ -38,10 +47,62 @@ public class MainActivity extends Activity {
         select_city = (TextView) findViewById(R.id.select_city);
         location = (ImageView) findViewById(R.id.location);
         select_category = (ImageView) findViewById(R.id.select_category);
+        viewPager = (ViewPager) findViewById(R.id.view_pager);
+        previous_btn = (ImageView) findViewById(R.id.previous_btn);
+        next_btn = (ImageView) findViewById(R.id.next_btn);
         propertiesfrom_api = new ArrayList<>();
+        trendingPropertiesfrom_api = new ArrayList<>();
 
         price_from="";
         price_to="";
+
+//        for(int i=0;i<trendingPropertiesfrom_api.size();i++)
+//            trendingPropertiesfrom_api.add(trendingPropertiesfrom_api.get(i));
+
+        trendingPropertiesAdapter = new TrendingPropertiesAdapter(MainActivity.this,trendingPropertiesfrom_api,propertiesfrom_api);
+        viewPager.setAdapter(trendingPropertiesAdapter);
+
+
+        //viewPager.setPageTransformer(true, new CubeOutTransformer());
+
+        next_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                viewPager.setCurrentItem(currentPage++);
+                viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
+            }
+        });
+
+        previous_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//              viewPager.setCurrentItem(currentPage--);
+               viewPager.setCurrentItem(viewPager.getCurrentItem() - 1, true);
+            }
+        });
+
+        final float density = getResources().getDisplayMetrics().density;
+
+        NUM_PAGES =trendingPropertiesfrom_api.size();
+
+        final Handler handler = new Handler();
+        final Runnable Update = new Runnable() {
+            public void run() {
+                if (currentPage == NUM_PAGES) {
+                    currentPage = 0;
+                }
+                viewPager.setCurrentItem(currentPage++, true);
+                //viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
+            }
+        };
+        Timer swipeTimer = new Timer();
+        swipeTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(Update);
+            }
+        }, 3000, 3000);
+
 
 
 
@@ -114,6 +175,7 @@ public class MainActivity extends Activity {
         });
 
         get_properties();
+        get_trending_properties();
 
     }
 
@@ -160,6 +222,29 @@ public class MainActivity extends Activity {
                         }
 
 
+                    }
+                });
+    }
+
+
+
+    public void get_trending_properties(){
+        Ion.with(this)
+                .load(Session.SERVER_URL+"trending-properties.php")
+                .setBodyParameter("city",city_id)
+                .asJsonArray()
+                .setCallback(new FutureCallback<JsonArray>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonArray result) {
+                        try {
+                            for (int i = 0; i < result.size(); i++) {
+                                TrendingProperties trendingProperties = new TrendingProperties(result.get(i).getAsJsonObject(), MainActivity.this);
+                                trendingPropertiesfrom_api.add(trendingProperties);
+                            }
+                            trendingPropertiesAdapter.notifyDataSetChanged();
+                        }catch (Exception e1){
+                            e1.printStackTrace();
+                        }
                     }
                 });
     }
