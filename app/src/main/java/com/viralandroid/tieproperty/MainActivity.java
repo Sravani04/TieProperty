@@ -2,11 +2,13 @@ package com.viralandroid.tieproperty;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -19,8 +21,6 @@ import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.Response;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MainActivity extends Activity {
     ListView listView;
@@ -35,6 +35,10 @@ public class MainActivity extends Activity {
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
     ArrayList<TrendingProperties> trendingPropertiesfrom_api;
+    Handler handler;
+    Runnable Update;
+    View headerView;
+
 
 
 
@@ -42,68 +46,42 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.property_list);
+       headerView = ((LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.trending_properties, null, false);
         listView = (ListView) findViewById(R.id.property_list);
         back_btn = (ImageView) findViewById(R.id.back_btn);
         select_city = (TextView) findViewById(R.id.select_city);
         location = (ImageView) findViewById(R.id.location);
         select_category = (ImageView) findViewById(R.id.select_category);
-        viewPager = (ViewPager) findViewById(R.id.view_pager);
-        previous_btn = (ImageView) findViewById(R.id.previous_btn);
-        next_btn = (ImageView) findViewById(R.id.next_btn);
+        viewPager = (ViewPager) headerView.findViewById(R.id.view_pager);
+        previous_btn = (ImageView) headerView.findViewById(R.id.previous_btn);
+        next_btn = (ImageView) headerView.findViewById(R.id.next_btn);
         propertiesfrom_api = new ArrayList<>();
         trendingPropertiesfrom_api = new ArrayList<>();
+        listView.addHeaderView(headerView);
+
 
         price_from="";
         price_to="";
 
-//        for(int i=0;i<trendingPropertiesfrom_api.size();i++)
-//            trendingPropertiesfrom_api.add(trendingPropertiesfrom_api.get(i));
+//        NUM_PAGES =trendingPropertiesfrom_api.size();
 
-        trendingPropertiesAdapter = new TrendingPropertiesAdapter(MainActivity.this,trendingPropertiesfrom_api,propertiesfrom_api);
-        viewPager.setAdapter(trendingPropertiesAdapter);
-
-
-        //viewPager.setPageTransformer(true, new CubeOutTransformer());
-
-        next_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                viewPager.setCurrentItem(currentPage++);
-                viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
-            }
-        });
-
-        previous_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//              viewPager.setCurrentItem(currentPage--);
-               viewPager.setCurrentItem(viewPager.getCurrentItem() - 1, true);
-            }
-        });
-
-        final float density = getResources().getDisplayMetrics().density;
-
-        NUM_PAGES =trendingPropertiesfrom_api.size();
-
-        final Handler handler = new Handler();
-        final Runnable Update = new Runnable() {
-            public void run() {
-                if (currentPage == NUM_PAGES) {
-                    currentPage = 0;
-                }
-                viewPager.setCurrentItem(currentPage++, true);
-                //viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
-            }
-        };
-        Timer swipeTimer = new Timer();
-        swipeTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(Update);
-            }
-        }, 3000, 3000);
-
-
+//         handler = new Handler();
+//         Update = new Runnable() {
+//            public void run() {
+//                if (currentPage == NUM_PAGES) {
+//                    currentPage = 0;
+//                }
+//                viewPager.setCurrentItem(currentPage++, true);
+//                //viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
+//            }
+//        };
+//        Timer swipeTimer = new Timer();
+//        swipeTimer.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                handler.post(Update);
+//            }
+//        }, 3000, 3000);
 
 
 
@@ -127,6 +105,51 @@ public class MainActivity extends Activity {
             Log.e("rangeto",price_to);
 
         }
+
+
+        trendingPropertiesAdapter = new TrendingPropertiesAdapter(MainActivity.this,trendingPropertiesfrom_api,propertiesfrom_api);
+        viewPager.setAdapter(trendingPropertiesAdapter);
+
+        next_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
+            }
+        });
+
+        previous_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewPager.setCurrentItem(viewPager.getCurrentItem() - 1, true);
+            }
+        });
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 0){
+                    previous_btn.setVisibility(View.GONE);
+                }else {
+                    previous_btn.setVisibility(View.VISIBLE);
+                }
+
+                if (position == trendingPropertiesAdapter.getCount()-1){
+                    next_btn.setVisibility(View.GONE);
+                }else {
+                    next_btn.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
 
         select_city.setText(cities);
@@ -168,7 +191,7 @@ public class MainActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(MainActivity.this,PropertyDetailPage.class);
-                intent.putExtra("property",propertiesfrom_api.get(i));
+                intent.putExtra("property",propertiesfrom_api.get(i-1));
                 intent.putExtra("mobile",mobile);
                 startActivity(intent);
             }
