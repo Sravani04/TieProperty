@@ -110,6 +110,14 @@ public class MainActivity extends Activity {
         trendingPropertiesAdapter = new TrendingPropertiesAdapter(MainActivity.this,trendingPropertiesfrom_api,propertiesfrom_api,this);
         viewPager.setAdapter(trendingPropertiesAdapter);
 
+        if(trendingPropertiesfrom_api.size()<=1){
+            previous_btn.setVisibility(View.GONE);
+            next_btn.setVisibility(View.VISIBLE);
+        }else {
+            previous_btn.setVisibility(View.GONE);
+            next_btn.setVisibility(View.VISIBLE);
+        }
+
         next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -63,7 +63,8 @@
                         android:adjustViewBounds="true"
                         android:layout_marginLeft="9dp"
                         android:tint="#0D5097"
-                        android:padding="15dp" />
+                        android:padding="15dp"
+                        android:visibility="gone" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -79,7 +80,8 @@
                         android:layout_height="50dp"
                         android:layout_marginRight="9dp"
                         android:tint="#0D5097"
-                        android:padding="15dp" />
+                        android:padding="15dp"
+                        android:visibility="gone" />
 
                 </LinearLayout>
 
