@@ -25,13 +25,13 @@
                 android:background="#ffffff">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:id="@+id/back_btn"
                     android:adjustViewBounds="true"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/back_arrow"
-                    android:layout_marginLeft="5dp" />
+                    android:padding="10dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -92,12 +92,14 @@
                         android:layout_height="match_parent">
 
                         <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
                             android:id="@+id/previous_btn"
                             android:src="@drawable/left"
                             android:adjustViewBounds="true"
-                            android:layout_marginLeft="9dp" />
+                            android:layout_marginLeft="9dp"
+                            android:padding="15dp"
+                            android:visibility="gone" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -108,10 +110,12 @@
                         <ImageView
                             android:id="@+id/next_btn"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/right"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginRight="9dp" />
+                            android:src="@drawable/right_new"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginRight="9dp"
+                            android:padding="15dp"
+                            android:visibility="gone" />
 
                     </LinearLayout>
 
@@ -141,14 +145,14 @@
                         android:paddingLeft="10dp" />
 
                     <ImageView
-                        android:layout_width="25dp"
+                        android:layout_width="20dp"
                         android:layout_height="25dp"
                         android:id="@+id/line1"
-                        android:tint="#000"
                         android:visibility="gone"
                         android:src="@drawable/line"
-                        android:padding="3dp"
-                        android:layout_marginTop="13dp" />
+                        android:padding="5dp"
+                        android:layout_marginTop="13dp"
+                        android:tint="#000000" />
 
                     <TextView
                         android:text="3 BHK"
@@ -157,13 +161,13 @@
                         android:id="@+id/flat_title2"
                         android:gravity="center_vertical"
                         android:textColor="#000"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="3dp"
                         android:layout_marginRight="5dp"
                         android:visibility="gone"
                         android:textStyle="normal|bold" />
 
                     <ImageView
-                        android:layout_width="25dp"
+                        android:layout_width="20dp"
                         android:layout_height="25dp"
                         android:id="@+id/line2"
                         android:adjustViewBounds="true"
@@ -171,7 +175,7 @@
                         android:tint="#000"
                         android:visibility="gone"
                         android:src="@drawable/line"
-                        android:padding="3dp" />
+                        android:padding="5dp" />
 
                     <TextView
                         android:text="4 BHK"
@@ -180,7 +184,7 @@
                         android:id="@+id/flat_title3"
                         android:gravity="center_vertical"
                         android:textColor="#000"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="2dp"
                         android:layout_marginRight="5dp"
                         android:visibility="gone"
                         android:textStyle="normal|bold" />
@@ -310,7 +314,7 @@
                 android:layout_height="1dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="10dp"
-                android:background="#000"></LinearLayout>
+                android:background="#919191"></LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"

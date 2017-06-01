@@ -174,12 +174,12 @@
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="25dp"
                         android:id="@+id/imageView5"
                         android:adjustViewBounds="true"
                         android:layout_gravity="center_vertical"
                         android:src="@drawable/line"
-                        android:layout_marginLeft="3dp" />
+                        android:padding="5dp" />
 
                     <TextView
                         android:text="2BHK"
@@ -196,12 +196,12 @@
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="25dp"
                         android:id="@+id/imageView6"
                         android:adjustViewBounds="true"
                         android:layout_gravity="center_vertical"
                         android:src="@drawable/line"
-                        android:layout_marginLeft="1dp" />
+                        android:padding="5dp" />
 
                     <TextView
                         android:text="1050"

@@ -469,6 +469,42 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
         propertyImageSliderAdapter = new PropertyImageSliderAdapter(PropertyDetailPage.this, images,properties);
         viewPager.setAdapter(propertyImageSliderAdapter);
 
+        if(properties.images.size()<=1){
+            previous_btn.setVisibility(View.GONE);
+            next_btn.setVisibility(View.VISIBLE);
+        }else {
+            previous_btn.setVisibility(View.GONE);
+            next_btn.setVisibility(View.VISIBLE);
+        }
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 0){
+                    previous_btn.setVisibility(View.GONE);
+                }else {
+                    previous_btn.setVisibility(View.VISIBLE);
+                }
+
+                if (position == propertyImageSliderAdapter.getCount()-1){
+                    next_btn.setVisibility(View.GONE);
+                }else {
+                    next_btn.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+
 
 
 
