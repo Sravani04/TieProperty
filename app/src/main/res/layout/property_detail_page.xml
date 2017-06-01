@@ -152,7 +152,7 @@
                         android:src="@drawable/line"
                         android:padding="5dp"
                         android:layout_marginTop="13dp"
-                        android:tint="#000000" />
+                        android:tint="#64424242" />
 
                     <TextView
                         android:text="3 BHK"
@@ -172,7 +172,7 @@
                         android:id="@+id/line2"
                         android:adjustViewBounds="true"
                         android:layout_marginTop="13dp"
-                        android:tint="#000"
+                        android:tint="#64424242"
                         android:visibility="gone"
                         android:src="@drawable/line"
                         android:padding="5dp" />
@@ -190,11 +190,6 @@
                         android:textStyle="normal|bold" />
                 </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#919191"></LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
@@ -233,7 +228,7 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#919191"></LinearLayout>
+                android:background="#d3d3d3"></LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
@@ -272,7 +267,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#919191"></LinearLayout>
+                android:background="#d3d3d3"></LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
@@ -314,7 +309,7 @@
                 android:layout_height="1dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="10dp"
-                android:background="#919191"></LinearLayout>
+                android:background="#d3d3d3"></LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
