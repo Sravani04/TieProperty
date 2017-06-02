@@ -57,7 +57,7 @@ public class TrendingPropertiesAdapter  extends PagerAdapter{
 
 
 
-        Ion.with(context).load(trendingProperties.get(position).image).withBitmap().placeholder(R.drawable.building).intoImageView(imageView);
+        Ion.with(context).load(trendingProperties.get(position).image).withBitmap().placeholder(R.drawable.placeholder500x250).intoImageView(imageView);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
