@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 public class MainActivity extends Activity {
     ListView listView;
     PropertyListAdapter propertyListAdapter;
-    TextView select_city;
+    TextView select_city,property_name;
     String cities,mobile,city_id,cat_id,areas_id,price_from,price_to;
     ImageView back_btn,location,select_category,previous_btn,next_btn;
     ArrayList<Properties> propertiesfrom_api;
@@ -38,6 +39,7 @@ public class MainActivity extends Activity {
     Handler handler;
     Runnable Update;
     View headerView;
+    LinearLayout trending_slide;
 
 
 
@@ -46,7 +48,7 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.property_list);
-       headerView = ((LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.trending_properties, null, false);
+        headerView = ((LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.trending_properties, null, false);
         listView = (ListView) findViewById(R.id.property_list);
         back_btn = (ImageView) findViewById(R.id.back_btn);
         select_city = (TextView) findViewById(R.id.select_city);
@@ -57,6 +59,11 @@ public class MainActivity extends Activity {
         next_btn = (ImageView) headerView.findViewById(R.id.next_btn);
         propertiesfrom_api = new ArrayList<>();
         trendingPropertiesfrom_api = new ArrayList<>();
+        trending_slide = (LinearLayout) headerView.findViewById(R.id.trending_slide);
+        property_name = (TextView) headerView.findViewById(R.id.property_name);
+
+
+
         listView.addHeaderView(headerView);
 
 
@@ -109,6 +116,12 @@ public class MainActivity extends Activity {
 
         trendingPropertiesAdapter = new TrendingPropertiesAdapter(MainActivity.this,trendingPropertiesfrom_api,propertiesfrom_api,this);
         viewPager.setAdapter(trendingPropertiesAdapter);
+
+        if (city_id.equals("10")){
+            trending_slide.setVisibility(View.GONE);
+        }else {
+            trending_slide.setVisibility(View.VISIBLE);
+        }
 
         if(trendingPropertiesfrom_api.size()<=1){
             previous_btn.setVisibility(View.GONE);
@@ -209,6 +222,55 @@ public class MainActivity extends Activity {
         get_trending_properties();
     }
 
+//    public void get_properties(){
+//        final ProgressDialog progressDialog = new ProgressDialog(this);
+//        progressDialog.setMessage("please wait");
+//        progressDialog.setCancelable(false);
+//        progressDialog.show();
+//        Ion.with(this)
+//                .load(Session.SERVER_URL+"properties.php")
+//                .setBodyParameter("city","4")
+//                .setBodyParameter("area",areas_id)
+//                .setBodyParameter("category",cat_id)
+//                .setBodyParameter("from",price_from)
+//                .setBodyParameter("to",price_to)
+//                .asJsonArray()
+//                .withResponse()
+//                .setCallback(new FutureCallback<Response<JsonArray>>() {
+//                    @Override
+//                    public void onCompleted(Exception e, Response<JsonArray> result) {
+//                        try {
+//                            if (progressDialog != null)
+//                                progressDialog.dismiss();
+//                            Log.e("response", result.getServedFrom().toString());
+//
+//
+//                            if (e != null) {
+//                                e.printStackTrace();
+//                                Log.e("error", e.getLocalizedMessage());
+//
+//                            } else
+//                                try {
+//                                    for (int i = 0; i < result.getResult().size(); i++) {
+//                                        Log.e("prop_resp",result.getRequest().toString());
+//                                        Properties properties = new Properties(result.getResult().get(i).getAsJsonObject(), MainActivity.this);
+//                                        propertiesfrom_api.add(properties);
+//                                    }
+//                                    propertyListAdapter.notifyDataSetChanged();
+//
+//                                } catch (Exception e1) {
+//                                    e1.printStackTrace();
+//                                }
+//                        }catch (Exception e1){
+//                            e1.printStackTrace();
+//                        }
+//
+//
+//                    }
+//                });
+//    }
+
+
     public void get_properties(){
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("please wait");
@@ -222,36 +284,22 @@ public class MainActivity extends Activity {
                 .setBodyParameter("from",price_from)
                 .setBodyParameter("to",price_to)
                 .asJsonArray()
-                .withResponse()
-                .setCallback(new FutureCallback<Response<JsonArray>>() {
+                .setCallback(new FutureCallback<JsonArray>() {
                     @Override
-                    public void onCompleted(Exception e, Response<JsonArray> result) {
+                    public void onCompleted(Exception e, JsonArray result) {
+                        if (progressDialog!=null)
+                            progressDialog.dismiss();
                         try {
-                            if (progressDialog != null)
-                                progressDialog.dismiss();
-                            Log.e("response", result.getServedFrom().toString());
-
-
-                            if (e != null) {
-                                e.printStackTrace();
-                                Log.e("error", e.getLocalizedMessage());
-
-                            } else
-                                try {
-                                    for (int i = 0; i < result.getResult().size(); i++) {
-                                        Properties properties = new Properties(result.getResult().get(i).getAsJsonObject(), MainActivity.this);
-                                        propertiesfrom_api.add(properties);
-                                    }
-                                    propertyListAdapter.notifyDataSetChanged();
+                            Log.e("prop_resp",result.toString());
+                            for (int i = 0; i < result.size(); i++) {
+                                Properties properties = new Properties(result.get(i).getAsJsonObject(), MainActivity.this);
+                                propertiesfrom_api.add(properties);
+                            }
+                            propertyListAdapter.notifyDataSetChanged();
 
                                 } catch (Exception e1) {
                                     e1.printStackTrace();
                                 }
-                        }catch (Exception e1){
-                            e1.printStackTrace();
-                        }
-
-
                     }
                 });
     }
@@ -288,6 +336,11 @@ public class MainActivity extends Activity {
         Ion.with(this)
                 .load(Session.SERVER_URL+"properties.php")
                 .setBodyParameter("property_id",id)
+                .setBodyParameter("city",city_id)
+                .setBodyParameter("area",areas_id)
+                .setBodyParameter("category",cat_id)
+                .setBodyParameter("from",price_from)
+                .setBodyParameter("to",price_to)
                 .asJsonArray()
                 .withResponse()
                 .setCallback(new FutureCallback<Response<JsonArray>>() {
@@ -307,13 +360,14 @@ public class MainActivity extends Activity {
                             } else
                                 try {
                                     for (int i = 0; i < result.getResult().size(); i++) {
+                                        Log.e("trend_prop_resp",result.getRequest().toString());
                                         Properties properties = new Properties(result.getResult().get(i).getAsJsonObject(), MainActivity.this);
                                         Intent intent = new Intent(MainActivity.this,PropertyDetailPage.class);
                                         intent.putExtra("property",properties);
                                         intent.putExtra("mobile",mobile);
                                         startActivity(intent);
                                     }
-                                 //   propertyListAdapter.notifyDataSetChanged();
+                                    propertyListAdapter.notifyDataSetChanged();
 
                                 } catch (Exception e1) {
                                     e1.printStackTrace();
@@ -326,6 +380,7 @@ public class MainActivity extends Activity {
                     }
                 });
     }
+
 
 
 

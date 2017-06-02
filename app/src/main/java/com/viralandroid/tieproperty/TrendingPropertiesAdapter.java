@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.koushikdutta.ion.Ion;
 
@@ -50,6 +52,9 @@ public class TrendingPropertiesAdapter  extends PagerAdapter{
         assert imageLayout != null;
         final ImageView imageView = (ImageView) imageLayout
                 .findViewById(R.id.myImage);
+        final TextView property_name = (TextView) imageLayout.findViewById(R.id.property_name);
+        LinearLayout trending_slide = (LinearLayout) imageLayout.findViewById(R.id.trending_slide);
+
 
 
         Ion.with(context).load(trendingProperties.get(position).image).withBitmap().placeholder(R.drawable.building).intoImageView(imageView);
@@ -67,6 +72,8 @@ public class TrendingPropertiesAdapter  extends PagerAdapter{
 
             }
         });
+        property_name.setText(trendingProperties.get(position).property_name);
+
         view.addView(imageLayout, 0);
         return imageLayout;
     }

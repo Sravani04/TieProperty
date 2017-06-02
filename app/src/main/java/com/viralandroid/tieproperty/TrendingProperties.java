@@ -11,12 +11,13 @@ import java.io.Serializable;
  */
 
 public class TrendingProperties implements Serializable {
-    public String id,title,image,link,property_id;
+    public String id,title,image,link,property_id,property_name;
     public TrendingProperties(JsonObject jsonObject, Context context){
         id = jsonObject.get("id").getAsString();
         title = jsonObject.get("title").getAsString();
         image = jsonObject.get("image").getAsString();
         link = jsonObject.get("link").getAsString();
         property_id = jsonObject.get("property_id").getAsString();
+        property_name = jsonObject.get("property_name").getAsString();
     }
 }
