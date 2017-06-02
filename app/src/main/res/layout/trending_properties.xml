@@ -7,7 +7,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:id="@+id/trending_slide"
+        android:visibility="visible">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -19,6 +21,8 @@
                 class="android.support.v4.view.ViewPager"
                 android:id="@+id/view_pager"
                 android:background="#00000000" />
+
+
 
             <LinearLayout
                 android:orientation="vertical"
