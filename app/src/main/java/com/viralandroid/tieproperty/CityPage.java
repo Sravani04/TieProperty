@@ -37,13 +37,14 @@ public class CityPage extends Activity {
     GridView gridView;
     ArrayList<String> cities;
     ImageView call_btn,email,menu_btn;
-    public TextView txtPhn,txtEmail,about_page,contact_page,terms_page,policy_page,calculator_page;
+    public TextView txtPhn,txtEmail,select_city,properties,resale_properties,home_loans,emi_calculator,about_text,policy,terms_text;
     ArrayList<Cities> citiesfrom_api;
     ArrayList<Settings> settingsfrom_api;
     String logo,title,emails,phone,itunes_link,playstore_link,about,privacy,contact,terms;
     String city_id,cityId,agent_id,agent;
     SlidingPaneLayout slidingPaneLayout;
     int MY_PERMISSIONS_REQUEST_CALL_PHONE;
+    ImageView facebook_btn,twitter_btn,linkedin_btn,instagram_btn;
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -58,11 +59,22 @@ public class CityPage extends Activity {
         txtEmail = (TextView) findViewById(R.id.txtEmail);
         menu_btn = (ImageView) findViewById(R.id.menu_btn);
         slidingPaneLayout = (SlidingPaneLayout) findViewById(R.id.sliding_pane_layout);
-        about_page = (TextView) findViewById(R.id.about_page);
-        contact_page = (TextView) findViewById(R.id.contact_page);
-        terms_page = (TextView) findViewById(R.id.terms_page);
-        policy_page = (TextView) findViewById(R.id.policy_page);
-        calculator_page = (TextView) findViewById(R.id.calculator_page);
+        select_city = (TextView) findViewById(R.id.select_city);
+        properties = (TextView) findViewById(R.id.properties);
+        resale_properties = (TextView) findViewById(R.id.resale_properties);
+        home_loans = (TextView) findViewById(R.id.home_loans);
+        facebook_btn = (ImageView) findViewById(R.id.facebook_btn);
+        twitter_btn = (ImageView) findViewById(R.id.twitter_btn);
+        instagram_btn = (ImageView) findViewById(R.id.instagram_btn);
+        linkedin_btn = (ImageView) findViewById(R.id.linkedin_btn);
+        emi_calculator = (TextView) findViewById(R.id.emi_calculator);
+        about_text = (TextView) findViewById(R.id.about_text);
+        policy = (TextView) findViewById(R.id.policy);
+        terms_text = (TextView) findViewById(R.id.terms_text);
+
+
+
+
 
 
         call_btn.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +106,53 @@ public class CityPage extends Activity {
             }
         });
 
+
+        facebook_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://www.facebook.com/www.tieproperty.in/"));
+                startActivity(intent);
+            }
+        });
+
+        twitter_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://twitter.com/tie_property"));
+                startActivity(intent);
+            }
+        });
+
+        instagram_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://www.instagram.com/tieproperty/"));
+                startActivity(intent);
+            }
+        });
+
+        linkedin_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://www.linkedin.com/in/tie-property-508b81143/"));
+                startActivity(intent);
+            }
+        });
+
+
+
         menu_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,20 +163,157 @@ public class CityPage extends Activity {
         citiesfrom_api = new ArrayList<>();
         settingsfrom_api = new ArrayList<>();
 
-        about_page.setOnClickListener(new View.OnClickListener() {
+        select_city.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                about_page.setBackgroundColor(Color.parseColor("#CCCCCC"));
-                about_page.setTextColor(Color.parseColor("#09366C"));
-                policy_page.setBackgroundColor(Color.parseColor("#ffffff"));
-                policy_page.setTextColor(Color.parseColor("#000000"));
-                terms_page.setBackgroundColor(Color.parseColor("#ffffff"));
-                terms_page.setTextColor(Color.parseColor("#000000"));
-                contact_page.setBackgroundColor(Color.parseColor("#ffffff"));
-                contact_page.setTextColor(Color.parseColor("#000000"));
-                calculator_page.setBackgroundColor(Color.parseColor("#ffffff"));
-                calculator_page.setTextColor(Color.parseColor("#000000"));
-                Intent intent = new Intent(CityPage.this, AboutUsPage.class);
+                select_city.setBackgroundColor(Color.parseColor("#181818"));
+                select_city.setTextColor(Color.parseColor("#303C21"));
+                properties.setBackgroundColor(Color.parseColor("#202020"));
+                properties.setTextColor(Color.parseColor("#ffffff"));
+                resale_properties.setBackgroundColor(Color.parseColor("#202020"));
+                resale_properties.setTextColor(Color.parseColor("#ffffff"));
+                home_loans.setBackgroundColor(Color.parseColor("#202020"));
+                home_loans.setTextColor(Color.parseColor("#ffffff"));
+                policy.setBackgroundColor(Color.parseColor("#202020"));
+                policy.setTextColor(Color.parseColor("#ffffff"));
+                about_text.setBackgroundColor(Color.parseColor("#202020"));
+                about_text.setTextColor(Color.parseColor("#ffffff"));
+                terms_text.setBackgroundColor(Color.parseColor("#202020"));
+                terms_text.setTextColor(Color.parseColor("#ffffff"));
+                emi_calculator.setBackgroundColor(Color.parseColor("#202020"));
+                emi_calculator.setTextColor(Color.parseColor("#ffffff"));
+                Intent intent = new Intent(CityPage.this, CityPage.class);
+                startActivity(intent);
+                finish();
+                slidingPaneLayout.closePane();
+            }
+        });
+
+        properties.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               properties.setBackgroundColor(Color.parseColor("#181818"));
+               properties.setTextColor(Color.parseColor("#303C21"));
+               select_city.setBackgroundColor(Color.parseColor("#202020"));
+               select_city.setTextColor(Color.parseColor("#ffffff"));
+               resale_properties.setBackgroundColor(Color.parseColor("#202020"));
+               resale_properties.setTextColor(Color.parseColor("#ffffff"));
+               home_loans.setBackgroundColor(Color.parseColor("#202020"));
+               home_loans.setTextColor(Color.parseColor("#ffffff"));
+               policy.setBackgroundColor(Color.parseColor("#202020"));
+               policy.setTextColor(Color.parseColor("#ffffff"));
+               about_text.setBackgroundColor(Color.parseColor("#202020"));
+               about_text.setTextColor(Color.parseColor("#ffffff"));
+               terms_text.setBackgroundColor(Color.parseColor("#202020"));
+               terms_text.setTextColor(Color.parseColor("#ffffff"));
+               emi_calculator.setBackgroundColor(Color.parseColor("#202020"));
+               emi_calculator.setTextColor(Color.parseColor("#ffffff"));
+               Intent intent = new Intent(CityPage.this,CityPage.class);
+               startActivity(intent);
+               finish();
+               slidingPaneLayout.closePane();
+           }
+       });
+
+        resale_properties.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                resale_properties.setBackgroundColor(Color.parseColor("#181818"));
+                resale_properties.setTextColor(Color.parseColor("#303C21"));
+                select_city.setBackgroundColor(Color.parseColor("#202020"));
+                select_city.setTextColor(Color.parseColor("#ffffff"));
+                properties.setBackgroundColor(Color.parseColor("#202020"));
+                properties.setTextColor(Color.parseColor("#ffffff"));
+                home_loans.setBackgroundColor(Color.parseColor("#202020"));
+                home_loans.setTextColor(Color.parseColor("#ffffff"));
+                policy.setBackgroundColor(Color.parseColor("#202020"));
+                policy.setTextColor(Color.parseColor("#ffffff"));
+                about_text.setBackgroundColor(Color.parseColor("#202020"));
+                about_text.setTextColor(Color.parseColor("#ffffff"));
+                terms_text.setBackgroundColor(Color.parseColor("#202020"));
+                terms_text.setTextColor(Color.parseColor("#ffffff"));
+                emi_calculator.setBackgroundColor(Color.parseColor("#202020"));
+                emi_calculator.setTextColor(Color.parseColor("#ffffff"));
+                Intent intent = new Intent(CityPage.this,ResaleProperties.class);
+                startActivity(intent);
+                slidingPaneLayout.closePane();
+            }
+        });
+
+
+
+        home_loans.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                home_loans.setBackgroundColor(Color.parseColor("#181818"));
+                home_loans.setTextColor(Color.parseColor("#303C21"));
+                select_city.setBackgroundColor(Color.parseColor("#202020"));
+                select_city.setTextColor(Color.parseColor("#ffffff"));
+                properties.setBackgroundColor(Color.parseColor("#202020"));
+                properties.setTextColor(Color.parseColor("#ffffff"));
+                resale_properties.setBackgroundColor(Color.parseColor("#202020"));
+                resale_properties.setTextColor(Color.parseColor("#ffffff"));
+                policy.setBackgroundColor(Color.parseColor("#202020"));
+                policy.setTextColor(Color.parseColor("#ffffff"));
+                about_text.setBackgroundColor(Color.parseColor("#202020"));
+                about_text.setTextColor(Color.parseColor("#ffffff"));
+                terms_text.setBackgroundColor(Color.parseColor("#202020"));
+                terms_text.setTextColor(Color.parseColor("#ffffff"));
+                emi_calculator.setBackgroundColor(Color.parseColor("#202020"));
+                emi_calculator.setTextColor(Color.parseColor("#ffffff"));
+                Intent intent = new Intent(CityPage.this,HomeLoansPage.class);
+                startActivity(intent);
+                slidingPaneLayout.closePane();
+            }
+        });
+
+
+
+        emi_calculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                emi_calculator.setBackgroundColor(Color.parseColor("#181818"));
+                emi_calculator.setTextColor(Color.parseColor("#303C21"));
+                select_city.setBackgroundColor(Color.parseColor("#202020"));
+                select_city.setTextColor(Color.parseColor("#ffffff"));
+                properties.setBackgroundColor(Color.parseColor("#202020"));
+                properties.setTextColor(Color.parseColor("#ffffff"));
+                resale_properties.setBackgroundColor(Color.parseColor("#202020"));
+                resale_properties.setTextColor(Color.parseColor("#ffffff"));
+                home_loans.setBackgroundColor(Color.parseColor("#202020"));
+                home_loans.setTextColor(Color.parseColor("#ffffff"));
+                policy.setBackgroundColor(Color.parseColor("#202020"));
+                policy.setTextColor(Color.parseColor("#ffffff"));
+                about_text.setBackgroundColor(Color.parseColor("#202020"));
+                about_text.setTextColor(Color.parseColor("#ffffff"));
+                terms_text.setBackgroundColor(Color.parseColor("#202020"));
+                terms_text.setTextColor(Color.parseColor("#ffffff"));
+                Intent intent = new Intent(CityPage.this,EmiCalculatorPage.class);
+                startActivity(intent);
+                slidingPaneLayout.closePane();
+            }
+        });
+
+        about_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                about_text.setBackgroundColor(Color.parseColor("#181818"));
+                about_text.setTextColor(Color.parseColor("#303C21"));
+                emi_calculator.setBackgroundColor(Color.parseColor("#202020"));
+                emi_calculator.setTextColor(Color.parseColor("#ffffff"));
+                select_city.setBackgroundColor(Color.parseColor("#202020"));
+                select_city.setTextColor(Color.parseColor("#ffffff"));
+                properties.setBackgroundColor(Color.parseColor("#202020"));
+                properties.setTextColor(Color.parseColor("#ffffff"));
+                resale_properties.setBackgroundColor(Color.parseColor("#202020"));
+                resale_properties.setTextColor(Color.parseColor("#ffffff"));
+                home_loans.setBackgroundColor(Color.parseColor("#202020"));
+                home_loans.setTextColor(Color.parseColor("#ffffff"));
+                policy.setBackgroundColor(Color.parseColor("#202020"));
+                policy.setTextColor(Color.parseColor("#ffffff"));
+                terms_text.setBackgroundColor(Color.parseColor("#202020"));
+                terms_text.setTextColor(Color.parseColor("#ffffff"));
+                Intent intent = new Intent(CityPage.this,AboutUsPage.class);
                 intent.putExtra("aboutus",about);
                 intent.putExtra("tielogo",logo);
                 startActivity(intent);
@@ -125,39 +321,51 @@ public class CityPage extends Activity {
             }
         });
 
-       policy_page.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               policy_page.setBackgroundColor(Color.parseColor("#CCCCCC"));
-               policy_page.setTextColor(Color.parseColor("#09366C"));
-               about_page.setBackgroundColor(Color.parseColor("#ffffff"));
-               about_page.setTextColor(Color.parseColor("#000000"));
-               terms_page.setBackgroundColor(Color.parseColor("#ffffff"));
-               terms_page.setTextColor(Color.parseColor("#000000"));
-               contact_page.setBackgroundColor(Color.parseColor("#ffffff"));
-               contact_page.setTextColor(Color.parseColor("#000000"));
-               calculator_page.setBackgroundColor(Color.parseColor("#ffffff"));
-               calculator_page.setTextColor(Color.parseColor("#000000"));
-               Intent intent = new Intent(CityPage.this,PrivacyPolicyPage.class);
-               intent.putExtra("privacy",privacy);
-               startActivity(intent);
-               slidingPaneLayout.closePane();
-           }
-       });
-
-        terms_page.setOnClickListener(new View.OnClickListener() {
+        policy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                terms_page.setBackgroundColor(Color.parseColor("#CCCCCC"));
-                terms_page.setTextColor(Color.parseColor("#09366C"));
-                about_page.setBackgroundColor(Color.parseColor("#ffffff"));
-                about_page.setTextColor(Color.parseColor("#000000"));
-                policy_page.setBackgroundColor(Color.parseColor("#ffffff"));
-                policy_page.setTextColor(Color.parseColor("#000000"));
-                contact_page.setBackgroundColor(Color.parseColor("#ffffff"));
-                contact_page.setTextColor(Color.parseColor("#000000"));
-                calculator_page.setBackgroundColor(Color.parseColor("#ffffff"));
-                calculator_page.setTextColor(Color.parseColor("#000000"));
+                policy.setBackgroundColor(Color.parseColor("#181818"));
+                policy.setTextColor(Color.parseColor("#303C21"));
+                about_text.setBackgroundColor(Color.parseColor("#202020"));
+                about_text.setTextColor(Color.parseColor("#ffffff"));
+                emi_calculator.setBackgroundColor(Color.parseColor("#202020"));
+                emi_calculator.setTextColor(Color.parseColor("#ffffff"));
+                select_city.setBackgroundColor(Color.parseColor("#202020"));
+                select_city.setTextColor(Color.parseColor("#ffffff"));
+                properties.setBackgroundColor(Color.parseColor("#202020"));
+                properties.setTextColor(Color.parseColor("#ffffff"));
+                resale_properties.setBackgroundColor(Color.parseColor("#202020"));
+                resale_properties.setTextColor(Color.parseColor("#ffffff"));
+                home_loans.setBackgroundColor(Color.parseColor("#202020"));
+                home_loans.setTextColor(Color.parseColor("#ffffff"));
+                terms_text.setBackgroundColor(Color.parseColor("#202020"));
+                terms_text.setTextColor(Color.parseColor("#ffffff"));
+                Intent intent = new Intent(CityPage.this,PrivacyPolicyPage.class);
+                intent.putExtra("privacy",privacy);
+                startActivity(intent);
+                slidingPaneLayout.closePane();
+            }
+        });
+
+        terms_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                terms_text.setBackgroundColor(Color.parseColor("#181818"));
+                terms_text.setTextColor(Color.parseColor("#303C21"));
+                policy.setBackgroundColor(Color.parseColor("#202020"));
+                policy.setTextColor(Color.parseColor("#ffffff"));
+                about_text.setBackgroundColor(Color.parseColor("#202020"));
+                about_text.setTextColor(Color.parseColor("#ffffff"));
+                emi_calculator.setBackgroundColor(Color.parseColor("#202020"));
+                emi_calculator.setTextColor(Color.parseColor("#ffffff"));
+                select_city.setBackgroundColor(Color.parseColor("#202020"));
+                select_city.setTextColor(Color.parseColor("#ffffff"));
+                properties.setBackgroundColor(Color.parseColor("#202020"));
+                properties.setTextColor(Color.parseColor("#ffffff"));
+                resale_properties.setBackgroundColor(Color.parseColor("#202020"));
+                resale_properties.setTextColor(Color.parseColor("#ffffff"));
+                home_loans.setBackgroundColor(Color.parseColor("#202020"));
+                home_loans.setTextColor(Color.parseColor("#ffffff"));
                 Intent intent = new Intent(CityPage.this,TermsPage.class);
                 intent.putExtra("terms",terms);
                 startActivity(intent);
@@ -166,47 +374,6 @@ public class CityPage extends Activity {
         });
 
 
-
-        contact_page.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                contact_page.setBackgroundColor(Color.parseColor("#CCCCCC"));
-                contact_page.setTextColor(Color.parseColor("#09366C"));
-                about_page.setBackgroundColor(Color.parseColor("#ffffff"));
-                about_page.setTextColor(Color.parseColor("#000000"));
-                policy_page.setBackgroundColor(Color.parseColor("#ffffff"));
-                policy_page.setTextColor(Color.parseColor("#000000"));
-                terms_page.setBackgroundColor(Color.parseColor("#ffffff"));
-                terms_page.setTextColor(Color.parseColor("#000000"));
-                calculator_page.setBackgroundColor(Color.parseColor("#ffffff"));
-                calculator_page.setTextColor(Color.parseColor("#000000"));
-                Intent intent = new Intent(CityPage.this,ContactUsPage.class);
-                intent.putExtra("contact",contact);
-                intent.putExtra("email",emails);
-                intent.putExtra("phone",phone);
-                startActivity(intent);
-                slidingPaneLayout.closePane();
-            }
-        });
-
-        calculator_page.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                calculator_page.setBackgroundColor(Color.parseColor("#CCCCCC"));
-                calculator_page.setTextColor(Color.parseColor("#09366C"));
-                about_page.setBackgroundColor(Color.parseColor("#ffffff"));
-                about_page.setTextColor(Color.parseColor("#000000"));
-                policy_page.setBackgroundColor(Color.parseColor("#ffffff"));
-                policy_page.setTextColor(Color.parseColor("#000000"));
-                terms_page.setBackgroundColor(Color.parseColor("#ffffff"));
-                terms_page.setTextColor(Color.parseColor("#000000"));
-                contact_page.setBackgroundColor(Color.parseColor("#ffffff"));
-                contact_page.setTextColor(Color.parseColor("#000000"));
-                Intent intent = new Intent(CityPage.this,EmiCalculatorPage.class);
-                startActivity(intent);
-                slidingPaneLayout.closePane();
-            }
-        });
 
 
         cityPageAdapter = new CityPageAdapter(CityPage.this,citiesfrom_api);

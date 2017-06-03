@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#b5b2b5">
@@ -14,77 +15,110 @@
             android:orientation="vertical"
             android:layout_width="250dp"
             android:layout_height="match_parent"
-            android:background="#CCCCCC">
+            android:background="#202020">
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#0D5097"></LinearLayout>
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView15"
+                    android:src="@drawable/tie_app_logo_new"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#ffffff">
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/select_city"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:textColor="#ffffff"
+                    android:textStyle="normal|bold"
+                    android:textSize="15sp"
+                    android:text="Select City" />
+
+                <TextView
+                    android:text="Properties in cities "
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/properties"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:textColor="#ffffff"
+                    android:textStyle="normal|bold"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:text="Resale properties in cities"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/resale_properties"
+                    android:paddingLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:textColor="#ffffff"
+                    android:textStyle="normal|bold"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:text="Home loans"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/home_loans"
+                    android:paddingLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:textColor="#ffffff"
+                    android:textStyle="normal|bold"
+                    android:textSize="15sp" />
+
+                <TextView android:text="Emi Calculator"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/emi_calculator"
+                    android:paddingLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:textColor="#ffffff"
+                    android:textStyle="normal|bold"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:text="About Us"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:id="@+id/about_page"
+                    android:layout_height="40dp"
+                    android:id="@+id/about_text"
                     android:gravity="center_vertical"
                     android:paddingLeft="10dp"
-                    android:textColor="#000"
-                    android:textStyle="normal|bold"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:text="Contact Us"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:id="@+id/contact_page"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="10dp"
-                    android:textColor="#000"
-                    android:textStyle="normal|bold"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:text="EMI Calculator"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:id="@+id/calculator_page"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="10dp"
-                    android:gravity="center_vertical"
-                    android:textColor="#000"
-                    android:textStyle="normal|bold"
-                    android:textSize="15sp" />
+                    android:textColor="#ffffff"
+                    android:textStyle="normal|bold" />
 
                 <TextView
                     android:text="Privacy Policy"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:id="@+id/policy_page"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="10dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/policy"
                     android:gravity="center_vertical"
-                    android:textColor="#000"
-                    android:textStyle="normal|bold"
-                    android:textSize="15sp" />
+                    android:paddingLeft="10dp"
+                    android:textColor="#ffffff"
+                    android:textStyle="normal|bold" />
 
-                <TextView android:text="Terms and Conditions"
+                <TextView
+                    android:text="Terms and Conditions"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:id="@+id/terms_page"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="10dp"
-                    android:gravity="center_vertical"
-                    android:textColor="#000"
+                    android:layout_height="40dp"
+                    android:id="@+id/terms_text"
+                    android:textColor="#ffffff"
                     android:textStyle="normal|bold"
-                    android:textSize="15sp" />
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp" />
 
             </LinearLayout>
 
@@ -120,13 +154,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                             <ImageView
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
                                 android:id="@+id/menu_btn"
                                 android:adjustViewBounds="true"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginTop="5dp"
-                                android:src="@drawable/menu" />
+                                android:src="@drawable/menu"
+                                android:padding="15dp" />
                             <ImageView
                                 android:id="@+id/property_logo"
                                 android:adjustViewBounds="true"
@@ -197,14 +230,14 @@
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
-                                android:id="@+id/imageView11"
+                                android:id="@+id/facebook_btn"
                                 android:adjustViewBounds="true"
                                 android:src="@drawable/facebook" />
 
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
-                                android:id="@+id/imageView12"
+                                android:id="@+id/twitter_btn"
                                 android:adjustViewBounds="true"
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="4dp"
@@ -212,15 +245,15 @@
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
-                                android:id="@+id/imageView13"
+                                android:id="@+id/linkedin_btn"
                                 android:adjustViewBounds="true"
                                 android:layout_marginRight="5dp"
-                                android:src="@drawable/gmail" />
+                                android:src="@drawable/in" />
 
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
-                                android:id="@+id/imageView14"
+                                android:id="@+id/instagram_btn"
                                 android:adjustViewBounds="true"
                                 android:src="@drawable/instagram" />
 
@@ -251,13 +284,13 @@
                                     android:layout_marginLeft="5dp">
 
                                     <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
                                         android:id="@+id/call_btn"
                                         android:adjustViewBounds="true"
                                         android:src="@drawable/map_call_icon"
-                                        android:layout_marginTop="7dp"
-                                        android:padding="3dp" />
+                                        android:padding="5dp"
+                                        android:layout_marginTop="3dp" />
 
                                     <TextView
                                         android:text="1800212147"

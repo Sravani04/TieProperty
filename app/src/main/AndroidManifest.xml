@@ -39,6 +39,9 @@
         <activity android:name=".TermsPage"></activity>
         <activity android:name=".ContactUsPage"></activity>
         <activity android:name=".EmiCalculatorPage"></activity>
+        <activity android:name=".ResaleProperties"></activity>
+        <activity android:name=".HomeLoansPage"></activity>
+        <activity android:name=".CallTollFreeNumberPage"></activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
