@@ -2,13 +2,11 @@ package com.viralandroid.tieproperty;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -48,23 +46,23 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.property_list);
-        headerView = ((LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.trending_properties, null, false);
+        //headerView = ((LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.trending_properties, null, false);
         listView = (ListView) findViewById(R.id.property_list);
         back_btn = (ImageView) findViewById(R.id.back_btn);
         select_city = (TextView) findViewById(R.id.select_city);
         location = (ImageView) findViewById(R.id.location);
         select_category = (ImageView) findViewById(R.id.select_category);
-        viewPager = (ViewPager) headerView.findViewById(R.id.view_pager);
-        previous_btn = (ImageView) headerView.findViewById(R.id.previous_btn);
-        next_btn = (ImageView) headerView.findViewById(R.id.next_btn);
+       // viewPager = (ViewPager) headerView.findViewById(R.id.view_pager);
+        //previous_btn = (ImageView) headerView.findViewById(R.id.previous_btn);
+        //next_btn = (ImageView) headerView.findViewById(R.id.next_btn);
         propertiesfrom_api = new ArrayList<>();
         trendingPropertiesfrom_api = new ArrayList<>();
-        trending_slide = (LinearLayout) headerView.findViewById(R.id.trending_slide);
-        property_name = (TextView) headerView.findViewById(R.id.property_name);
+       // trending_slide = (LinearLayout) headerView.findViewById(R.id.trending_slide);
+        //property_name = (TextView) headerView.findViewById(R.id.property_name);
 
 
 
-        listView.addHeaderView(headerView);
+        //listView.addHeaderView(headerView);
 
 
         price_from="";
@@ -114,63 +112,7 @@ public class MainActivity extends Activity {
         }
 
 
-        trendingPropertiesAdapter = new TrendingPropertiesAdapter(MainActivity.this,trendingPropertiesfrom_api,propertiesfrom_api,this);
-        viewPager.setAdapter(trendingPropertiesAdapter);
 
-        if (city_id.equals("10")){
-            trending_slide.setVisibility(View.GONE);
-        }else {
-            trending_slide.setVisibility(View.VISIBLE);
-        }
-
-        if(trendingPropertiesfrom_api.size()<=1){
-            previous_btn.setVisibility(View.GONE);
-            next_btn.setVisibility(View.VISIBLE);
-        }else {
-            previous_btn.setVisibility(View.GONE);
-            next_btn.setVisibility(View.VISIBLE);
-        }
-
-        next_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
-            }
-        });
-
-        previous_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                viewPager.setCurrentItem(viewPager.getCurrentItem() - 1, true);
-            }
-        });
-
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                if (position == 0){
-                    previous_btn.setVisibility(View.GONE);
-                }else {
-                    previous_btn.setVisibility(View.VISIBLE);
-                }
-
-                if (position == trendingPropertiesAdapter.getCount()-1){
-                    next_btn.setVisibility(View.GONE);
-                }else {
-                    next_btn.setVisibility(View.VISIBLE);
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
 
 
         select_city.setText(cities);
@@ -212,14 +154,74 @@ public class MainActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(MainActivity.this,PropertyDetailPage.class);
-                intent.putExtra("property",propertiesfrom_api.get(i-1));
+                intent.putExtra("property",propertiesfrom_api.get(i));
+//                intent.putExtra("property",propertiesfrom_api.get(i-1));
                 intent.putExtra("mobile",mobile);
                 startActivity(intent);
             }
         });
 
+
+//        trendingPropertiesAdapter = new TrendingPropertiesAdapter(MainActivity.this,trendingPropertiesfrom_api,propertiesfrom_api,this);
+//        viewPager.setAdapter(trendingPropertiesAdapter);
+//
+//        if (city_id.equals("10")){
+//            trending_slide.setVisibility(View.GONE);
+//        }else {
+//            trending_slide.setVisibility(View.VISIBLE);
+//        }
+//
+//        if(trendingPropertiesfrom_api.size()<=1){
+//            previous_btn.setVisibility(View.GONE);
+//            next_btn.setVisibility(View.VISIBLE);
+//        }else {
+//            previous_btn.setVisibility(View.GONE);
+//            next_btn.setVisibility(View.VISIBLE);
+//        }
+//
+//        next_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
+//            }
+//        });
+//
+//        previous_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                viewPager.setCurrentItem(viewPager.getCurrentItem() - 1, true);
+//            }
+//        });
+//
+//        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//                if (position == 0){
+//                    previous_btn.setVisibility(View.GONE);
+//                }else {
+//                    previous_btn.setVisibility(View.VISIBLE);
+//                }
+//
+//                if (position == trendingPropertiesAdapter.getCount()-1){
+//                    next_btn.setVisibility(View.GONE);
+//                }else {
+//                    next_btn.setVisibility(View.VISIBLE);
+//                }
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//
+//            }
+//        });
+
         get_properties();
-        get_trending_properties();
+        //get_trending_properties();
     }
 
 //    public void get_properties(){
