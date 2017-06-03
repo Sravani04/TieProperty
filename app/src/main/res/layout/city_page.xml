@@ -17,110 +17,283 @@
             android:layout_height="match_parent"
             android:background="#202020">
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView15"
-                    android:src="@drawable/tie_app_logo_new"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:id="@+id/select_city"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="10dp"
-                    android:textColor="#ffffff"
-                    android:textStyle="normal|bold"
-                    android:textSize="15sp"
-                    android:text="Select City" />
+                    android:layout_height="wrap_content"
+                    android:id="@+id/header">
 
-                <TextView
-                    android:text="Properties in cities "
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/imageView15"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:src="@drawable/tie_app_logo_new" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:id="@+id/properties"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="10dp"
-                    android:textColor="#ffffff"
-                    android:textStyle="normal|bold"
-                    android:textSize="15sp" />
+                    android:layout_height="110dp"
+                    android:id="@+id/footer"
+                    android:layout_alignParentBottom="true">
 
-                <TextView
-                    android:text="Resale properties in cities"
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentBottom="true"
+                        android:id="@+id/footer">>
+                        <TextView
+                            android:text="FOLLOW US"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textView29"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:textColor="#ffffff" />
+
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp">
+
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:id="@+id/facebook_btn"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/facebook" />
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:id="@+id/twitter_btn"
+                                android:adjustViewBounds="true"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="4dp"
+                                android:src="@drawable/twitter" />
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:id="@+id/linkedin_btn"
+                                android:adjustViewBounds="true"
+                                android:layout_marginRight="5dp"
+                                android:src="@drawable/in" />
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:id="@+id/instagram_btn"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/instagram" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="5dp">
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp">
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="#FEAB1D"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal">
+
+                                    <ImageView
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:id="@+id/call_btn"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/map_call_icon"
+                                        android:padding="5dp"
+                                        android:layout_marginTop="3dp" />
+
+                                    <TextView
+                                        android:text="1800212147"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:id="@+id/txtPhn"
+                                        android:gravity="center_vertical"
+                                        android:textColor="#ffffff"
+                                        android:layout_weight="1"
+                                        android:visibility="gone" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="#09366C"
+                                    android:layout_marginLeft="3dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal"
+                                    android:layout_marginBottom="2dp">
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:id="@+id/email"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/email"
+                                        android:layout_marginTop="7dp" />
+
+                                    <TextView
+                                        android:text="info@tieproperty.in"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:id="@+id/txtEmail"
+                                        android:gravity="center_vertical"
+                                        android:textColor="#ffffff"
+                                        android:layout_weight="1"
+                                        android:layout_marginLeft="5dp"
+                                        android:visibility="gone" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:id="@+id/resale_properties"
-                    android:paddingLeft="10dp"
-                    android:gravity="center_vertical"
-                    android:textColor="#ffffff"
-                    android:textStyle="normal|bold"
-                    android:textSize="15sp" />
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/footer"
+                    android:layout_below="@+id/header">
 
-                <TextView
-                    android:text="Home loans"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:id="@+id/home_loans"
-                    android:paddingLeft="10dp"
-                    android:gravity="center_vertical"
-                    android:textColor="#ffffff"
-                    android:textStyle="normal|bold"
-                    android:textSize="15sp" />
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                <TextView android:text="Emi Calculator"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:id="@+id/emi_calculator"
-                    android:paddingLeft="10dp"
-                    android:gravity="center_vertical"
-                    android:textColor="#ffffff"
-                    android:textStyle="normal|bold"
-                    android:textSize="15sp" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical" >
 
-                <TextView
-                    android:text="About Us"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:id="@+id/about_text"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="10dp"
-                    android:textColor="#ffffff"
-                    android:textStyle="normal|bold" />
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
-                <TextView
-                    android:text="Privacy Policy"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:id="@+id/policy"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="10dp"
-                    android:textColor="#ffffff"
-                    android:textStyle="normal|bold" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:id="@+id/select_city"
+                                    android:gravity="center_vertical"
+                                    android:paddingLeft="10dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="normal|bold"
+                                    android:textSize="15sp"
+                                    android:text="Select City" />
 
-                <TextView
-                    android:text="Terms and Conditions"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:id="@+id/terms_text"
-                    android:textColor="#ffffff"
-                    android:textStyle="normal|bold"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="10dp" />
+                                <TextView
+                                    android:text="Properties in cities "
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:id="@+id/properties"
+                                    android:gravity="center_vertical"
+                                    android:paddingLeft="10dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="normal|bold"
+                                    android:textSize="15sp" />
 
-            </LinearLayout>
+                                <TextView
+                                    android:text="Resale properties in cities"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:id="@+id/resale_properties"
+                                    android:paddingLeft="10dp"
+                                    android:gravity="center_vertical"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="normal|bold"
+                                    android:textSize="15sp" />
+
+                                <TextView
+                                    android:text="Home loans"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:id="@+id/home_loans"
+                                    android:paddingLeft="10dp"
+                                    android:gravity="center_vertical"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="normal|bold"
+                                    android:textSize="15sp" />
+
+                                <TextView android:text="Emi Calculator"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:id="@+id/emi_calculator"
+                                    android:paddingLeft="10dp"
+                                    android:gravity="center_vertical"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="normal|bold"
+                                    android:textSize="15sp" />
+
+                                <TextView
+                                    android:text="About Us"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:id="@+id/about_text"
+                                    android:gravity="center_vertical"
+                                    android:paddingLeft="10dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="normal|bold" />
+
+                                <TextView
+                                    android:text="Privacy Policy"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:id="@+id/policy"
+                                    android:gravity="center_vertical"
+                                    android:paddingLeft="10dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="normal|bold" />
+
+                                <TextView
+                                    android:text="Terms and Conditions"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:id="@+id/terms_text"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="normal|bold"
+                                    android:gravity="center_vertical"
+                                    android:paddingLeft="10dp" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </ScrollView>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
 
         </LinearLayout>
 
