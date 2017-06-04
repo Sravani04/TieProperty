@@ -24,7 +24,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/header">
+                    android:id="@+id/header_slide">
 
                     <LinearLayout
                         android:orientation="vertical"
@@ -34,7 +34,7 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/imageView15"
+                            android:id="@+id/image_slide"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
                             android:src="@drawable/tie_app_logo_new" />
@@ -44,20 +44,19 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="110dp"
-                    android:id="@+id/footer"
+                    android:id="@+id/footer_slide"
                     android:layout_alignParentBottom="true">
 
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_alignParentBottom="true"
-                        android:id="@+id/footer">>
+                        android:layout_alignParentBottom="true">
                         <TextView
                             android:text="FOLLOW US"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/textView29"
+                            android:id="@+id/follow"
                             android:gravity="center_vertical|center_horizontal"
                             android:textColor="#ffffff" />
 
@@ -73,14 +72,14 @@
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
-                                android:id="@+id/facebook_btn"
+                                android:id="@+id/facebook_btn_1"
                                 android:adjustViewBounds="true"
                                 android:src="@drawable/facebook" />
 
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
-                                android:id="@+id/twitter_btn"
+                                android:id="@+id/twitter_btn_1"
                                 android:adjustViewBounds="true"
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="4dp"
@@ -88,7 +87,7 @@
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
-                                android:id="@+id/linkedin_btn"
+                                android:id="@+id/linkedin_btn_1"
                                 android:adjustViewBounds="true"
                                 android:layout_marginRight="5dp"
                                 android:src="@drawable/in" />
@@ -96,7 +95,7 @@
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
-                                android:id="@+id/instagram_btn"
+                                android:id="@+id/instagram_btn_1"
                                 android:adjustViewBounds="true"
                                 android:src="@drawable/instagram" />
 
@@ -130,7 +129,7 @@
                                     <ImageView
                                         android:layout_width="30dp"
                                         android:layout_height="30dp"
-                                        android:id="@+id/call_btn"
+                                        android:id="@+id/callbtn"
                                         android:adjustViewBounds="true"
                                         android:src="@drawable/map_call_icon"
                                         android:padding="5dp"
@@ -140,7 +139,6 @@
                                         android:text="1800212147"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:id="@+id/txtPhn"
                                         android:gravity="center_vertical"
                                         android:textColor="#ffffff"
                                         android:layout_weight="1"
@@ -160,7 +158,7 @@
                                     <ImageView
                                         android:layout_width="20dp"
                                         android:layout_height="20dp"
-                                        android:id="@+id/email"
+                                        android:id="@+id/email_btn"
                                         android:adjustViewBounds="true"
                                         android:src="@drawable/email"
                                         android:layout_marginTop="7dp" />
@@ -169,7 +167,6 @@
                                         android:text="info@tieproperty.in"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:id="@+id/txtEmail"
                                         android:gravity="center_vertical"
                                         android:textColor="#ffffff"
                                         android:layout_weight="1"
@@ -186,8 +183,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_above="@+id/footer"
-                    android:layout_below="@+id/header">
+                    android:layout_above="@+id/footer_slide"
+                    android:layout_below="@+id/header_slide">
 
                     <ScrollView
                         android:layout_width="match_parent"
@@ -352,7 +349,7 @@
                                 android:textSize="18sp"
                                 android:gravity="center_vertical|center_horizontal"
                                 android:textStyle="normal|bold"
-                                android:layout_below="@+id/header"
+                                android:layout_below="@+id/header_slide"
                                 android:layout_above="@+id/city"
                                 android:layout_marginTop="10dp" />
 
@@ -382,7 +379,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="120dp"
                         android:layout_alignParentBottom="true"
-                        android:id="@+id/footer">>
+                        android:id="@+id/footer">
+
                         <TextView
                             android:text="FOLLOW US"
                             android:layout_width="match_parent"
