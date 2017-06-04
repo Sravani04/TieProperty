@@ -36,7 +36,7 @@ public class CityPage extends Activity {
     CityPageAdapter cityPageAdapter;
     GridView gridView;
     ArrayList<String> cities;
-    ImageView call_btn,email,menu_btn;
+    ImageView call_btn,email,menu_btn,callbtn,email_btn;
     public TextView txtPhn,txtEmail,select_city,properties,resale_properties,home_loans,emi_calculator,about_text,policy,terms_text;
     ArrayList<Cities> citiesfrom_api;
     ArrayList<Settings> settingsfrom_api;
@@ -44,7 +44,7 @@ public class CityPage extends Activity {
     String city_id,cityId,agent_id,agent;
     SlidingPaneLayout slidingPaneLayout;
     int MY_PERMISSIONS_REQUEST_CALL_PHONE;
-    ImageView facebook_btn,twitter_btn,linkedin_btn,instagram_btn;
+    ImageView facebook_btn,twitter_btn,linkedin_btn,instagram_btn,facebook_btn1,twitter_btn1,linkedin_btn1,instagram_btn1;
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -71,6 +71,12 @@ public class CityPage extends Activity {
         about_text = (TextView) findViewById(R.id.about_text);
         policy = (TextView) findViewById(R.id.policy);
         terms_text = (TextView) findViewById(R.id.terms_text);
+        facebook_btn1 = (ImageView) findViewById(R.id.facebook_btn_1);
+        twitter_btn1 = (ImageView) findViewById(R.id.twitter_btn_1);
+        instagram_btn1 = (ImageView) findViewById(R.id.instagram_btn_1);
+        linkedin_btn1 = (ImageView) findViewById(R.id.linkedin_btn_1);
+        callbtn = (ImageView) findViewById(R.id.callbtn);
+        email_btn = (ImageView) findViewById(R.id.email_btn);
 
 
 
@@ -141,6 +147,81 @@ public class CityPage extends Activity {
         });
 
         linkedin_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://www.linkedin.com/in/tie-property-508b81143/"));
+                startActivity(intent);
+            }
+        });
+
+
+        callbtn.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View view) {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:" + phone));
+                callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                if (ActivityCompat.checkSelfPermission(CityPage.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{Manifest.permission.CALL_PHONE},
+                            MY_PERMISSIONS_REQUEST_CALL_PHONE);
+                    return;
+                }
+
+                startActivity(callIntent);
+            }
+        });
+
+        email_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent Email = new Intent(Intent.ACTION_SEND);
+                Email.setType("text/email");
+                Email.putExtra(Intent.EXTRA_EMAIL,new String[]{emails});
+                Email.putExtra(Intent.EXTRA_SUBJECT,"Add your Subject");
+                Email.putExtra(Intent.EXTRA_TEXT, message);
+                startActivity(Intent.createChooser(Email, "Send Feedback:"));
+            }
+        });
+
+
+        facebook_btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://www.facebook.com/www.tieproperty.in/"));
+                startActivity(intent);
+            }
+        });
+
+        twitter_btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://twitter.com/tie_property"));
+                startActivity(intent);
+            }
+        });
+
+        instagram_btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://www.instagram.com/tieproperty/"));
+                startActivity(intent);
+            }
+        });
+
+        linkedin_btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
