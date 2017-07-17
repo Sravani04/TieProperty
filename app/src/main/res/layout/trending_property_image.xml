@@ -5,35 +5,35 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
 
         <ImageView
+            android:id="@+id/myImage"
             android:layout_width="match_parent"
             android:layout_height="190dp"
-            android:id="@+id/myImage"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:src="@drawable/placeholder500x250" />
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentEnd="false"
             android:background="#64424242"
             android:gravity="center_vertical"
-            android:layout_alignParentBottom="false"
-            android:layout_alignParentEnd="false">
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/property_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/property_name"
                 android:gravity="center_vertical"
+                android:paddingLeft="10dp"
                 android:textColor="#ffffff"
-                android:textStyle="normal|bold"
-                android:paddingLeft="10dp" />
+                android:textStyle="normal|bold" />
         </LinearLayout>
-
 
 
     </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.viralandroid.tieproperty;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.koushikdutta.ion.Ion;
+
+import java.util.ArrayList;
 
 /**
  * Created by T on 25-04-2017.
@@ -28,7 +31,7 @@ public class PropertyImageSliderAdapter  extends PagerAdapter{
     }
     @Override
     public int getCount() {
-        return properties.flats.size();
+        return properties.images.size();
     }
 
     @Override
@@ -37,7 +40,7 @@ public class PropertyImageSliderAdapter  extends PagerAdapter{
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container,final int position){
+    public Object instantiateItem(final ViewGroup container, final int position){
         View itemView = layoutInflater.inflate(R.layout.property_image_slider, container, false);
         final ImageView imageView = (ImageView) itemView.findViewById(R.id.myImage);
 //        imageView.setImageResource(images[position]);
@@ -50,6 +53,20 @@ public class PropertyImageSliderAdapter  extends PagerAdapter{
         }catch (Exception e){
             e.printStackTrace();
         }
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,SlidingActivity.class);
+                ArrayList<String> img;
+                img = new ArrayList<String>();
+                for (int i=0;i<properties.images.size();i++){
+                    img.add(properties.images.get(i).image);
+                }
+                intent.putExtra("images",img);
+                context.startActivity(intent);
+            }
+        });
         return itemView;
     }
 

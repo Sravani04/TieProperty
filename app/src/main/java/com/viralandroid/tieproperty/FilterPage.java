@@ -1,5 +1,6 @@
 package com.viralandroid.tieproperty;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -48,6 +49,7 @@ public class FilterPage extends FragmentActivity {
     ListView category_list;
     EditText search,search_type;
     int textlength = 0;
+    LinearLayout progress_holder;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -68,6 +70,8 @@ public class FilterPage extends FragmentActivity {
         search = (EditText) findViewById(R.id.search);
         category_list = (ListView) findViewById(R.id.category_list);
         search_type = (EditText) findViewById(R.id.search_type);
+        progress_holder = (LinearLayout) findViewById(R.id.progress_holder);
+        progress_holder.setVisibility(View.GONE);
 
 //Areas
         areasfrom_api = new ArrayList<>();
@@ -161,6 +165,7 @@ public class FilterPage extends FragmentActivity {
 
         if (getIntent()!=null && getIntent().hasExtra("id")){
             cityid = getIntent().getStringExtra("id");
+            cities = getIntent().getStringExtra("title");
 
 
         }
@@ -286,15 +291,15 @@ public class FilterPage extends FragmentActivity {
 
 
                 //Toast.makeText(FilterPage.this,"Filters added",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(FilterPage.this,MainActivity.class);
+                Intent intent = new Intent();
                 intent.putExtra("area_id",areas_filter);
                 intent.putExtra("cat_id",category_filter);
                 intent.putExtra("range_from",from);
                 intent.putExtra("range_to",to);
                 Log.e("areaId",areas_filter);
                 intent.putExtra("id",cityid);
-
-                startActivity(intent);
+                setResult(Activity.RESULT_OK, intent);
+                finish();
             }
         });
 
@@ -305,11 +310,16 @@ public class FilterPage extends FragmentActivity {
 
     }
 
+    public void show_progress(){
+        progress_holder.setVisibility(View.VISIBLE);
+    }
+
+    public void hide_progress(){
+        progress_holder.setVisibility(View.GONE);
+    }
+
     public void get_areas(){
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("please wait..");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        show_progress();
         Ion.with(this)
                 .load(Session.SERVER_URL+"areas.php")
                 .setBodyParameter("city",cityid)
@@ -317,8 +327,7 @@ public class FilterPage extends FragmentActivity {
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
                     public void onCompleted(Exception e, JsonArray result) {
-                        if (progressDialog!=null)
-                            progressDialog.dismiss();
+                        hide_progress();
                         try {
                             for (int i = 0; i < result.size(); i++) {
                                 Areas areas = new Areas(result.get(i).getAsJsonObject(), FilterPage.this,false);
@@ -334,18 +343,14 @@ public class FilterPage extends FragmentActivity {
     }
 
     public void get_categories(){
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("please wait..");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        show_progress();
         Ion.with(this)
                 .load(Session.SERVER_URL+"category.php")
                 .asJsonArray()
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
                     public void onCompleted(Exception e, JsonArray result) {
-                        if (progressDialog!=null)
-                            progressDialog.dismiss();
+                        hide_progress();
                         try {
                             for (int i=0;i<result.size();i++){
                                 Category category = new Category(result.get(i).getAsJsonObject(),FilterPage.this,false);

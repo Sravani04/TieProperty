@@ -2,6 +2,7 @@ package com.viralandroid.tieproperty;
 
 import android.content.Context;
 
+import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 
 import java.io.Serializable;
@@ -18,6 +19,6 @@ public class TrendingProperties implements Serializable {
         image = jsonObject.get("image").getAsString();
         link = jsonObject.get("link").getAsString();
         property_id = jsonObject.get("property_id").getAsString();
-        property_name = jsonObject.get("property_name").getAsString();
+       property_name = jsonObject.get("property_name") != JsonNull.INSTANCE ? jsonObject.get("property_name").getAsString() : null;
     }
 }

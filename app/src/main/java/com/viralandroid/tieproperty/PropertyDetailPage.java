@@ -111,7 +111,7 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
 
         if (getIntent()!=null && getIntent().hasExtra("property")){
             properties = (Properties) getIntent().getSerializableExtra("property");
-            phone = getIntent().getStringExtra("mobile");
+//            phone = getIntent().getStringExtra("mobile");
 
         }else if(getIntent()!=null && getIntent().hasExtra("propertystr")){
             JsonParser parser = new JsonParser();
@@ -359,15 +359,19 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:"+phone));
-                callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                if (ActivityCompat.checkSelfPermission(PropertyDetailPage.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    requestPermissions(new String[]{Manifest.permission.CALL_PHONE},
-                            MY_PERMISSIONS_REQUEST_CALL_PHONE);
-                    return;
+                JsonParser jsonParser = new JsonParser();
+                if (!Session.GetServices(PropertyDetailPage.this).equals("-1")) {
+                    JsonObject parse = (JsonObject) jsonParser.parse(Session.GetSettings(PropertyDetailPage.this));
+                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+                    callIntent.setData(Uri.parse("tel:" + parse.get("phone").getAsString()));
+                    callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    if (ActivityCompat.checkSelfPermission(PropertyDetailPage.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        requestPermissions(new String[]{Manifest.permission.CALL_PHONE},
+                                MY_PERMISSIONS_REQUEST_CALL_PHONE);
+                        return;
+                    }
+                    startActivity(callIntent);
                 }
-                startActivity(callIntent);
             }
         });
 
@@ -471,7 +475,7 @@ public class PropertyDetailPage extends FragmentActivity implements OnMapReadyCa
 
         if(properties.images.size()<=1){
             previous_btn.setVisibility(View.GONE);
-            next_btn.setVisibility(View.VISIBLE);
+            next_btn.setVisibility(View.GONE);
         }else {
             previous_btn.setVisibility(View.GONE);
             next_btn.setVisibility(View.VISIBLE);

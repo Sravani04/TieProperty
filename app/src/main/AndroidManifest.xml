@@ -40,8 +40,10 @@
         <activity android:name=".ContactUsPage"></activity>
         <activity android:name=".EmiCalculatorPage"></activity>
         <activity android:name=".ResaleProperties"></activity>
+        <activity android:name=".ServicesPage"></activity>
         <activity android:name=".HomeLoansPage"></activity>
-        <activity android:name=".CallTollFreeNumberPage"></activity>
+        <activity android:name=".TrendingPropertyActivity"></activity>
+        <activity android:name=".SlidingActivity"></activity>
 
         <meta-data
             android:name="com.google.android.gms.version"

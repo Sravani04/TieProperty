@@ -324,6 +324,23 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingBottom="50dp"
+                    android:id="@+id/progress_holder">
+
+                    <com.singh.daman.proprogressviews.DottedArcProgress
+                        android:id="@+id/progress_view"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/progress_rounded_corners"
+                        app:dots_color="@android:color/holo_red_dark"
+                        app:dots_radius="30dp" />
+                </LinearLayout>
+
             </RelativeLayout>
         </ScrollView>
 

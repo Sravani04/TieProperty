@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.koushikdutta.ion.Ion;
 
 import java.util.ArrayList;
@@ -134,13 +136,17 @@ public class PropertyListAdapter extends BaseAdapter {
         call_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:"+mobile));
-                callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    return;
+                JsonParser jsonParser = new JsonParser();
+                if (!Session.GetServices(context).equals("-1")) {
+                    JsonObject parse = (JsonObject) jsonParser.parse(Session.GetSettings(context));
+                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+                    callIntent.setData(Uri.parse("tel:" + parse.get("phone").getAsString()));
+                    callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        return;
+                    }
+                    context.startActivity(callIntent);
                 }
-                context.startActivity(callIntent);
             }
         });
 

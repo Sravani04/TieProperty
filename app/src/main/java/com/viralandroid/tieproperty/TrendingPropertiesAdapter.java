@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,20 +19,20 @@ import java.util.ArrayList;
  * Created by T on 30-05-2017.
  */
 
-public class TrendingPropertiesAdapter  extends PagerAdapter{
+public class TrendingPropertiesAdapter  extends BaseAdapter {
     Context context;
     int images[];
     LayoutInflater inflater;
     ArrayList<Properties> properties;
-    MainActivity mainActivity;
+    TrendingPropertyActivity activity;
     ArrayList<TrendingProperties> trendingProperties;
 
-    public TrendingPropertiesAdapter(Context context,ArrayList<TrendingProperties> trendingProperties,ArrayList<Properties> properties,MainActivity mainActivity) {
+    public TrendingPropertiesAdapter(Context context,ArrayList<TrendingProperties> trendingProperties,ArrayList<Properties> properties,TrendingPropertyActivity activity) {
         this.context = context;
         this.trendingProperties=trendingProperties;
         inflater = LayoutInflater.from(context);
         this.properties = properties;
-        this.mainActivity = mainActivity;
+        this.activity = activity;
     }
 
     @Override
@@ -40,13 +41,18 @@ public class TrendingPropertiesAdapter  extends PagerAdapter{
     }
 
     @Override
-    public boolean isViewFromObject(View view, Object object) {
-        return view == ((LinearLayout) object);
+    public Object getItem(int i) {
+        return null;
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container,final int position){
-        View itemView = inflater.inflate(R.layout.trending_property_image, container, false);
+    public long getItemId(int i) {
+        return 0;
+    }
+
+    @Override
+    public View getView(final int position, View view, ViewGroup viewGroup) {
+        View itemView = inflater.inflate(R.layout.trending_property_image, null);
         final ImageView imageView = (ImageView) itemView.findViewById(R.id.myImage);
         LinearLayout trending_slide = (LinearLayout) itemView.findViewById(R.id.trending_slide);
         final TextView property_name = (TextView) itemView.findViewById(R.id.property_name);
@@ -57,7 +63,6 @@ public class TrendingPropertiesAdapter  extends PagerAdapter{
                     .withBitmap()
                     .placeholder(R.drawable.placeholder500x250)
                     .intoImageView(imageView);
-            container.addView(itemView);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -65,7 +70,7 @@ public class TrendingPropertiesAdapter  extends PagerAdapter{
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainActivity.get_single_property(trendingProperties.get(position).property_id);
+                activity.get_single_property(trendingProperties.get(position).property_id);
                 Log.e("id",trendingProperties.get(position).property_id);
 
 
@@ -76,8 +81,5 @@ public class TrendingPropertiesAdapter  extends PagerAdapter{
     }
 
 
-    @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView((LinearLayout) object);
-    }
+
 }
