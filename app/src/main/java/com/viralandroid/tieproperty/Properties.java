@@ -2,6 +2,7 @@ package com.viralandroid.tieproperty;
 
 import android.content.Context;
 
+import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 
 import java.io.Serializable;
@@ -29,7 +30,7 @@ public class Properties implements Serializable{
         title = jsonObject.get("title").getAsString();
         prop_code = jsonObject.get("prop_code").getAsString();
         area_id = jsonObject.get("area").getAsJsonObject().get("area_id").getAsString();
-        area_title = jsonObject.get("area").getAsJsonObject().get("title").getAsString();
+        area_title = jsonObject.get("area").getAsJsonObject().get("title") != JsonNull.INSTANCE ?category_title =  area_title = jsonObject.get("area").getAsJsonObject().get("title").getAsString() : null;
         address = jsonObject.get("address").getAsString();
         location = jsonObject.get("location").getAsString();
         latitude = jsonObject.get("latitude").getAsString();
