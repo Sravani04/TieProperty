@@ -355,6 +355,7 @@
                         android:layout_height="match_parent"
                         android:minLines="4"
                         android:paddingLeft="5dp"
+                        android:textColor="#000000"
                         android:visibility="visible" />
                 </LinearLayout>
             </LinearLayout>
