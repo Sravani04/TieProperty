@@ -636,6 +636,7 @@ public class MainActivity extends Activity {
                     city.setText(categories.get(i).title);
                     citiesId = categories.get(i).id;
                     propertiesfrom_api.clear();
+                    propertyListAdapter.notifyDataSetChanged();
                     areas_id ="";
                     cat_id = "";
                     price_from = "";
@@ -902,6 +903,7 @@ public class MainActivity extends Activity {
                         citiesId = jsonArray.get(finalI).getAsJsonObject().get("id").getAsString();
                         slidingPaneLayout.closePane();
                         propertiesfrom_api.clear();
+                    propertyListAdapter.notifyDataSetChanged();
                         areas_id = "";
                         cat_id = "";
                         price_from = "";
