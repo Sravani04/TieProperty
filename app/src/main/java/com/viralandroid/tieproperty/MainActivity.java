@@ -902,7 +902,10 @@ public class MainActivity extends Activity {
                         citiesId = jsonArray.get(finalI).getAsJsonObject().get("id").getAsString();
                         slidingPaneLayout.closePane();
                         propertiesfrom_api.clear();
-                        show_progress();
+                        areas_id = "";
+                        cat_id = "";
+                        price_from = "";
+                        price_to = "";
                         get_properties();
 //                    intent.putExtra("city",jsonArray.get(finalI).getAsJsonObject().get("title").getAsString());
 //                    intent.putExtra("id",jsonArray.get(finalI).getAsJsonObject().get("id").getAsString());
