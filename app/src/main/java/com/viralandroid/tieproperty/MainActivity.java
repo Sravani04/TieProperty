@@ -636,6 +636,10 @@ public class MainActivity extends Activity {
                     city.setText(categories.get(i).title);
                     citiesId = categories.get(i).id;
                     propertiesfrom_api.clear();
+                    areas_id ="";
+                    cat_id = "";
+                    price_from = "";
+                    price_to = "";
                     get_properties();
                     alertDialog.dismiss();
                 }
@@ -726,7 +730,7 @@ public class MainActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                    Log.e("came","came");
+                   Log.e("came","came");
                     Intent intent = new Intent(MainActivity.this,TrendingPropertyActivity.class);
                     intent.putExtra("id",categories.get(i).id);
                     intent.putExtra("title",categories.get(i).title);
