@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -47,7 +48,7 @@ import java.util.TimerTask;
 
 import static android.R.id.message;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements AbsListView.OnScrollListener{
     ListView listView;
     PropertyListAdapter propertyListAdapter;
     CityAdapter cityAdapter;
@@ -73,6 +74,8 @@ public class MainActivity extends Activity {
     String citiesId = "";
     String areas_id ="";
     String cat_id ="";
+    TextView footer_text;
+    private  int previouslast;
 
 
 
@@ -475,6 +478,12 @@ public class MainActivity extends Activity {
             }
         });
 
+        listView.setOnScrollListener(this);
+
+        View footerView =  ((LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.footer_layout, null, false);
+        listView.addFooterView(footerView);
+        footer_text = (TextView) footerView.findViewById(R.id.footer_text);
+
 
 //        trendingPropertiesAdapter = new TrendingPropertiesAdapter(MainActivity.this,trendingPropertiesfrom_api,propertiesfrom_api,this);
 //        viewPager.setAdapter(trendingPropertiesAdapter);
@@ -813,6 +822,8 @@ public class MainActivity extends Activity {
                 .setBodyParameter("category",cat_id)
                 .setBodyParameter("from",price_from)
                 .setBodyParameter("to",price_to)
+                .setBodyParameter("start",String.valueOf(propertiesfrom_api.size()))
+                .setBodyParameter("end","10")
                 .asJsonArray()
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
@@ -820,6 +831,10 @@ public class MainActivity extends Activity {
                         hide_progress();
                         try {
                             Log.e("prop_resp",result.toString());
+                            if (result.size()<10)
+                                footer_text.setText("End of Properties List");
+                            else
+                                footer_text.setText("Loading Properties List");
                             for (int i = 0; i < result.size(); i++) {
                                 Properties properties = new Properties(result.get(i).getAsJsonObject(), MainActivity.this);
                                 propertiesfrom_api.add(properties);
@@ -1113,6 +1128,20 @@ public class MainActivity extends Activity {
     }
 
 
+    @Override
+    public void onScrollStateChanged(AbsListView absListView, int i) {
 
+    }
 
+    @Override
+    public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+        int lastitem = i + i1;
+        if (lastitem == i2-3){
+            if (previouslast!=lastitem){
+                Log.e("result","last");
+                get_properties();
+                previouslast = lastitem;
+            }
+        }
+    }
 }
